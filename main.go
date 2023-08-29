@@ -2,12 +2,19 @@ package main
 
 import "github.com/gofiber/fiber/v2"
 
+const (
+	appName = "Jet Ordaneza Personal Website"
+	port    = ":3000"
+)
+
 func main() {
-	app := fiber.New()
-
-	app.Get("/api", func(c *fiber.Ctx) error {
-		return c.SendString("Hello, World!")
+	app := fiber.New(fiber.Config{
+		AppName: appName,
 	})
+	defer app.Shutdown()
 
-	app.Listen(":3000")
+	// Go!
+	if err := app.Listen(port); err != nil {
+		panic(err)
+	}
 }
