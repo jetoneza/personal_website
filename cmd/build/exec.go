@@ -38,6 +38,18 @@ func buildWeb() {
 	utils.ExecuteCommand("npm", "run", "build", "--prefix ", templatePath)
 }
 
+func runWeb() {
+	green.Println("Running sveltekit...")
+	installWebDependencies()
+
+	if utils.HasCommand("pnpm") {
+		utils.ExecuteCommand("pnpm", "run", "-C", templatePath, "dev")
+		return
+	}
+
+	utils.ExecuteCommand("npm", "run", "dev", "--prefix ", templatePath)
+}
+
 func installWebDependencies() {
 	if utils.HasCommand("pnpm") {
 		utils.ExecuteCommand("pnpm", "install", "-C", templatePath)
@@ -55,6 +67,8 @@ func main() {
 	switch command {
 	case "build:web":
 		buildWeb()
+	case "run:web":
+		runWeb()
 	case "build":
 		buildServer()
 	case "run":
