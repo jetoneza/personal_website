@@ -16,6 +16,11 @@ var (
 
 const templatePath = "./internal/template"
 
+func buildProduction() {
+  buildWeb()
+  buildServer()
+}
+
 func buildServer() {
 	green.Println("Building the go project...")
 	utils.ExecuteCommand("go", "build", "-o", "webapp", "-v")
@@ -59,8 +64,6 @@ func installWebDependencies() {
 	utils.ExecuteCommand("npm", "install", "--prefix", templatePath)
 }
 
-// TODO: Add svelte-kit build/run commands
-
 func main() {
 	command := os.Args[1]
 
@@ -73,6 +76,8 @@ func main() {
 		buildServer()
 	case "run":
 		runServer()
+  case "build:prod":
+    buildProduction()
 	default:
 		fmt.Printf("Invalid command '%v'\n", command)
 	}
