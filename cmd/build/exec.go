@@ -4,15 +4,20 @@ import (
 	"fmt"
 	"os"
 
-  "github.com/fatih/color"
+	"github.com/fatih/color"
 )
 
 // Colors
 var green = color.New(color.FgGreen)
 
-func Build() {
-  green.Println("Building the project...")
-  ExecuteCommand("go", "build", "-o", "webapp", "-v")
+func build() {
+	green.Println("Building the go project...")
+	ExecuteCommand("go", "build", "-o", "webapp", "-v")
+}
+
+func run() {
+	green.Println("Running the go project...")
+	ExecuteCommand("go", "run", "main.go")
 }
 
 // TODO: Add svelte-kit build/run commands
@@ -22,7 +27,9 @@ func main() {
 
 	switch command {
 	case "build":
-		Build()
+		build()
+	case "run":
+		run()
 	default:
 		fmt.Printf("Invalid command '%v'\n", command)
 	}
