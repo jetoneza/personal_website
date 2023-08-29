@@ -2,7 +2,9 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/jetoneza/personal_website/internal/template"
 )
 
 const (
@@ -19,6 +21,13 @@ func main() {
 	// Middlewares
 	app.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
+	}))
+
+	// Serve static files
+	app.All("/*", filesystem.New(filesystem.Config{
+		Root:         template.Build(),
+		NotFoundFile: "index.html",
+		Index:        "index.html",
 	}))
 
 	// Go!
