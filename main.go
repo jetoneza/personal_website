@@ -4,7 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-	"github.com/jetoneza/personal_website/internal/template"
+	"github.com/jetoneza/personal_website/web"
 )
 
 const (
@@ -25,7 +25,7 @@ func main() {
 
 	// Serve static files
 	app.All("/*", filesystem.New(filesystem.Config{
-		Root:         template.Build(),
+		Root:         web.Build(),
 		NotFoundFile: "index.html",
 		Index:        "index.html",
 	}))

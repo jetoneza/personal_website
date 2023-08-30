@@ -14,7 +14,7 @@ var (
 	yellow = color.New(color.FgYellow)
 )
 
-const templatePath = "./internal/template"
+const templatePath = "./web"
 
 func buildProduction() {
   buildWeb()
