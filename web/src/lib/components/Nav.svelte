@@ -8,14 +8,17 @@
 	>
 	<ul class="flex space-x-10 font-mono justify-end">
 		<!-- TODO: Show links if content is available -->
-		<li aria-current={$page.url.pathname === '/blog' ? 'page' : undefined}>
-			<a href="/blog">Blog</a>
-		</li>
-		<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-			<a href="/about">About</a>
-		</li>
+		<!-- <li aria-current={$page.url.pathname === '/blog' ? 'page' : undefined}> -->
+		<!-- 	<a href="/blog">Blog</a> -->
+		<!-- </li> -->
+		<!-- <li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}> -->
+		<!-- 	<a href="/about">About</a> -->
+		<!-- </li> -->
 		<li aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}>
 			<a href="/contact">Contact</a>
+		</li>
+		<li>
+			<a href="https://github.com/jetoneza" target="_blank">Github</a>
 		</li>
 	</ul>
 </nav>
