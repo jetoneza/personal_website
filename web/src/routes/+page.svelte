@@ -1,6 +1,25 @@
-<div class="container mx-auto px-4 py-10 flex space-x-80">
-	<div class="text-5xl font-bold">
-		Hi! It's me.<br />
-		Jet Ordaneza<span class="text-blue-500">.</span>
+<div class="container mx-auto px-4 py-10">
+	<div class="header w-1/2 mx-auto space-y-8">
+		<h1 class="name font-bold text-4xl font-serif">
+			Hello, I'm Jet<span class="text-cyan-800">.</span>
+		</h1>
+
+		<div class="content space-y-4 w-3/4 font-serif">
+			<p class="text-justify">
+				A <span class="font-bold">Software Engineer</span>. I'm always curious about how things
+				work and love exploring new stuff.
+			</p>
+
+			<p class="text-justify">
+				When I'm not coding, you can find me doing a few different things. I enjoy playing games,
+				riding my bicycle, and strumming my guitar. These are my go-to hobbies that help me relax
+				and have fun.
+			</p>
+
+			<p class="text-justify">
+				I'm excited to share my journey with you, whether it's my coding adventures or my interests
+				outside of work. Let's explore the world together!
+			</p>
+		</div>
 	</div>
 </div>
