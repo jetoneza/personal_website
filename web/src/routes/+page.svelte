@@ -1,9 +1,9 @@
-<div class="header w-1/2 mx-auto space-y-8">
+<div class="header space-y-8 mx-auto" style="max-width: 426px;">
 	<h1 class="name font-bold text-4xl font-serif">
 		Hello, I'm Jet<span class="text-cyan-600">.</span>
 	</h1>
 
-	<div class="content space-y-4 w-3/4 font-serif">
+	<div class="content space-y-4 font-serif">
 		<p class="text-justify">
 			A <span class="font-bold">Software Engineer</span>. I'm always curious about how things work
 			and love exploring new stuff.
