@@ -4,6 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/jetoneza/personal_website/configs/database"
 	"github.com/jetoneza/personal_website/web"
 )
 
@@ -13,6 +14,10 @@ const (
 )
 
 func main() {
+	// TODO: Handle panics
+	db := database.Connect("./posts.sqlite3", "posts")
+	defer db.Close()
+
 	app := fiber.New(fiber.Config{
 		AppName: appName,
 	})
