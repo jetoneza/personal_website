@@ -28,6 +28,14 @@ func main() {
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
 	}))
 
+	// TODO: move to routes
+	app.Get("/api/healthchecker", func(c *fiber.Ctx) error {
+		return c.Status(200).JSON(fiber.Map{
+			"status":  "success",
+			"message": "jetrooper.me API is online!",
+		})
+	})
+
 	// Serve static files
 	app.All("/*", filesystem.New(filesystem.Config{
 		Root:         web.Build(),
