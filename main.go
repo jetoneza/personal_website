@@ -4,6 +4,7 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/jetoneza/personal_website/pkg/application"
 	"github.com/jetoneza/personal_website/web"
 )
 
@@ -13,20 +14,21 @@ const (
 )
 
 func main() {
-	// TODO: Handle panics
+	app := application.New()
+	app.ConnectDB()
 
-	app := fiber.New(fiber.Config{
+	fiberApp := fiber.New(fiber.Config{
 		AppName: appName,
 	})
-	defer app.Shutdown()
+	defer fiberApp.Shutdown()
 
 	// Middlewares
-	app.Use(logger.New(logger.Config{
+	fiberApp.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
 	}))
 
 	// TODO: move to routes
-	app.Get("/api/healthchecker", func(c *fiber.Ctx) error {
+	fiberApp.Get("/api/healthchecker", func(c *fiber.Ctx) error {
 		return c.Status(200).JSON(fiber.Map{
 			"status":  "success",
 			"message": "jetrooper.me API",
@@ -34,14 +36,14 @@ func main() {
 	})
 
 	// Serve static files
-	app.All("/*", filesystem.New(filesystem.Config{
+	fiberApp.All("/*", filesystem.New(filesystem.Config{
 		Root:         web.Build(),
 		NotFoundFile: "index.html",
 		Index:        "index.html",
 	}))
 
 	// Go!
-	if err := app.Listen(port); err != nil {
+	if err := fiberApp.Listen(port); err != nil {
 		panic(err)
 	}
 }
