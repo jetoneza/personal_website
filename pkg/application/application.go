@@ -15,12 +15,12 @@ func New() *Application {
 	return &Application{}
 }
 
-func (a *Application) ConnectDB() *gorm.DB {
+func (a *Application) InitializeDB(name string) *gorm.DB {
 	if a.db != nil {
 		return a.db
 	}
 
-	db, err := database.Connect()
+	db, err := database.Connect(name)
 	if err != nil {
 		log.Fatal(err)
 	}

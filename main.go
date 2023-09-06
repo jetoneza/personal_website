@@ -8,14 +8,16 @@ import (
 	"github.com/jetoneza/personal_website/web"
 )
 
+// TODO: Move to configs using .env
 const (
-	appName = "Jet Ordaneza Personal Website"
-	port    = ":3000"
+	database = "posts.sqlite"
+	appName  = "Jet Ordaneza Personal Website"
+	port     = ":3000"
 )
 
 func main() {
 	app := application.New()
-	app.ConnectDB()
+	app.InitializeDB(database)
 
 	fiberApp := fiber.New(fiber.Config{
 		AppName: appName,
