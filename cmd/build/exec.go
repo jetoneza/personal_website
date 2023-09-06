@@ -2,37 +2,31 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 
-	"github.com/fatih/color"
 	"github.com/jetoneza/personal_website/cmd/build/utils"
-)
-
-// Colors
-var (
-	green  = color.New(color.FgGreen)
-	yellow = color.New(color.FgYellow)
 )
 
 const templatePath = "./web"
 
 func buildProduction() {
-  buildWeb()
-  buildServer()
+	buildWeb()
+	buildServer()
 }
 
 func buildServer() {
-	green.Println("Building the go project...")
+	log.Println("Building the go project...")
 	utils.ExecuteCommand("go", "build", "-o", "webapp", "-v")
 }
 
 func runServer() {
-	green.Println("Running the go project...")
+	log.Println("Running the go project...")
 	utils.ExecuteCommand("go", "run", "main.go")
 }
 
 func buildWeb() {
-	green.Println("Building sveltekit...")
+	log.Println("Building sveltekit...")
 	installWebDependencies()
 
 	if utils.HasCommand("pnpm") {
@@ -44,7 +38,7 @@ func buildWeb() {
 }
 
 func runWeb() {
-	green.Println("Running sveltekit...")
+	log.Println("Running sveltekit...")
 	installWebDependencies()
 
 	if utils.HasCommand("pnpm") {
@@ -76,8 +70,8 @@ func main() {
 		buildServer()
 	case "run":
 		runServer()
-  case "build:prod":
-    buildProduction()
+	case "build:prod":
+		buildProduction()
 	default:
 		fmt.Printf("Invalid command '%v'\n", command)
 	}

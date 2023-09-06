@@ -3,7 +3,6 @@ module github.com/jetoneza/personal_website
 go 1.21.0
 
 require (
-	github.com/fatih/color v1.15.0
 	github.com/gofiber/fiber/v2 v2.49.0
 	gorm.io/driver/sqlite v1.5.3
 	gorm.io/gorm v1.25.4
