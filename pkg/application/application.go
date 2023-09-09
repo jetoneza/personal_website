@@ -8,7 +8,7 @@ import (
 )
 
 type Application struct {
-	db *gorm.DB
+	DB *gorm.DB
 }
 
 func New() *Application {
@@ -16,8 +16,8 @@ func New() *Application {
 }
 
 func (a *Application) InitializeDB(name string) *gorm.DB {
-	if a.db != nil {
-		return a.db
+	if a.DB != nil {
+		return a.DB
 	}
 
 	db, err := database.Connect(name)
@@ -25,7 +25,7 @@ func (a *Application) InitializeDB(name string) *gorm.DB {
 		log.Fatal(err)
 	}
 
-	a.db = db
+	a.DB = db
 
 	return db
 }
