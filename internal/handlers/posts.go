@@ -42,7 +42,13 @@ func (h *Handler) CreatePost(c *fiber.Ctx) error {
 		})
 	}
 
-	// TODO: Validate data
+	validationErrors := models.Validate(payload)
+	if validationErrors != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status": "fail",
+			"errors": validationErrors,
+		})
+	}
 
 	post := models.Post{
 		Title:    payload.Title,
