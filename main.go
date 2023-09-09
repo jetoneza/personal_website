@@ -37,6 +37,9 @@ func main() {
 	v1 := fiberApp.Group("/api/" + apiVersion)
 	v1.Get("/healthcheck", handlers.HealthCheck)
 
+	postsRoute := v1.Group("/posts")
+	postsRoute.Get("/", handlers.GetAllPosts)
+
 	// Serve static files
 	fiberApp.All("/*", filesystem.New(filesystem.Config{
 		Root:         web.Build(),
