@@ -10,7 +10,10 @@ import (
 )
 
 func Connect(name string) (*gorm.DB, error) {
-	db, err := gorm.Open(sqlite.Open(name), &gorm.Config{})
+  // This is for sqlite only
+	dbPath := "db/"
+
+	db, err := gorm.Open(sqlite.Open(dbPath+name), &gorm.Config{})
 	if err != nil {
 		return nil, errors.New("Failed opening connection to sqlite:" + err.Error())
 	}
