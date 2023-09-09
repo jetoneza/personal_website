@@ -39,6 +39,7 @@ func main() {
 
 	postsRoute := v1.Group("/posts")
 	postsRoute.Get("/", handlers.GetAllPosts)
+	postsRoute.Post("/", handlers.CreatePost)
 
 	// Serve static files
 	fiberApp.All("/*", filesystem.New(filesystem.Config{
