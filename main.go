@@ -4,15 +4,17 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/gofiber/fiber/v2/middleware/logger"
+	"github.com/jetoneza/personal_website/internal/handlers"
 	"github.com/jetoneza/personal_website/pkg/application"
 	"github.com/jetoneza/personal_website/web"
 )
 
 // TODO: Move to configs using .env
 const (
-	database = "posts.sqlite"
-	appName  = "Jet Ordaneza Personal Website"
-	port     = ":3000"
+	database   = "posts.sqlite"
+	appName    = "Jet Ordaneza Personal Website"
+	port       = ":3000"
+	apiVersion = "v1"
 )
 
 func main() {
@@ -29,13 +31,11 @@ func main() {
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
 	}))
 
-	// TODO: move to routes
-	fiberApp.Get("/api/healthchecker", func(c *fiber.Ctx) error {
-		return c.Status(200).JSON(fiber.Map{
-			"status":  "success",
-			"message": "jetrooper.me API",
-		})
-	})
+	// Routes
+	handlers := handlers.NewHandler(app)
+
+	v1 := fiberApp.Group("/api/" + apiVersion)
+	v1.Get("/healthcheck", handlers.HealthCheck)
 
 	// Serve static files
 	fiberApp.All("/*", filesystem.New(filesystem.Config{
