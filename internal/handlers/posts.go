@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 
@@ -8,6 +9,27 @@ import (
 	"github.com/jetoneza/personal_website/internal/models"
 	"github.com/jetoneza/personal_website/internal/schema"
 )
+
+func (h *Handler) GetPost(c *fiber.Ctx) error {
+	id := c.Params("id")
+
+	var post models.Post
+
+	result := h.App.DB.First(&post, "id = ?", id)
+
+	if result.Error != nil {
+		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"status":  "error",
+			"message": fmt.Sprintf("%v", result.Error),
+		})
+	}
+
+
+	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status": "success",
+		"data":   post,
+	})
+}
 
 func (h *Handler) GetAllPosts(c *fiber.Ctx) error {
 	page, _ := strconv.Atoi(c.Query("page", "1"))
