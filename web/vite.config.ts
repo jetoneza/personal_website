@@ -6,4 +6,10 @@ export default defineConfig({
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}'],
 	},
+	server: {
+		proxy: {
+			// TODO: Use env. This proxy is only for development.
+			'/api': 'http://127.0.0.1:3000',
+		},
+	},
 });
