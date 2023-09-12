@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/jetoneza/personal_website/internal/handlers"
@@ -27,6 +28,10 @@ func main() {
 	defer fiberApp.Shutdown()
 
 	// Middlewares
+	fiberApp.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+		AllowHeaders: "*",
+	}))
 	fiberApp.Use(logger.New(logger.Config{
 		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
 	}))
@@ -37,6 +42,7 @@ func main() {
 	v1 := fiberApp.Group("/api/" + apiVersion)
 	v1.Get("/healthcheck", handlers.HealthCheck)
 
+	// TODO: Add auth middleware to POST endpoints
 	postsRoute := v1.Group("/posts")
 	postsRoute.Get("/", handlers.GetAllPosts)
 	postsRoute.Post("/", handlers.CreatePost)
