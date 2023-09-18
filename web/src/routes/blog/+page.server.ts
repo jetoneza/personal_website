@@ -12,7 +12,5 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	const res = await fetch(`/api/v1/posts?${qs.toString()}`);
 	const jsonResponse = await res.json();
 
-  console.log(jsonResponse)
-
 	return { posts: jsonResponse.data };
 };
