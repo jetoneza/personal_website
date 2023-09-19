@@ -1,6 +1,6 @@
-import type { PageServerLoad } from './$types';
+import type { PageLoad } from './$types';
 
-export const load: PageServerLoad = async ({ fetch, url }) => {
+export const load: PageLoad = async ({ fetch, url }) => {
 	const page = Number(url.searchParams.get('page') ?? '1');
 	const limit = Number(url.searchParams.get('limit') ?? '10');
 
