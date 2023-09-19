@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-node';
+import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/kit/vite';
 import { mdsvex } from 'mdsvex';
 
@@ -15,7 +15,13 @@ const config = {
 	preprocess: [vitePreprocess({}), mdsvex(mdsvexOptions)],
 
 	kit: {
-    adapter: adapter()
+		adapter: adapter({
+			pages: 'build',
+			assets: 'build',
+			fallback: 'index.html',
+			precompress: false,
+			strict: true,
+		}),
 	},
 };
 
