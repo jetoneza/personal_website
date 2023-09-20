@@ -24,6 +24,8 @@ func (h *Handler) GetPost(c *fiber.Ctx) error {
 		})
 	}
 
+	// Convert md to html
+	post.ConvertContentToHtml()
 
 	return c.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status": "success",

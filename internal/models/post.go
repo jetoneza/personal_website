@@ -4,6 +4,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
+	"github.com/jetoneza/personal_website/pkg/utils"
 	"gorm.io/gorm"
 )
 
@@ -25,4 +26,10 @@ func (post *Post) BeforeCreate(tx *gorm.DB) error {
 	post.UpdatedAt = now
 
 	return nil
+}
+
+func (post *Post) ConvertContentToHtml() {
+  md := []byte(post.Content)
+  htmlBytes := utils.MdToHtml(md)
+  post.Content = string(htmlBytes)
 }
