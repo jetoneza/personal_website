@@ -27,4 +27,12 @@ module.exports = {
 			},
 		},
 	],
+  settings: {
+    svelte: {
+      ignoreWarnings: [
+        'svelte/no-unused-svelte-ignore',
+        'svelte/no-at-html-tags',
+      ],
+    },
+  },
 };
