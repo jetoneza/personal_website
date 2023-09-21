@@ -1,5 +1,5 @@
 <div class="container login mx-auto p-6 flex flex-col justify-center items-center h-screen">
-	<div class="form-wrapper w-80 p-6 rounded-lg drop-shadow-lg bg-white">
+	<div class="form-wrapper w-80 p-6 rounded-lg drop-shadow-lg bg-white font-mono">
 		<div class="title font-bold text-lg">Login to Dashboard</div>
 		<form class="flex flex-col space-y-4 mt-4">
 			<div class="input-wrapper">
@@ -13,7 +13,6 @@
             border border-gray-300 rounded-lg text-sm block w-full p-2.5
             focus:ring-2 focus:outline-none focus:ring-blue-300
           "
-					placeholder="admin@company.com"
 					required
 				/>
 			</div>
@@ -28,7 +27,6 @@
             border border-gray-300 rounded-lg text-sm block w-full p-2.5
             focus:ring-2 focus:outline-none focus:ring-blue-300
           "
-					placeholder="**********"
 					required
 				/>
 			</div>
