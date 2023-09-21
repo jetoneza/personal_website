@@ -1,1 +1,3 @@
-<h1 class="font-bold">Admin Dashboard</h1>
+<div class="p-4">
+  Sample Content
+</div>
