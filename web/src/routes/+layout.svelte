@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { onNavigate } from '$app/navigation';
-	import Nav from '$lib/components/Nav.svelte';
 
 	// Styles
 	import '../app.postcss';
@@ -17,8 +16,4 @@
 	});
 </script>
 
-<Nav />
-
-<div class="container mx-auto px-4 py-10">
-	<slot />
-</div>
+<slot />
