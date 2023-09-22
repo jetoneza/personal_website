@@ -10,15 +10,15 @@ import (
 	"github.com/jetoneza/personal_website/pkg/utils"
 )
 
-func (h *Handler) GetPost(c *fiber.Ctx) error {
-	id := c.Params("id")
+func (h *Handler) GetPost(ctx *fiber.Ctx) error {
+	id := ctx.Params("id")
 
 	var post models.Post
 
 	result := h.App.DB.First(&post, "id = ?", id)
 
 	if result.Error != nil {
-		return c.Status(fiber.StatusNotFound).JSON(fiber.Map{
+		return ctx.Status(fiber.StatusNotFound).JSON(fiber.Map{
 			"status":  "error",
 			"message": fmt.Sprintf("%v", result.Error),
 		})
@@ -27,15 +27,15 @@ func (h *Handler) GetPost(c *fiber.Ctx) error {
 	// Convert md to html
 	post.ConvertContentToHtml()
 
-	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status": "success",
 		"data":   post,
 	})
 }
 
-func (h *Handler) GetAllPosts(c *fiber.Ctx) error {
-	page, _ := strconv.Atoi(c.Query("page", "1"))
-	limit, _ := strconv.Atoi(c.Query("limit", "10"))
+func (h *Handler) GetAllPosts(ctx *fiber.Ctx) error {
+	page, _ := strconv.Atoi(ctx.Query("page", "1"))
+	limit, _ := strconv.Atoi(ctx.Query("limit", "10"))
 	offset := (page - 1) * limit
 
 	var posts []models.Post
@@ -43,13 +43,13 @@ func (h *Handler) GetAllPosts(c *fiber.Ctx) error {
 	results := h.App.DB.Limit(limit).Offset(offset).Find(&posts)
 
 	if results.Error != nil {
-		return c.Status(fiber.StatusBadGateway).JSON(fiber.Map{
+		return ctx.Status(fiber.StatusBadGateway).JSON(fiber.Map{
 			"status":  "error",
 			"message": results.Error,
 		})
 	}
 
-	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status":  "success",
 		"results": len(posts),
 		"data":    posts,
@@ -60,7 +60,7 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 	body := new(schema.CreatePostSchema)
 
 	if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
-		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": err.Message})
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "fail", "error": err.Message})
 	}
 
 	post := models.Post{

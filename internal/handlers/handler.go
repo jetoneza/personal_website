@@ -15,9 +15,9 @@ func NewHandler(app *application.Application) *Handler {
 	}
 }
 
-func (h *Handler) HealthCheck(c *fiber.Ctx) error {
+func (h *Handler) HealthCheck(ctx *fiber.Ctx) error {
 	// TODO: Add status codes to constants
-	return c.Status(200).JSON(fiber.Map{
+	return ctx.Status(200).JSON(fiber.Map{
 		"status":  "success",
 		"message": "jetrooper.me API",
 	})
