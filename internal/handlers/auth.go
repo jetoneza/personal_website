@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"errors"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/jetoneza/personal_website/internal/models"
@@ -94,5 +95,21 @@ func (h *Handler) LoginUser(ctx *fiber.Ctx) error {
 			},
 			Token: token,
 		},
+	})
+}
+
+func (h *Handler) LogoutUser(ctx *fiber.Ctx) error {
+	ctx.Cookie(&fiber.Cookie{
+		Name:     "jwt",
+		Value:    "session-ended",
+		Path:     "/",
+		Expires:  time.Now().Add(time.Second * 10),
+		Secure:   true,
+		HTTPOnly: true,
+	})
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status":  "success",
+		"message": "Logged out successfully",
 	})
 }
