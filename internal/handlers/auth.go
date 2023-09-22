@@ -40,21 +40,8 @@ func (h *Handler) Signup(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": result.Error.Error()})
 	}
 
-	token, _ := utils.GenerateAuthToken(&utils.AuthTokenPayload{
-		ID:    user.ID,
-		Email: user.Email,
-	})
-
 	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status": "success",
-		"data": &schema.AuthResponse{
-			User: &schema.UserResponse{
-				ID:    user.ID,
-				Name:  user.Name,
-				Email: user.Email,
-			},
-			Token: token,
-		},
 	})
 }
 
