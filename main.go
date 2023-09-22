@@ -2,10 +2,9 @@ package main
 
 import (
 	"github.com/gofiber/fiber/v2"
-	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/filesystem"
-	"github.com/gofiber/fiber/v2/middleware/logger"
 	"github.com/jetoneza/personal_website/internal/handlers"
+	"github.com/jetoneza/personal_website/internal/middlewares"
 	"github.com/jetoneza/personal_website/pkg/application"
 	"github.com/jetoneza/personal_website/web"
 )
@@ -28,13 +27,7 @@ func main() {
 	defer fiberApp.Shutdown()
 
 	// Middlewares
-	fiberApp.Use(cors.New(cors.Config{
-		AllowOrigins: "*",
-		AllowHeaders: "*",
-	}))
-	fiberApp.Use(logger.New(logger.Config{
-		Format: "[${ip}]:${port} ${status} - ${method} ${path}\n",
-	}))
+  middlewares.SetupMiddlewares(fiberApp)
 
 	// Routes
 	handlers := handlers.NewHandler(app)
