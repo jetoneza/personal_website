@@ -5,6 +5,7 @@ import (
 	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/jetoneza/personal_website/internal/handlers"
 	"github.com/jetoneza/personal_website/internal/middlewares"
+	"github.com/jetoneza/personal_website/internal/routes"
 	"github.com/jetoneza/personal_website/pkg/application"
 	"github.com/jetoneza/personal_website/web"
 )
@@ -29,17 +30,14 @@ func main() {
 	// Middlewares
   middlewares.SetupMiddlewares(fiberApp)
 
-	// Routes
+	// Handlers
 	handlers := handlers.NewHandler(app)
 
 	v1 := fiberApp.Group("/api/" + apiVersion)
 	v1.Get("/healthcheck", handlers.HealthCheck)
 
 	// TODO: Add auth middleware to POST endpoints
-	postsRoute := v1.Group("/posts")
-	postsRoute.Get("/", handlers.GetAllPosts)
-	postsRoute.Post("/", handlers.CreatePost)
-	postsRoute.Get("/:id", handlers.GetPost)
+  routes.PostRoutes(v1, handlers)
 
 	// Serve static files
 	fiberApp.All("/*", filesystem.New(filesystem.Config{
