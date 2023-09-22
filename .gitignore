@@ -2,4 +2,4 @@
 webapp
 /tmp
 /db
-
+.env

@@ -1,34 +1,33 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/filesystem"
 	"github.com/jetoneza/personal_website/internal/handlers"
 	"github.com/jetoneza/personal_website/internal/middlewares"
 	"github.com/jetoneza/personal_website/internal/routes"
 	"github.com/jetoneza/personal_website/pkg/application"
+	"github.com/jetoneza/personal_website/pkg/config"
 	"github.com/jetoneza/personal_website/web"
 )
 
-// TODO: Move to configs using .env
 const (
-	database   = "posts.sqlite"
-	appName    = "Jet Ordaneza Personal Website"
-	port       = ":3000"
 	apiVersion = "v1"
 )
 
 func main() {
 	app := application.New()
-	app.InitializeDB(database)
+	app.InitializeDB(config.DB)
 
 	fiberApp := fiber.New(fiber.Config{
-		AppName: appName,
+		AppName: config.APP_NAME,
 	})
 	defer fiberApp.Shutdown()
 
 	// Middlewares
-  middlewares.SetupMiddlewares(fiberApp)
+	middlewares.SetupMiddlewares(fiberApp)
 
 	// Handlers
 	handlers := handlers.NewHandler(app)
@@ -37,7 +36,7 @@ func main() {
 	v1.Get("/healthcheck", handlers.HealthCheck)
 
 	// TODO: Add auth middleware to POST endpoints
-  routes.PostRoutes(v1, handlers)
+	routes.PostRoutes(v1, handlers)
 
 	// Serve static files
 	fiberApp.All("/*", filesystem.New(filesystem.Config{
@@ -47,7 +46,7 @@ func main() {
 	}))
 
 	// Go!
-	if err := fiberApp.Listen(port); err != nil {
+	if err := fiberApp.Listen(fmt.Sprintf(":%v", config.PORT)); err != nil {
 		panic(err)
 	}
 }
