@@ -72,7 +72,7 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 	result := h.App.DB.Create(&post)
 
 	if result.Error != nil {
-		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "error", "message": result.Error.Error()})
+		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": result.Error.Error()})
 	}
 
 	return ctx.Status(fiber.StatusCreated).JSON(fiber.Map{

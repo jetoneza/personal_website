@@ -1,9 +1,54 @@
 package handlers
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"errors"
 
-func (h *Handler) Signup(c *fiber.Ctx) error {
-	return c.Status(fiber.StatusOK).JSON(fiber.Map{
+	"github.com/gofiber/fiber/v2"
+	"github.com/jetoneza/personal_website/internal/models"
+	"github.com/jetoneza/personal_website/internal/schema"
+	"github.com/jetoneza/personal_website/pkg/utils"
+	"gorm.io/gorm"
+)
+
+func (h *Handler) Signup(ctx *fiber.Ctx) error {
+	body := new(schema.SignupSchema)
+
+	if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "fail", "error": err.Message})
+	}
+
+	err := h.App.DB.Model(&models.User{}).Take(&struct{ ID string }{}, "email = ?", body.Email).Error
+
+	if !errors.Is(err, gorm.ErrRecordNotFound) {
+		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{
+			"status": "fail",
+			"error":  "Email already exists",
+		})
+	}
+
+	user := &models.User{
+		Name:     body.Name,
+		Email:    body.Email,
+		Password: utils.GenerateHashedPassword(body.Password),
+	}
+
+	result := h.App.DB.Create(&user)
+
+	if result.Error != nil {
+		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": result.Error.Error()})
+	}
+
+	// TODO: Generate jwt
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status": "success",
+		"data": &schema.AuthResponse{
+			User: &schema.UserResponse{
+				ID:    user.ID,
+				Name:  user.Name,
+				Email: user.Email,
+			},
+			Token: "sample-token",
+		},
 	})
 }
