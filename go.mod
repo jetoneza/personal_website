@@ -5,6 +5,7 @@ go 1.21.0
 require (
 	github.com/go-playground/validator/v10 v10.15.3
 	github.com/gofiber/fiber/v2 v2.49.1
+	github.com/golang-jwt/jwt/v5 v5.0.0
 	github.com/gomarkdown/markdown v0.0.0-20230916125811-7478c230c7cd
 	github.com/google/uuid v1.3.1
 	github.com/joho/godotenv v1.5.1

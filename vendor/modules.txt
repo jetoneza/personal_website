@@ -30,6 +30,9 @@ github.com/gofiber/fiber/v2/middleware/cors
 github.com/gofiber/fiber/v2/middleware/filesystem
 github.com/gofiber/fiber/v2/middleware/logger
 github.com/gofiber/fiber/v2/utils
+# github.com/golang-jwt/jwt/v5 v5.0.0
+## explicit; go 1.18
+github.com/golang-jwt/jwt/v5
 # github.com/gomarkdown/markdown v0.0.0-20230916125811-7478c230c7cd
 ## explicit; go 1.12
 github.com/gomarkdown/markdown
