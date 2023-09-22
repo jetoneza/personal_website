@@ -3,11 +3,11 @@ package handlers
 import (
 	"fmt"
 	"strconv"
-	"strings"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/jetoneza/personal_website/internal/models"
 	"github.com/jetoneza/personal_website/internal/schema"
+	"github.com/jetoneza/personal_website/pkg/utils"
 )
 
 func (h *Handler) GetPost(c *fiber.Ctx) error {
@@ -56,40 +56,26 @@ func (h *Handler) GetAllPosts(c *fiber.Ctx) error {
 	})
 }
 
-func (h *Handler) CreatePost(c *fiber.Ctx) error {
-	payload := new(schema.CreatePostSchema)
+func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
+	body := new(schema.CreatePostSchema)
 
-	if err := c.BodyParser(payload); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"status":  "fail",
-			"message": err.Error(),
-		})
-	}
-
-	validationErrors := models.Validate(payload)
-	if validationErrors != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
-			"status": "fail",
-			"errors": validationErrors,
-		})
+	if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
+		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": err.Message})
 	}
 
 	post := models.Post{
-		Title:    payload.Title,
-		Content:  payload.Content,
-		Category: payload.Category,
+		Title:    body.Title,
+		Content:  body.Content,
+		Category: body.Category,
 	}
 
 	result := h.App.DB.Create(&post)
 
-	if result.Error != nil && strings.Contains(result.Error.Error(), "Duplicate entry") {
-		// TODO: Add constants for messages
-		return c.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "message": "Title already exist, please use another title"})
-	} else if result.Error != nil {
-		return c.Status(fiber.StatusBadGateway).JSON(fiber.Map{"status": "error", "message": result.Error.Error()})
+	if result.Error != nil {
+		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "error", "message": result.Error.Error()})
 	}
 
-	return c.Status(fiber.StatusCreated).JSON(fiber.Map{
+	return ctx.Status(fiber.StatusCreated).JSON(fiber.Map{
 		"status": "success",
 		"data":   post,
 	})
