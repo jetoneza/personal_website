@@ -36,6 +36,7 @@ func main() {
 	v1.Get("/healthcheck", handlers.HealthCheck)
 
 	// TODO: Add auth middleware to POST endpoints
+	routes.AuthRoutes(v1, handlers)
 	routes.PostRoutes(v1, handlers)
 
 	// Serve static files
