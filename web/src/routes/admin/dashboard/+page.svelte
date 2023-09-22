@@ -1,3 +1,1 @@
-<div class="p-4">
-  Sample Content
-</div>
+<div class="p-4">Sample Content</div>

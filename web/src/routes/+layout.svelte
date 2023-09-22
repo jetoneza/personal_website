@@ -1,19 +1,19 @@
 <script lang="ts">
-	import { onNavigate } from '$app/navigation';
+  import { onNavigate } from '$app/navigation';
 
-	// Styles
-	import '../app.postcss';
+  // Styles
+  import '../app.postcss';
 
-	onNavigate((navigation) => {
-		if (!document.startViewTransition) return;
+  onNavigate((navigation) => {
+    if (!document.startViewTransition) return;
 
-		return new Promise((resolve) => {
-			document.startViewTransition(async () => {
-				resolve();
-				await navigation.complete;
-			});
-		});
-	});
+    return new Promise((resolve) => {
+      document.startViewTransition(async () => {
+        resolve();
+        await navigation.complete;
+      });
+    });
+  });
 </script>
 
 <slot />
