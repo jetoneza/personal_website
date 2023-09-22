@@ -40,7 +40,7 @@ func (h *Handler) Signup(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": result.Error.Error()})
 	}
 
-	token := utils.GenerateAuthToken(&utils.AuthTokenPayload{
+	token, _ := utils.GenerateAuthToken(&utils.AuthTokenPayload{
 		ID:    user.ID,
 		Email: user.Email,
 	})
@@ -83,9 +83,18 @@ func (h *Handler) Login(ctx *fiber.Ctx) error {
 		})
 	}
 
-	token := utils.GenerateAuthToken(&utils.AuthTokenPayload{
+	token, expiry := utils.GenerateAuthToken(&utils.AuthTokenPayload{
 		ID:    user.ID,
 		Email: user.Email,
+	})
+
+	ctx.Cookie(&fiber.Cookie{
+		Name:     "jwt",
+		Value:    token,
+		Path:     "/",
+		Expires:  expiry,
+		Secure:   true,
+		HTTPOnly: true,
 	})
 
 	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
