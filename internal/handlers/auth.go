@@ -10,6 +10,8 @@ import (
 	"gorm.io/gorm"
 )
 
+const AUTH_INVALID_CREDS_ERROR = "Invalid email or password"
+
 func (h *Handler) Signup(ctx *fiber.Ctx) error {
 	body := new(schema.SignupSchema)
 
@@ -36,6 +38,49 @@ func (h *Handler) Signup(ctx *fiber.Ctx) error {
 
 	if result.Error != nil {
 		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": result.Error.Error()})
+	}
+
+	token := utils.GenerateAuthToken(&utils.AuthTokenPayload{
+		ID:    user.ID,
+		Email: user.Email,
+	})
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status": "success",
+		"data": &schema.AuthResponse{
+			User: &schema.UserResponse{
+				ID:    user.ID,
+				Name:  user.Name,
+				Email: user.Email,
+			},
+			Token: token,
+		},
+	})
+}
+
+func (h *Handler) Login(ctx *fiber.Ctx) error {
+	body := new(schema.LoginSchema)
+
+	if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "fail", "error": err.Message})
+	}
+
+	var user models.User
+
+	result := h.App.DB.First(&user, "email = ?", body.Email)
+
+	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
+		return ctx.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"status": "fail",
+			"error":  AUTH_INVALID_CREDS_ERROR,
+		})
+	}
+
+	if err := utils.VerifyPassword(body.Password, user.Password); err != nil {
+		return ctx.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
+			"status": "fail",
+			"error":  AUTH_INVALID_CREDS_ERROR,
+		})
 	}
 
 	token := utils.GenerateAuthToken(&utils.AuthTokenPayload{

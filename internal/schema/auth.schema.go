@@ -1,9 +1,8 @@
 package schema
 
 type SignupSchema struct {
-	Name     string `json:"name" validate:"required,min=3"`
-	Email    string `json:"email" validate:"required,email"`
-	Password string `json:"password" validate:"required,password"`
+	LoginSchema
+	Name string `json:"name" validate:"required,min=3"`
 }
 
 type UserResponse struct {
@@ -15,4 +14,9 @@ type UserResponse struct {
 type AuthResponse struct {
 	User  *UserResponse `json:"user"`
 	Token string        `json:"token"`
+}
+
+type LoginSchema struct {
+	Email    string `json:"email" validate:"required,email"`
+	Password string `json:"password" validate:"required,password"`
 }
