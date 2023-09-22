@@ -38,7 +38,10 @@ func (h *Handler) Signup(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": result.Error.Error()})
 	}
 
-	// TODO: Generate jwt
+	token := utils.GenerateAuthToken(&utils.AuthTokenPayload{
+		ID:    user.ID,
+		Email: user.Email,
+	})
 
 	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status": "success",
@@ -48,7 +51,7 @@ func (h *Handler) Signup(ctx *fiber.Ctx) error {
 				Name:  user.Name,
 				Email: user.Email,
 			},
-			Token: "sample-token",
+			Token: token,
 		},
 	})
 }
