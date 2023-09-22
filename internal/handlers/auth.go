@@ -12,7 +12,7 @@ import (
 
 const AUTH_INVALID_CREDS_ERROR = "Invalid email or password"
 
-func (h *Handler) Signup(ctx *fiber.Ctx) error {
+func (h *Handler) RegisterUser(ctx *fiber.Ctx) error {
 	body := new(schema.SignupSchema)
 
 	if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
@@ -45,7 +45,7 @@ func (h *Handler) Signup(ctx *fiber.Ctx) error {
 	})
 }
 
-func (h *Handler) Login(ctx *fiber.Ctx) error {
+func (h *Handler) LoginUser(ctx *fiber.Ctx) error {
 	body := new(schema.LoginSchema)
 
 	if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
