@@ -18,8 +18,6 @@ declare global {
   interface Document {
     startViewTransition(updateCallback: () => Promise<void>): ViewTransition;
   }
-
-  declare module '*.md';
 }
 
 export {};
