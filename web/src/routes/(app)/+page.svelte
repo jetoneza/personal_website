@@ -1,4 +1,4 @@
-<div class="header space-y-8 mx-auto" style="max-width: 426px;">
+<div class="header space-y-8">
   <h1 class="name font-bold text-4xl font-serif">
     Hello, I'm Jet<span class="text-cyan-600">.</span>
   </h1>

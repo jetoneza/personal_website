@@ -4,7 +4,7 @@
 
 <div class="container mx-auto bg-white">
   <Nav />
-  <div class="px-4 py-28">
+  <main class="px-4 py-44 mx-auto max-w-[700px]">
     <slot />
-  </div>
+  </main>
 </div>
