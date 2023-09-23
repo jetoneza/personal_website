@@ -2,8 +2,9 @@
   import Nav from '$lib/components/Nav.svelte';
 </script>
 
-<Nav />
-
-<div class="container mx-auto px-4 py-10">
-  <slot />
+<div class="container mx-auto bg-white">
+  <Nav />
+  <div class="px-4 py-28">
+    <slot />
+  </div>
 </div>

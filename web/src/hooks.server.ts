@@ -1,7 +1,7 @@
 import { dev } from '$app/environment';
 import { type Handle, type HandleFetch, error, redirect } from '@sveltejs/kit';
 import { BACKEND_URL } from '$env/static/private';
-import { API_STATUS, HTTP_CODE_NOT_FOUND, HTTP_CODE_SEE_OTHER } from '$lib/constants';
+import { HTTP_CODE_NOT_FOUND, HTTP_CODE_SEE_OTHER } from '$lib/constants';
 
 const protectedRoutes = ['/admin/dashboard'];
 
