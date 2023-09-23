@@ -12,7 +12,7 @@
       <a href="/">Home</a>
     </li>
     <li class="text-lg sm:text-base">
-      <a href="/logout">Logout</a>
+      <a href="/admin/logout">Logout</a>
     </li>
   </ul>
 </nav>
