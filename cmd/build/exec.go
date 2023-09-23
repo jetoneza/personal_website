@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/jetoneza/personal_website/cmd/build/utils"
+	"github.com/jetoneza/personal_website/pkg/config"
 )
 
 const templatePath = "./web"
@@ -13,6 +14,20 @@ const templatePath = "./web"
 func buildProduction() {
 	buildWeb()
 	buildServer()
+}
+
+func runBackendProd() {
+	log.Println("Running the go server...")
+	utils.ExecuteCommand("./webapp")
+}
+
+func runFrontendProd() {
+	log.Println("Running the svelete server...")
+
+	env := fmt.Sprintf("PORT=%v", config.SVELTE_PORT)
+	path := fmt.Sprintf("%v/build", templatePath)
+
+	utils.ExecuteCommandWithEnv(env, "node", path)
 }
 
 func buildServer() {
@@ -72,6 +87,10 @@ func main() {
 		runServer()
 	case "build:prod":
 		buildProduction()
+	case "run:backend:prod":
+		runBackendProd()
+	case "run:frontend:prod":
+		runFrontendProd()
 	default:
 		fmt.Printf("Invalid command '%v'\n", command)
 	}
