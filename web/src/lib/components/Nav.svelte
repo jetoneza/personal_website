@@ -15,7 +15,7 @@
 </script>
 
 <nav class="main-nav fixed top-0 right-0 left-0 border-b bg-white">
-  <div class="container mx-auto flex p-4 sm:pt-6 sm:px-10 justify-between">
+  <div class="container mx-auto flex p-4 sm:pt-6 justify-between max-w-[700px]">
     <a href="/" class="text-2xl font-sans-pro">
       <span class="font-bold hover:text-cyan-600">Jet</span> Ordaneza
     </a>
