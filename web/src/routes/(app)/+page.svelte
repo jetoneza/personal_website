@@ -1,9 +1,9 @@
 <div class="header space-y-8">
-  <h1 class="name font-bold text-4xl font-serif">
+  <h1 class="name font-bold text-4xl font-sans-pro">
     Hello, I'm Jet<span class="text-cyan-600">.</span>
   </h1>
 
-  <div class="content space-y-4 font-serif">
+  <div class="content space-y-4">
     <p class="text-justify">
       A <span class="font-bold">Software Engineer</span>. I'm always curious about how things work
       and love exploring new stuff.

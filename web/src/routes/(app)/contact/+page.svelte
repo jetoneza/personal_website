@@ -1,4 +1,4 @@
-<div class="contact font-serif">
+<div class="contact">
   <h1 class="font-bold text-2xl">Contact</h1>
   <p class="mt-10">
     If you'd like to get in touch, you can email me at <a

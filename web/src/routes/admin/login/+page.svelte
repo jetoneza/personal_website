@@ -7,7 +7,7 @@
 </script>
 
 <div class="container login mx-auto p-6 flex flex-col justify-center items-center h-screen">
-  <div class="form-wrapper w-80 p-6 rounded-lg drop-shadow-lg bg-white font-mono">
+  <div class="form-wrapper w-80 p-6 rounded-lg drop-shadow-lg bg-white">
     <div class="title font-bold text-lg">Login to Dashboard</div>
 
     {#if form?.status === API_STATUS.FAIL}

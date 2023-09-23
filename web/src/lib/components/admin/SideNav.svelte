@@ -11,7 +11,7 @@
   ];
 </script>
 
-<aside class="absolute font-mono top-0 left-0 z-40 w-64 h-screen">
+<aside class="absolute top-0 left-0 z-40 w-64 h-screen">
   <div class="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
     <ul class="space-y-2 font-medium">
       {#each links as link}

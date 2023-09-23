@@ -1,1 +1,1 @@
-<h1 class="font-serif font-bold text-2xl">About</h1>
+<h1 class="font-bold text-2xl">About</h1>
