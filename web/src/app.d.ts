@@ -18,6 +18,10 @@ declare global {
   interface Document {
     startViewTransition(updateCallback: () => Promise<void>): ViewTransition;
   }
+
+  type Post = {
+    [key: string]: string | number | undefined;
+  };
 }
 
 export {};
