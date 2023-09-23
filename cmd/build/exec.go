@@ -22,7 +22,7 @@ func runBackendProd() {
 }
 
 func runFrontendProd() {
-	log.Println("Running the svelete server...")
+	log.Println("Running the svelte server...")
 
 	env := fmt.Sprintf("PORT=%v", config.SVELTE_PORT)
 	path := fmt.Sprintf("%v/build", templatePath)
