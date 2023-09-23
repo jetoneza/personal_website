@@ -4,7 +4,7 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { Actions } from './$types';
 
 // Constants
-import { API_STATUS, HTTP_CODE_BAD_REQUEST, HTTP_CODE_SEE_OTHER } from '$lib/constants';
+import { API_STATUS, HTTP_CODE_BAD_REQUEST, HTTP_CODE_SEE_OTHER, MESSAGE_INCORRECT_CREDENTIALS } from '$lib/constants';
 
 export const actions = {
   default: async ({ request, fetch }) => {
@@ -24,7 +24,10 @@ export const actions = {
     const result = JSON.parse(await response.text());
 
     if (result.status === API_STATUS.FAIL) {
-      return fail(HTTP_CODE_BAD_REQUEST, result);
+      return fail(HTTP_CODE_BAD_REQUEST, {
+        ...result,
+        message: MESSAGE_INCORRECT_CREDENTIALS
+      });
     }
 
     throw redirect(HTTP_CODE_SEE_OTHER, '/admin/dashboard');

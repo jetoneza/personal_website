@@ -1,5 +1,6 @@
 <script lang="ts">
   import { enhance } from '$app/forms';
+  import { API_STATUS } from '$lib/constants';
   import type { ActionData } from './$types';
 
   export let form: ActionData;
@@ -9,9 +10,9 @@
   <div class="form-wrapper w-80 p-6 rounded-lg drop-shadow-lg bg-white font-mono">
     <div class="title font-bold text-lg">Login to Dashboard</div>
 
-    {#if form?.error}
+    {#if form?.status === API_STATUS.FAIL}
       <p class="p-4 bg-pink-100 border border-red-500 rounded-lg text-red-500 my-2 text-sm">
-        {form?.error}
+        {form?.message}
       </p>
     {/if}
 

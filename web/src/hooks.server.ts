@@ -1,7 +1,7 @@
 import { dev } from '$app/environment';
-import { type Handle, type HandleFetch, error } from '@sveltejs/kit';
+import { type Handle, type HandleFetch, error, redirect } from '@sveltejs/kit';
 import { BACKEND_URL } from '$env/static/private';
-import { HTTP_CODE_NOT_FOUND } from '$lib/constants';
+import { HTTP_CODE_NOT_FOUND, HTTP_CODE_SEE_OTHER } from '$lib/constants';
 
 const protectedRoutes = ['/admin/dashboard'];
 
@@ -12,6 +12,10 @@ export const handle: Handle = async ({ event, resolve }) => {
     throw error(HTTP_CODE_NOT_FOUND, {
       message: 'Not found',
     });
+  }
+
+  if (sessionToken && event.url.pathname.includes('/login')) {
+    throw redirect(HTTP_CODE_SEE_OTHER, '/admin/dashboard')
   }
 
   // TODO: fetch user info and load user to locals
