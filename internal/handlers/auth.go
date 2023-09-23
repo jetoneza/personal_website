@@ -2,16 +2,21 @@ package handlers
 
 import (
 	"errors"
+	"fmt"
 	"time"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/jetoneza/personal_website/internal/models"
 	"github.com/jetoneza/personal_website/internal/schema"
 	"github.com/jetoneza/personal_website/pkg/utils"
 	"gorm.io/gorm"
 )
 
-const AUTH_INVALID_CREDS_ERROR = "Invalid email or password"
+const (
+	AUTH_INVALID_CREDS_ERROR = "Invalid email or password"
+	COOKIE_NAME              = "session_token"
+)
 
 func (h *Handler) RegisterUser(ctx *fiber.Ctx) error {
 	body := new(schema.SignupSchema)
@@ -77,7 +82,7 @@ func (h *Handler) LoginUser(ctx *fiber.Ctx) error {
 	})
 
 	ctx.Cookie(&fiber.Cookie{
-		Name:     "session_token",
+		Name:     COOKIE_NAME,
 		Value:    token,
 		Path:     "/",
 		Expires:  expiry,
@@ -100,7 +105,7 @@ func (h *Handler) LoginUser(ctx *fiber.Ctx) error {
 
 func (h *Handler) LogoutUser(ctx *fiber.Ctx) error {
 	ctx.Cookie(&fiber.Cookie{
-		Name:     "jwt",
+		Name:     COOKIE_NAME,
 		Value:    "session-ended",
 		Path:     "/",
 		Expires:  time.Now().Add(time.Second * 10),
@@ -111,5 +116,31 @@ func (h *Handler) LogoutUser(ctx *fiber.Ctx) error {
 	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status":  "success",
 		"message": "Logged out successfully",
+	})
+}
+
+func (h *Handler) GetSessionInfo(ctx *fiber.Ctx) error {
+	type Response struct {
+		ID     interface{} `json:"id"`
+		Email  interface{} `json:"email"`
+		Issuer interface{} `json:"issuer"`
+		Expiry interface{} `json:"expiry"`
+	}
+
+	jwtData := ctx.Locals("user").(*jwt.Token)
+	claims := jwtData.Claims.(jwt.MapClaims)
+
+	data := &Response{
+		ID:     claims["id"],
+		Email:  claims["email"],
+		Issuer: claims["iss"],
+		Expiry: claims["exp"],
+	}
+
+	fmt.Println("claims", claims)
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status": "success",
+		"data":   data,
 	})
 }
