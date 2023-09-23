@@ -10,8 +10,6 @@ export const actions = {
   default: async ({ request, fetch }) => {
     const data = await request.formData();
 
-    console.log('Fetching from server');
-
     const response = await fetch('/api/v1/auth/login', {
       method: 'POST',
       headers: {

@@ -77,7 +77,7 @@ func (h *Handler) LoginUser(ctx *fiber.Ctx) error {
 	})
 
 	ctx.Cookie(&fiber.Cookie{
-		Name:     "jwt",
+		Name:     "session_token",
 		Value:    token,
 		Path:     "/",
 		Expires:  expiry,
