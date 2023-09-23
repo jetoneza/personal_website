@@ -1,7 +1,6 @@
-import type { PageLoad } from './$types';
-// import { compile } from 'mdsvex';
+import type { PageServerLoad } from './$types';
 
-export const load: PageLoad = async ({ fetch, params }) => {
+export const load: PageServerLoad = async ({ fetch, params }) => {
   const { slug } = params;
 
   // TODO: Add error handling
