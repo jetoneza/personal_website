@@ -1,6 +1,8 @@
 <script lang="ts">
+  import { enhance } from '$app/forms';
   import { afterNavigate } from '$app/navigation';
   import { page } from '$app/stores';
+  import type { SubmitFunction } from '@sveltejs/kit';
   import HamburgerMenu from './HamburgerMenu.svelte';
 
   let open = false;
@@ -9,9 +11,17 @@
     open = false;
   });
 
-  function toggleMenu() {
+  const toggleMenu = () => {
     open = !open;
-  }
+  };
+
+  const handleUpdateTheme: SubmitFunction = ({ action }) => {
+    const theme = action.searchParams.get('theme');
+
+    if (theme) {
+      document.documentElement.setAttribute('class', theme);
+    }
+  };
 </script>
 
 <nav class="main-nav fixed top-0 right-0 left-0 border-b bg-white">
@@ -48,6 +58,12 @@
       </li>
       <li class="text-lg sm:text-base">
         <a href="https://github.com/jetoneza" target="_blank">Github</a>
+      </li>
+      <li>
+        <form method="POST" use:enhance={handleUpdateTheme}>
+          <button formaction="/?/setTheme&theme=dark">dark</button>
+          <button formaction="/?/setTheme&theme=light">light</button>
+        </form>
       </li>
     </ul>
   </div>
