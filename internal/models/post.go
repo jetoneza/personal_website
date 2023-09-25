@@ -9,13 +9,18 @@ import (
 )
 
 type Post struct {
-	ID        string    `gorm:"type:char(36);primary_key" json:"id,omitempty"`
-	Title     string    `gorm:"type:varchar(255);uniqueIndex:idx_notes_title,LENGTH(255);not null" json:"title,omitempty"`
-	Content   string    `gorm:"not null" json:"content,omitempty"`
-	Category  string    `gorm:"varchar(100)" json:"category,omitempty"`
-	Published bool      `gorm:"default:false;not null" json:"published"`
-	CreatedAt time.Time `gorm:"not null;default:'1970-01-01 00:00:01'" json:"createdAt,omitempty"`
-	UpdatedAt time.Time `gorm:"not null;default:'1970-01-01 00:00:01';ON UPDATE CURRENT_TIMESTAMP" json:"updatedAt,omitempty"`
+	ID              string    `gorm:"type:char(36);primary_key" json:"id,omitempty"`
+	Title           string    `gorm:"type:varchar(255);uniqueIndex:idx_notes_title,LENGTH(255);not null" json:"title,omitempty"`
+	Slug            string    `gorm:"type:varchar(255)" json:"slug,omitempty"`
+	Description     string    `gorm:"type:text" json:"description,omitempty"`
+  Content         string    `gorm:"type:text;not null" json:"content,omitempty"`
+	Category        string    `gorm:"type:varchar(100)" json:"category,omitempty"`
+	MetaTitle       string    `gorm:"type:varchar(255)" json:"meta_title,omitempty"`
+	MetaDescription string    `gorm:"type:text" json:"meta_description,omitempty"`
+	MetaKeyword     string    `gorm:"type:varchar(255)" json:"meta_keyword,omitempty"`
+	Published       bool      `gorm:"default:false;not null" json:"published"`
+	CreatedAt       time.Time `gorm:"not null;default:'1970-01-01 00:00:01'" json:"createdAt,omitempty"`
+	UpdatedAt       time.Time `gorm:"not null;default:'1970-01-01 00:00:01';ON UPDATE CURRENT_TIMESTAMP" json:"updatedAt,omitempty"`
 }
 
 func (post *Post) BeforeCreate(tx *gorm.DB) error {
@@ -29,7 +34,7 @@ func (post *Post) BeforeCreate(tx *gorm.DB) error {
 }
 
 func (post *Post) ConvertContentToHtml() {
-  md := []byte(post.Content)
-  htmlBytes := utils.MdToHtml(md)
-  post.Content = string(htmlBytes)
+	md := []byte(post.Content)
+	htmlBytes := utils.MdToHtml(md)
+	post.Content = string(htmlBytes)
 }

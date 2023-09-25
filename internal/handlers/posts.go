@@ -64,9 +64,12 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 	}
 
 	post := models.Post{
-		Title:    body.Title,
-		Content:  body.Content,
-		Category: body.Category,
+		Title:       body.Title,
+		Slug:        body.Slug,
+		Description: body.Description,
+		Content:     body.Content,
+		Category:    body.Category,
+		Published:   body.Published,
 	}
 
 	result := h.App.DB.Create(&post)
