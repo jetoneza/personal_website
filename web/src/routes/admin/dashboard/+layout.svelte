@@ -3,11 +3,13 @@
   import Nav from '$lib/components/admin/Nav.svelte';
 </script>
 
-<Nav />
-<div class="relative">
-  <SideNav />
+<div class="dashboard">
+  <Nav />
+  <div class="relative top-[81px]">
+    <SideNav />
 
-  <div class="p-4 sm:ml-64">
-    <slot />
+    <div class="p-4 sm:ml-64">
+      <slot />
+    </div>
   </div>
 </div>
