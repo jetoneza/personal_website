@@ -7,13 +7,13 @@
 
 <main class="blog-dashboard">
   <div class="actions w-full flex justify-between items-center">
-    <h1 class="font-bold text-4xl font-sans-pro">Posts</h1>
+    <h1 class="font-bold text-2xl font-sans-pro">Posts</h1>
     <button class="btn text-sm">Create Post</button>
   </div>
 
   <div class="relative overflow-x-auto mt-6">
     <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400">
-      <thead class="text-xs text-zinc-700 uppercase bg-zinc-50 dark:bg-zinc-700 dark:text-zinc-400">
+      <thead class="text-sm text-zinc-700 border-b dark:border-zinc-700 dark:text-zinc-400">
         <tr>
           <th scope="col" class="px-6 py-3"> Title </th>
           <th scope="col" class="px-6 py-3"> Published </th>
@@ -25,7 +25,7 @@
           <tr class="bg-white border-b dark:bg-zinc-800 dark:border-zinc-700">
             <th
               scope="row"
-              class="px-6 py-4 font-medium text-zinc-900 whitespace-nowrap dark:text-white"
+              class="px-6 py-6 font-medium text-zinc-900 whitespace-nowrap dark:text-white"
             >
               {post.title}
             </th>
