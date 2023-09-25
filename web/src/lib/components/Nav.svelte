@@ -24,7 +24,9 @@
   };
 </script>
 
-<nav class="main-nav fixed top-0 right-0 left-0 border-b bg-white">
+<nav
+  class="main-nav fixed top-0 right-0 left-0 border-b bg-white dark:bg-zinc-800 dark:border-b-zinc-800 dark:drop-shadow"
+>
   <div class="container mx-auto flex p-4 sm:pt-6 justify-between max-w-[700px]">
     <a href="/" class="text-2xl font-sans-pro">
       <span class="font-bold hover:text-cyan-600">Jet</span> Ordaneza
@@ -33,7 +35,7 @@
     <HamburgerMenu {open} onClick={toggleMenu} />
 
     <ul
-      class="{open ? 'flex' : 'hidden'} absolute bg-white top-20 left-0 right-0
+      class="{open ? 'flex' : 'hidden'} absolute top-20 left-0 right-0
     bottom-0 px-4 space-y-6 flex-col sm:p-0 sm:top-0 sm:space-y-0 sm:relative
     sm:flex sm:flex-row sm:space-x-10 sm:justify-end items-center"
     >

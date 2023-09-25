@@ -4,6 +4,6 @@
   export let data: PageData;
 </script>
 
-<article class="prose">
+<article class="prose dark:prose-invert">
   {@html data.post.content}
 </article>
