@@ -7,7 +7,7 @@
 </script>
 
 <div class="container login mx-auto p-6 flex flex-col justify-center items-center h-screen">
-  <div class="form-wrapper w-80 p-6 rounded-lg drop-shadow-lg bg-white">
+  <div class="form-wrapper w-80 p-6 rounded-lg drop-shadow-lg bg-white dark:bg-transparent">
     <div class="title font-bold text-lg">Login to Dashboard</div>
 
     {#if form?.status === API_STATUS.FAIL}
@@ -28,6 +28,7 @@
           class="
             border border-gray-300 rounded-lg text-sm block w-full p-2.5
             focus:ring-2 focus:outline-none focus:ring-blue-300
+            dark:text-slate-800
           "
           required
         />
@@ -43,6 +44,7 @@
           class="
             border border-gray-300 rounded-lg text-sm block w-full p-2.5
             focus:ring-2 focus:outline-none focus:ring-blue-300
+            dark:text-slate-800
           "
           required
         />
