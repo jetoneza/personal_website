@@ -1,1 +1,1 @@
-<div class="p-4">Sample Content</div>
+<h1>Dashboard Home</h1>

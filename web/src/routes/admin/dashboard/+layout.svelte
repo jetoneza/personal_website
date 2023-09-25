@@ -8,7 +8,7 @@
   <div class="relative top-[81px]">
     <SideNav />
 
-    <div class="p-4 sm:ml-64">
+    <div class="p-6 sm:ml-64">
       <slot />
     </div>
   </div>
