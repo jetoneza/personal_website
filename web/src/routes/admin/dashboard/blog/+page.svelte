@@ -8,7 +8,7 @@
 <main class="blog-dashboard">
   <div class="actions w-full flex justify-between items-center">
     <h1 class="font-bold text-2xl font-sans-pro">Posts</h1>
-    <button class="btn text-sm">Create Post</button>
+    <a class="btn text-sm" href="/admin/dashboard/blog/create">Create Post</a>
   </div>
 
   <div class="relative overflow-x-auto mt-6">
