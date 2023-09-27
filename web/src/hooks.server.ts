@@ -45,7 +45,7 @@ const checkSession = (event: RequestEvent) => {
 
   let action: HttpError | Redirect | null = null;
 
-  const isProtected = checkProtectedRoute(event.url.pathname)
+  const isProtected = checkProtectedRoute(event.url.pathname);
 
   if ((hasSessionEnded || !sessionToken) && isProtected) {
     action = error(HTTP_CODE_NOT_FOUND, {
@@ -83,4 +83,4 @@ const checkProtectedRoute = (path: string): boolean => {
   }
 
   return false;
-}
+};

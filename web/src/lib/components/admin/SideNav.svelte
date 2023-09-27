@@ -16,11 +16,17 @@
       <li>
         <a
           href="/admin/dashboard"
-          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-zinc-600 group gap-2"
+          class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-600 group gap-2"
           aria-current={$page.url.pathname === '/admin/dashboard' ? 'page' : undefined}
         >
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 576 512">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              width="1em"
+              viewBox="0 0 576 512"
+              class="fill-gray-900 dark:fill-white"
+            >
               <path
                 d="M575.8 255.5c0 18-15 32.1-32 32.1h-32l.7 160.2c0 2.7-.2 5.4-.5
               8.1V472c0 22.1-17.9 40-40 40H456c-1.1 0-2.2 0-3.3-.1c-1.4 .1-2.8
@@ -38,11 +44,17 @@
       <li>
         <a
           href="/admin/dashboard/blog"
-          class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-zinc-600 group gap-2"
+          class="flex items-center p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-600 group gap-2"
           aria-current={$page.url.pathname === '/admin/dashboard/blog' ? 'page' : undefined}
         >
           <span>
-            <svg xmlns="http://www.w3.org/2000/svg" height="1em" width="1em" viewBox="0 0 512 512">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="1em"
+              width="1em"
+              viewBox="0 0 512 512"
+              class="fill-gray-900 dark:fill-white"
+            >
               <path
                 d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9
                 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1
