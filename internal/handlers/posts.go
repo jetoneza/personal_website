@@ -24,12 +24,24 @@ func (h *Handler) GetPost(ctx *fiber.Ctx) error {
 		})
 	}
 
-	type Data struct {
-		OriginalContent string `json:"original_content"`
-	}
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status": "success",
+		"data":   post,
+	})
+}
 
-	data := Data{
-		OriginalContent: post.Content,
+func (h *Handler) GetPostBySlug(ctx *fiber.Ctx) error {
+	slug := ctx.Params("slug")
+
+	var post models.Post
+
+	result := h.App.DB.First(&post, "slug = ?", slug)
+
+	if result.Error != nil {
+		return ctx.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"status":  "error",
+			"message": fmt.Sprintf("%v", result.Error),
+		})
 	}
 
 	// Convert md to html
@@ -37,10 +49,7 @@ func (h *Handler) GetPost(ctx *fiber.Ctx) error {
 
 	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status": "success",
-		"data": struct {
-			models.Post
-			Data
-		}{post, data},
+		"data":   post,
 	})
 }
 

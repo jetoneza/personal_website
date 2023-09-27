@@ -11,6 +11,7 @@ func PostRoutes(router fiber.Router, handlers *handlers.Handler) {
 
 	r.Get("/", handlers.GetAllPosts)
 	r.Get("/:id", handlers.GetPost)
+	r.Get("/slug/:slug", handlers.GetPostBySlug)
 
 	r.Post("/", middlewares.AuthMiddleware(), handlers.CreatePost)
 	r.Put("/:id", middlewares.AuthMiddleware(), handlers.UpdatePost)

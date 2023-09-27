@@ -10,10 +10,10 @@ import (
 
 type Post struct {
 	ID              string    `gorm:"type:char(36);primary_key" json:"id,omitempty"`
-	Title           string    `gorm:"type:varchar(255);uniqueIndex:idx_notes_title,LENGTH(255);not null" json:"title,omitempty"`
-	Slug            string    `gorm:"type:varchar(255)" json:"slug,omitempty"`
+	Title           string    `gorm:"type:varchar(255);uniqueIndex:idx_post_title,LENGTH(255);not null" json:"title,omitempty"`
+	Slug            string    `gorm:"type:varchar(255);uniqueIndex:idx_post_slug,LENGTH(255);not null" json:"slug,omitempty"`
 	Description     string    `gorm:"type:text" json:"description,omitempty"`
-  Content         string    `gorm:"type:text;not null" json:"content,omitempty"`
+	Content         string    `gorm:"type:text;not null" json:"content,omitempty"`
 	Category        string    `gorm:"type:varchar(100)" json:"category,omitempty"`
 	MetaTitle       string    `gorm:"type:varchar(255)" json:"meta_title,omitempty"`
 	MetaDescription string    `gorm:"type:text" json:"meta_description,omitempty"`
