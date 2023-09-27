@@ -11,7 +11,7 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
   const post = jsonResponse.data;
 
   if (!post) {
-    throw error(HTTP_CODE_NOT_FOUND, { message: 'Page not found.' })
+    throw error(HTTP_CODE_NOT_FOUND, { message: 'Page not found.' });
   }
 
   return {

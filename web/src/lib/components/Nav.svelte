@@ -30,18 +30,17 @@
     bottom-0 px-4 space-y-6 flex-col sm:p-0 sm:top-0 sm:space-y-0 sm:relative
     sm:flex sm:flex-row sm:space-x-10 sm:justify-end items-center"
     >
-      <!-- TODO: Show links if content is available -->
-      <li
-        class="text-lg sm:text-base"
-        aria-current={$page.url.pathname === '/blog' ? 'page' : undefined}
-      >
-        <a href="/blog">Blog</a>
-      </li>
       <li
         class="text-lg sm:text-base"
         aria-current={$page.url.pathname === '/about' ? 'page' : undefined}
       >
         <a href="/about">About</a>
+      </li>
+      <li
+        class="text-lg sm:text-base"
+        aria-current={$page.url.pathname === '/blog' ? 'page' : undefined}
+      >
+        <a href="/blog">Blog</a>
       </li>
       <li
         class="text-lg sm:text-base"
