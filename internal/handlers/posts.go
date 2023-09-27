@@ -95,3 +95,42 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 		"data":   post,
 	})
 }
+
+func (h *Handler) EditPost(ctx *fiber.Ctx) error {
+	id := ctx.Params("id")
+
+	var post models.Post
+
+	result := h.App.DB.First(&post, "id = ?", id)
+
+	if result.Error != nil {
+		return ctx.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"status":  "error",
+			"message": fmt.Sprintf("%v", result.Error),
+		})
+	}
+
+	body := new(schema.CreatePostSchema)
+
+	if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "fail", "error": err.Message})
+	}
+
+	post.Title = body.Title
+	post.Slug = body.Slug
+	post.Description = body.Description
+	post.Content = body.Content
+	post.Category = body.Category
+	post.Published = body.Published
+
+	saveResult := h.App.DB.Save(&post)
+
+	if saveResult.Error != nil {
+		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": saveResult.Error.Error()})
+	}
+
+	return ctx.Status(fiber.StatusCreated).JSON(fiber.Map{
+		"status": "success",
+		"data":   post,
+	})
+}

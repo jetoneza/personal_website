@@ -10,6 +10,8 @@ func PostRoutes(router fiber.Router, handlers *handlers.Handler) {
 	r := router.Group("/posts")
 
 	r.Get("/", handlers.GetAllPosts)
-	r.Post("/", middlewares.AuthMiddleware(), handlers.CreatePost)
 	r.Get("/:id", handlers.GetPost)
+
+	r.Post("/", middlewares.AuthMiddleware(), handlers.CreatePost)
+	r.Put("/:id", middlewares.AuthMiddleware(), handlers.EditPost)
 }

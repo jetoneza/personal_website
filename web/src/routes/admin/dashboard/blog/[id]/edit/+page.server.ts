@@ -16,11 +16,13 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 };
 
 export const actions: Actions = {
-  default: async ({ request, fetch }) => {
+  default: async ({ request, fetch, params }) => {
     const data = await request.formData();
 
+    const { id } = params
+
     try {
-      const response = await fetch('/api/v1/posts', {
+      const response = await fetch(`/api/v1/posts/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -40,7 +42,7 @@ export const actions: Actions = {
       const result = JSON.parse(await response.text());
 
       if (result.status === API_STATUS.FAIL) {
-        throw new Error(MESSAGE_POST_CREATION_ERROR);
+        throw new Error(MESSAGE_POST_CREATION_ERROR)
       }
     } catch (_) {
       return fail(HTTP_CODE_BAD_REQUEST, {
