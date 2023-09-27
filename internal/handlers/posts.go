@@ -75,12 +75,15 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 	}
 
 	post := models.Post{
-		Title:       body.Title,
-		Slug:        body.Slug,
-		Description: body.Description,
-		Content:     body.Content,
-		Category:    body.Category,
-		Published:   body.Published,
+		Title:           body.Title,
+		Slug:            body.Slug,
+		Description:     body.Description,
+		Content:         body.Content,
+		Category:        body.Category,
+		MetaTitle:       body.MetaTitle,
+		MetaDescription: body.MetaDescription,
+		MetaKeyword:     body.MetaKeyword,
+		Published:       body.Published,
 	}
 
 	result := h.App.DB.Create(&post)
@@ -121,6 +124,9 @@ func (h *Handler) EditPost(ctx *fiber.Ctx) error {
 	post.Content = body.Content
 	post.Category = body.Category
 	post.Published = body.Published
+	post.MetaTitle = body.MetaTitle
+	post.MetaDescription = body.MetaDescription
+	post.MetaKeyword = body.MetaKeyword
 
 	saveResult := h.App.DB.Save(&post)
 

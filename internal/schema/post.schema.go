@@ -1,10 +1,13 @@
 package schema
 
 type CreatePostSchema struct {
-	Title       string `json:"title" validate:"required"`
-	Slug        string `json:"slug"`
-	Description string `json:"description"`
-	Content     string `json:"content" validate:"required"`
-	Category    string `json:"category,omitempty"`
-	Published   bool   `json:"published,omitempty"`
+	Title           string `json:"title" validate:"required"`
+	Slug            string `json:"slug"`
+	Description     string `json:"description"`
+	Content         string `json:"content" validate:"required"`
+	Category        string `json:"category"`
+	MetaTitle       string `json:"meta_title"`
+	MetaDescription string `json:"meta_description"`
+	MetaKeyword     string `json:"meta_keyword"`
+	Published       bool   `json:"published"`
 }
