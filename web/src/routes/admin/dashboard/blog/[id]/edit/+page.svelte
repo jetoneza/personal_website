@@ -12,10 +12,10 @@
     slug,
     description,
     category,
+    original_content,
     meta_title,
     meta_description,
     meta_keyword,
-    content,
   } = data.post;
 </script>
 
@@ -35,7 +35,7 @@
       {meta_title}
       {meta_description}
       {meta_keyword}
-      {content}
+      content={original_content}
     />
   </form>
 </div>

@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"strconv"
+	"strings"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/jetoneza/personal_website/internal/models"
@@ -24,12 +25,23 @@ func (h *Handler) GetPost(ctx *fiber.Ctx) error {
 		})
 	}
 
+	type Data struct {
+		OriginalContent string `json:"original_content"`
+	}
+
+	data := Data{
+		OriginalContent: post.Content,
+	}
+
 	// Convert md to html
 	post.ConvertContentToHtml()
 
 	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
 		"status": "success",
-		"data":   post,
+		"data": struct {
+			models.Post
+			Data
+		}{post, data},
 	})
 }
 
