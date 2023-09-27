@@ -22,12 +22,14 @@
       </thead>
       <tbody>
         {#each data.posts as post}
-          <tr class="bg-white border-b dark:bg-zinc-800 dark:border-zinc-700">
+          <tr
+            class="bg-white border-b dark:bg-zinc-800 dark:border-zinc-700 hover:bg-zinc-100 dark:hover:bg-zinc-700"
+          >
             <th
               scope="row"
               class="px-6 py-6 font-medium text-zinc-900 whitespace-nowrap dark:text-white"
             >
-              {post.title}
+              <a href="/admin/dashboard/blog/{post.id}/edit">{post.title}</a>
             </th>
             <td class="px-6 py-4">
               <span
