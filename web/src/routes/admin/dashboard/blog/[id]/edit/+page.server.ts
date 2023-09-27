@@ -31,6 +31,7 @@ export const actions: Actions = {
       const response = await fetch(`/api/v1/posts/${id}`, {
         method: 'PUT',
         headers: {
+          cookie: request.headers.get('cookie') as string,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
