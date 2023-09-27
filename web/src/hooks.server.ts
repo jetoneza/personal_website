@@ -45,7 +45,9 @@ const checkSession = (event: RequestEvent) => {
 
   let action: HttpError | Redirect | null = null;
 
-  if ((hasSessionEnded || !sessionToken) && protectedRoutes.includes(event.url.pathname)) {
+  const isProtected = checkProtectedRoute(event.url.pathname)
+
+  if ((hasSessionEnded || !sessionToken) && isProtected) {
     action = error(HTTP_CODE_NOT_FOUND, {
       message: 'Not found',
     });
@@ -72,3 +74,13 @@ const checkTheme = (event: RequestEvent): string | null => {
 
   return theme;
 };
+
+const checkProtectedRoute = (path: string): boolean => {
+  for (const route of protectedRoutes) {
+    if (path.includes(route)) {
+      return true;
+    }
+  }
+
+  return false;
+}
