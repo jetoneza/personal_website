@@ -98,7 +98,7 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 	})
 }
 
-func (h *Handler) EditPost(ctx *fiber.Ctx) error {
+func (h *Handler) UpdatePost(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")
 
 	var post models.Post

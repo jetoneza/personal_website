@@ -13,5 +13,5 @@ func PostRoutes(router fiber.Router, handlers *handlers.Handler) {
 	r.Get("/:id", handlers.GetPost)
 
 	r.Post("/", middlewares.AuthMiddleware(), handlers.CreatePost)
-	r.Put("/:id", middlewares.AuthMiddleware(), handlers.EditPost)
+	r.Put("/:id", middlewares.AuthMiddleware(), handlers.UpdatePost)
 }
