@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { API_STATUS } from '$lib/constants';
   import { formatDate } from '$lib/utils/date';
   import type { PageData } from './$types';
 
@@ -12,6 +13,11 @@
   </div>
 
   <div class="relative overflow-x-auto mt-6">
+    {#if data.message && data.message.type === API_STATUS.SUCCESS}
+      <p class="p-4 bg-green-100 border border-green-700 rounded-lg text-green-700 my-6 text-sm">
+        {data.message.value}
+      </p>
+    {/if}
     <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400">
       <thead class="text-sm text-zinc-700 border-b dark:border-zinc-700 dark:text-zinc-400">
         <tr>

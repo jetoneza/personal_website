@@ -25,6 +25,11 @@
       {form?.message}
     </p>
   {/if}
+  {#if form?.status === API_STATUS.SUCCESS}
+    <p class="p-4 bg-green-100 border border-green-700 rounded-lg text-green-700 my-6 text-sm">
+      {form?.message}
+    </p>
+  {/if}
   <form class="w-full" method="POST" use:enhance>
     <PostForm
       action="Edit Post"
