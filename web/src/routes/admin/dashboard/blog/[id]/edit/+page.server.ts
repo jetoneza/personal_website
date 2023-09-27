@@ -3,7 +3,7 @@ import {
   HTTP_CODE_BAD_REQUEST,
   HTTP_CODE_SEE_OTHER,
   MESSAGE_POST_CREATION_ERROR,
-  MESSAGE_POST_CREATION_SUCCESS,
+  MESSAGE_POST_UPDATE_SUCCESS,
 } from '$lib/constants';
 import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
@@ -57,6 +57,9 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(HTTP_CODE_SEE_OTHER, `/admin/dashboard/blog?message={"type":"success","value":"${MESSAGE_POST_CREATION_SUCCESS}"}`);
+    throw redirect(
+      HTTP_CODE_SEE_OTHER,
+      `/admin/dashboard/blog?message={"type":"success","value":"${MESSAGE_POST_UPDATE_SUCCESS}"}`
+    );
   },
 };

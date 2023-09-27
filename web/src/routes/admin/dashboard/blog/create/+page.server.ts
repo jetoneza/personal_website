@@ -9,6 +9,7 @@ import {
   HTTP_CODE_BAD_REQUEST,
   HTTP_CODE_SEE_OTHER,
   MESSAGE_POST_CREATION_ERROR,
+  MESSAGE_POST_CREATION_SUCCESS,
 } from '$lib/constants';
 
 export const actions: Actions = {
@@ -41,6 +42,9 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(HTTP_CODE_SEE_OTHER, '/admin/dashboard/blog');
+    throw redirect(
+      HTTP_CODE_SEE_OTHER,
+      `/admin/dashboard/blog?message={"type":"success","value":"${MESSAGE_POST_CREATION_SUCCESS}"}`
+    );
   },
 };
