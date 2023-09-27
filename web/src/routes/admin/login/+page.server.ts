@@ -1,4 +1,5 @@
 import { fail, redirect } from '@sveltejs/kit';
+import cookie from 'cookie';
 
 // Types
 import type { Actions } from './$types';
@@ -12,7 +13,7 @@ import {
 } from '$lib/constants';
 
 export const actions = {
-  default: async ({ request, fetch }) => {
+  default: async ({ request, fetch, cookies }) => {
     const data = await request.formData();
 
     const response = await fetch('/api/v1/auth/login', {
@@ -20,6 +21,7 @@ export const actions = {
       headers: {
         'Content-Type': 'application/json',
       },
+      credentials: 'include',
       body: JSON.stringify({
         email: data.get('email'),
         password: data.get('password'),
@@ -34,6 +36,13 @@ export const actions = {
         message: MESSAGE_INCORRECT_CREDENTIALS,
       });
     }
+
+    const apiCookie = cookie.parse(response.headers.get('set-cookie') as string);
+
+    cookies.set('session_token', apiCookie.session_token, {
+      path: apiCookie.path,
+      expires: new Date(apiCookie.expires),
+    });
 
     throw redirect(HTTP_CODE_SEE_OTHER, '/admin/dashboard');
   },
