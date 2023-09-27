@@ -1,0 +1,40 @@
+<script lang="ts">
+  import Input from '$lib/components/Input.svelte';
+
+  export let action = 'Create Post';
+  export let title = '';
+  export let slug = '';
+  export let description = '';
+  export let category = '';
+  export let meta_title = '';
+  export let meta_description = '';
+  export let meta_keyword = '';
+  export let content = '';
+</script>
+
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+  <div class="flex flex-col gap-2">
+    <Input type="text" name="title" value={title} label="Title" required={true} />
+    <Input type="text" name="slug" value={slug} label="Slug" />
+    <Input type="text" name="description" value={description} label="Description" />
+    <Input type="text" name="category" value={category} label="Category" />
+  </div>
+  <div class="flex flex-col gap-2">
+    <Input type="text" name="meta_title" value={meta_title} label="Meta Title" />
+    <Input type="text" name="meta_description" value={meta_description} label="Meta Description" />
+    <Input type="text" name="meta_keyword" value={meta_keyword} label="Meta Keyword" />
+  </div>
+</div>
+<div class="textarea-wrapper mt-2">
+  <label for="content" class="block mb-2 text-md font-bold dark:text-white">Content</label>
+  <textarea
+    id="content"
+    name="content"
+    rows="30"
+    value={content}
+    class="w-full rounded-md border border-input bg-background px-3 py-2
+    text-sm outline-none focus:outline-zinc-500 font-mono text-black dark:bg-zinc-800
+    dark:border-zinc-700 dark:text-white"
+  />
+</div>
+<button class="btn mt-2">{action}</button>
