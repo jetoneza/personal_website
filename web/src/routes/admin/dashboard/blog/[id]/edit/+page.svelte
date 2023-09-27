@@ -12,7 +12,7 @@
     slug,
     description,
     category,
-    original_content,
+    content,
     meta_title,
     meta_description,
     meta_keyword,
@@ -43,7 +43,7 @@
         {meta_title}
         {meta_description}
         {meta_keyword}
-        content={original_content}
+        {content}
       />
     </form>
   </div>

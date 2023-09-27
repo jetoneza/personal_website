@@ -21,9 +21,11 @@
     <table class="w-full text-sm text-left text-zinc-500 dark:text-zinc-400">
       <thead class="text-sm text-zinc-700 border-b dark:border-zinc-700 dark:text-zinc-400">
         <tr>
-          <th scope="col" class="px-6 py-3"> Title </th>
-          <th scope="col" class="px-6 py-3"> Published </th>
-          <th scope="col" class="px-6 py-3"> Date </th>
+          <th scope="col" class="px-6 py-3">Title</th>
+          <th scope="col" class="px-6 py-3">Slug</th>
+          <th scope="col" class="px-6 py-3">Published</th>
+          <th scope="col" class="px-6 py-3">Date Created</th>
+          <th scope="col" class="px-6 py-3">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -38,16 +40,30 @@
               <a href="/admin/dashboard/blog/{post.id}/edit">{post.title}</a>
             </th>
             <td class="px-6 py-4">
+              {#if post.slug}
+                <a href="/blog/{post.slug}" target="_blank" class="hover:underline">/{post.slug}</a>
+              {:else}
+                No slug defined.
+              {/if}
+            </td>
+            <td class="px-6 py-4">
               <span
                 class="badge {post.published
                   ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
-                  : 'bg-zinc-100 dark:bg-zinc-700 dark:text-zinc-300'}"
+                  : 'bg-zinc-200 dark:bg-zinc-700 dark:text-zinc-300'}"
               >
                 {post.published ? 'Published' : 'Unpublished'}
               </span>
             </td>
             <td class="px-6 py-4">
               {formatDate(post.createdAt)}
+            </td>
+            <td class="px-6 py-4">
+              <a
+                href="/blog/{post.slug}"
+                class="font-bold text-zinc-700 dark:text-white"
+                target="_blank">View</a
+              >
             </td>
           </tr>
         {/each}

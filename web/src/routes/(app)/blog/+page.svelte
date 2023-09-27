@@ -16,7 +16,7 @@
           <time datetime={post.createdAt}>{post.formattedCreatedAt}</time>
         </div>
         <!-- TODO: Use slug for links -->
-        <a href="/blog/{post.id}" class="font-bold">
+        <a href="/blog/{post.slug}" class="font-bold">
           {post.title} <br />
         </a>
       </li>
