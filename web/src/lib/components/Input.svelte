@@ -4,6 +4,7 @@
   export let label: string;
   export let required = false;
   export let placeholder = '';
+  export let value = '';
 </script>
 
 <div class="input-wrapper">
@@ -14,6 +15,9 @@
     {name}
     {required}
     {placeholder}
-    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-zinc-500"
+    {value}
+    class="flex h-10 w-full rounded-md border border-input bg-background px-3
+    py-2 text-sm outline-none focus:outline-zinc-500 dark:bg-zinc-800 dark:border-zinc-700
+    dark:focus:outline-zinc-600"
   />
 </div>
