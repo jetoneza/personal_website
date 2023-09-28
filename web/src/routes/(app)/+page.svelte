@@ -24,16 +24,38 @@
 
 <div class="posts mt-16">
   <h1 class="font-bold text-2xl font-sans-pro">Latest posts</h1>
-  <ul class="space-y-4 mt-8">
+  <ul class="divide-y divide-gray-200 dark:divide-gray-700">
     {#each data.posts as post}
-      <li class="flex gap-10">
-        <div class="italic">
-          <time datetime={post.createdAt}>{post.formattedCreatedAt}</time>
-        </div>
-        <!-- TODO: Use slug for links -->
-        <a href="/blog/{post.slug}" class="font-bold">
-          {post.title} <br />
-        </a>
+      <li class="py-8">
+        <article>
+          <div class="space-y-2">
+            <div class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
+              <time datetime={post.createdAt}>{post.formattedCreatedAt}</time>
+            </div>
+            <div class="space-y-3">
+              <div class="space-y-4">
+                <div>
+                  <h2 class="text-xl font-bold font-sans-pro leading-8 tracking-tight">
+                    <a
+                      href="/blog/{post.slug}"
+                      >{post.title}</a
+                    >
+                  </h2>
+                </div>
+                <div class="prose max-w-none dark:prose-invert">
+                  {post.description ?? ''}
+                </div>
+              </div>
+              <div class="text-base font-medium leading-6">
+                <a
+                  class="text-cyan-500 hover:text-cyan-600 dark:hover:text-cyan-400"
+                  aria-label={post.title}
+                  href="/blog/{post.slug}">Read more →</a
+                >
+              </div>
+            </div>
+          </div>
+        </article>
       </li>
     {/each}
   </ul>
