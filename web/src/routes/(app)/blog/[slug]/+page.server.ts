@@ -1,6 +1,7 @@
 import { error } from '@sveltejs/kit';
 import type { PageServerLoad } from './$types';
 import { HTTP_CODE_NOT_FOUND } from '$lib/constants';
+import { formatDate } from '$lib/utils/date';
 
 export const load: PageServerLoad = async ({ fetch, params }) => {
   const { slug } = params;
@@ -13,6 +14,8 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
   if (!post) {
     throw error(HTTP_CODE_NOT_FOUND, { message: 'Page not found.' });
   }
+
+  post.formattedCreatedAt = formatDate(post.createdAt as string);
 
   return {
     post,
