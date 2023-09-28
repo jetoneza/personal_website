@@ -24,8 +24,8 @@
   </div>
 
   <ul class="flex flex-col gap-4">
-    <li class="flex gap-10">
-      <div class="time font-bold">2018 - 2023</div>
+    <li class="flex flex-col-reverse min-[425px]:flex-row min-[425px]:gap-10">
+      <div class="time text-sm min-[425px]:text-base font-bold">2018 - 2023</div>
       <div>
         <a href="https://poplarhomes.com" target="_blank">
           <div class="title font-bold text-cyan-500">Senior Software Engineer</div>
@@ -33,22 +33,22 @@
         </a>
       </div>
     </li>
-    <li class="flex gap-10">
-      <div class="time font-bold">2016 - 2018</div>
+    <li class="flex flex-col-reverse min-[425px]:flex-row min-[425px]:gap-10">
+      <div class="time text-sm min-[425px]:text-base font-bold">2016 - 2018</div>
       <div>
         <div class="title font-bold text-cyan-500">Software Engineer</div>
         <div class="company text-sm">Satoshi Citadel Industries</div>
       </div>
     </li>
-    <li class="flex gap-10">
-      <div class="time font-bold">2015 - 2016</div>
+    <li class="flex flex-col-reverse min-[425px]:flex-row min-[425px]:gap-10">
+      <div class="time text-sm min-[425px]:text-base font-bold">2015 - 2016</div>
       <div>
         <div class="title font-bold text-cyan-500">Web Developer</div>
         <div class="company text-sm">Twidl Inc.</div>
       </div>
     </li>
-    <li class="flex gap-10">
-      <div class="time font-bold">2014 - 2015</div>
+    <li class="flex flex-col-reverse min-[425px]:flex-row min-[425px]:gap-10">
+      <div class="time text-sm min-[425px]:text-base font-bold">2014 - 2015</div>
       <div>
         <div class="title font-bold text-cyan-500">Web Developer</div>
         <div class="company text-sm">Freelance</div>
@@ -77,7 +77,7 @@
             />
           </svg>
         </span>
-        <span>LinkedIn</span>
+        <span class="hidden min-[425px]:block">LinkedIn</span>
       </a>
 
       <a
@@ -111,7 +111,7 @@
             />
           </svg>
         </span>
-        <span>Github</span>
+        <span class="hidden min-[425px]:block">Github</span>
       </a>
 
       <a
@@ -133,7 +133,7 @@
             />
           </svg>
         </span>
-        <span>YouTube</span>
+        <span class="hidden min-[425px]:block">YouTube</span>
       </a>
     </div>
   </div>
