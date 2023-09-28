@@ -36,10 +36,7 @@
               <div class="space-y-4">
                 <div>
                   <h2 class="text-xl font-bold font-sans-pro leading-8 tracking-tight">
-                    <a
-                      href="/blog/{post.slug}"
-                      >{post.title}</a
-                    >
+                    <a href="/blog/{post.slug}">{post.title}</a>
                   </h2>
                 </div>
                 <div class="prose max-w-none dark:prose-invert">
