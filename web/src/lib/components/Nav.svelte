@@ -38,7 +38,7 @@
       </li>
       <li
         class="text-lg sm:text-base"
-        aria-current={$page.url.pathname === '/blog' ? 'page' : undefined}
+        aria-current={$page.url.pathname.includes('/blog') ? 'page' : undefined}
       >
         <a href="/blog">Blog</a>
       </li>
