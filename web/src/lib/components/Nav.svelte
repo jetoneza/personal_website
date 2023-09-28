@@ -31,24 +31,24 @@
     sm:flex sm:flex-row sm:space-x-10 sm:justify-end items-center"
     >
       <li
-        class="text-lg sm:text-base"
+        class="text-lg font-semibold sm:text-base"
         aria-current={$page.url.pathname === '/about' ? 'page' : undefined}
       >
         <a href="/about">About</a>
       </li>
       <li
-        class="text-lg sm:text-base"
+        class="text-lg font-semibold sm:text-base"
         aria-current={$page.url.pathname.includes('/blog') ? 'page' : undefined}
       >
         <a href="/blog">Blog</a>
       </li>
       <li
-        class="text-lg sm:text-base"
+        class="text-lg font-semibold sm:text-base"
         aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}
       >
         <a href="/contact">Contact</a>
       </li>
-      <li class="text-lg sm:text-base">
+      <li class="text-lg font-semibold sm:text-base">
         <a href="https://github.com/jetoneza" target="_blank">Github</a>
       </li>
       <li class="hover:bg-zinc-100 hover:dark:bg-zinc-700 p-2 rounded-lg">
@@ -64,7 +64,7 @@
   }
 
   li[aria-current='page'] {
-    @apply text-cyan-600;
+    @apply text-cyan-500;
   }
 
   .main-nav {
