@@ -28,7 +28,7 @@
       <div class="time font-bold">2018 - 2023</div>
       <div>
         <a href="https://poplarhomes.com" target="_blank">
-          <div class="title font-bold">Senior Software Engineer</div>
+          <div class="title font-bold text-cyan-500">Senior Software Engineer</div>
           <div class="company text-sm">Poplar Homes</div>
         </a>
       </div>
@@ -36,21 +36,21 @@
     <li class="flex gap-10">
       <div class="time font-bold">2016 - 2018</div>
       <div>
-        <div class="title font-bold">Software Engineer</div>
+        <div class="title font-bold text-cyan-500">Software Engineer</div>
         <div class="company text-sm">Satoshi Citadel Industries</div>
       </div>
     </li>
     <li class="flex gap-10">
       <div class="time font-bold">2015 - 2016</div>
       <div>
-        <div class="title font-bold">Web Developer</div>
+        <div class="title font-bold text-cyan-500">Web Developer</div>
         <div class="company text-sm">Twidl Inc.</div>
       </div>
     </li>
     <li class="flex gap-10">
       <div class="time font-bold">2014 - 2015</div>
       <div>
-        <div class="title font-bold">Web Developer</div>
+        <div class="title font-bold text-cyan-500">Web Developer</div>
         <div class="company text-sm">Freelance</div>
       </div>
     </li>
