@@ -5,7 +5,23 @@
 </script>
 
 <svelte:head>
-  <title>Home</title>
+  <title>{data.meta.title}</title>
+
+  <meta name="description" content={data.meta.description} />
+  <meta name="keywords" content={data.meta.keywords} />
+
+  <!-- Social media -->
+  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:title" content={data.meta.title} />
+  <meta name="twitter:description" content={data.meta.description} />
+  <meta name="twitter:image" content={data.meta.imageUrl } />
+  <meta name="twitter:url" content={data.meta.url} />
+
+  <meta property="og:title" content={data.meta.title} />
+  <meta property="og:description" content={data.meta.description} />
+  <meta property="og:image" content={data.meta.imageUrl } />
+  <meta property="og:url" content={data.meta.url} />
+  <meta property="og:type" content="website" />
 </svelte:head>
 
 <div class="header space-y-8">

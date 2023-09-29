@@ -20,6 +20,15 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
       formattedCreatedAt: formatDate(post.createdAt as string),
     };
   });
+  //
+  // TODO: Add image
+  const meta = {
+    title: 'Blog | Jet Ordaneza',
+    description: 'Check out my latest blog posts where we explore my thoughs about anything tech.',
+    keywords: 'software engineer,reactjs,react,nodejs,node,rust,go,golang,tailwindcss',
+    url: 'https://www.jetordaneza.com/blog',
+    imageUrl: '',
+  }
 
-  return { posts };
+  return { posts, meta };
 };

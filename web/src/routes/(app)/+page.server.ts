@@ -20,7 +20,17 @@ export const load: PageServerLoad = async ({ fetch }) => {
     };
   });
 
-  return { posts };
+  // TODO: Add image
+  const meta = {
+    title: 'Jet Ordaneza',
+    description: `A Software Engineer. I love building cool things with code.
+      I'm always curious about how things work and love exploring new stuff.`,
+    keywords: 'software engineer,reactjs,react,nodejs,node,rust,go,golang,tailwindcss',
+    url: 'https://www.jetordaneza.com',
+    imageUrl: '',
+  }
+
+  return { posts, meta };
 };
 
 export const actions: Actions = {
