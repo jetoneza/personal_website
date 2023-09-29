@@ -32,6 +32,6 @@
   </time>
 </div>
 
-<article class="prose dark:prose-invert mt-10">
+<article class="prose dark:prose-invert mt-10 prose-img:mx-auto">
   {@html data.post.content}
 </article>
