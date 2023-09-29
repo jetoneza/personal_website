@@ -37,6 +37,12 @@
       sm:p-0 sm:top-0 sm:space-y-0 sm:relative sm:flex sm:flex-row sm:space-x-10 sm:justify-end items-center"
     >
       <li
+        class="sm:hidden px-4 py-2 sm:p-0 sm:font-semibold"
+        aria-current={$page.url.pathname === '/' ? 'page' : undefined}
+      >
+        <a href="/">Home</a>
+      </li>
+      <li
         class="px-4 py-2 sm:p-0 sm:font-semibold"
         aria-current={$page.url.pathname === '/about' ? 'page' : undefined}
       >

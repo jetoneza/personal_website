@@ -24,7 +24,7 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
   // TODO: Add image
   const meta = {
     title: 'Blog | Jet Ordaneza',
-    description: 'Check out my latest blog posts where we explore my thoughs about anything tech.',
+    description: 'Check out my latest blog posts where we explore my thoughts about anything tech.',
     keywords: 'software engineer,reactjs,react,nodejs,node,rust,go,golang,tailwindcss',
     url: 'https://www.jetordaneza.com/blog',
     imageUrl: '',
