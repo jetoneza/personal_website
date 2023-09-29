@@ -25,6 +25,7 @@
           <th scope="col" class="px-6 py-3">Slug</th>
           <th scope="col" class="px-6 py-3">Published</th>
           <th scope="col" class="px-6 py-3">Date Created</th>
+          <th scope="col" class="px-6 py-3">Date Published</th>
           <th scope="col" class="px-6 py-3">Actions</th>
         </tr>
       </thead>
@@ -57,6 +58,9 @@
             </td>
             <td class="px-6 py-4">
               {formatDate(post.createdAt)}
+            </td>
+            <td class="px-6 py-4">
+              {post.published ? formatDate(post.publishedAt || post.createdAt) : 'N/A'}
             </td>
             <td class="px-6 py-4">
               <a

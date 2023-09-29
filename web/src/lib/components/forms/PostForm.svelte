@@ -12,6 +12,7 @@
   export let meta_image_url = '';
   export let content = '';
   export let published = false;
+  export let published_at = '';
 </script>
 
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
@@ -42,6 +43,7 @@
     <Input type="text" name="meta_description" value={meta_description} label="Meta Description" />
     <Input type="text" name="meta_keywords" value={meta_keywords} label="Meta Keywords" />
     <Input type="text" name="meta_image_url" value={meta_image_url} label="Meta Image URL" />
+    <Input type="date" name="published_at" value={published_at} label="Publication Date" />
   </div>
 </div>
 <div class="textarea-wrapper mt-2">

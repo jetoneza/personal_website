@@ -27,6 +27,8 @@ export const actions: Actions = {
 
     const { id } = params;
 
+    const publishedAt = new Date(data.get('published_at') as string);
+
     try {
       const response = await fetch(`/api/v1/posts/${id}`, {
         method: 'PUT',
@@ -45,6 +47,7 @@ export const actions: Actions = {
           meta_keywords: data.get('meta_keywords'),
           meta_image_url: data.get('meta_image_url'),
           published: data.get('published'),
+          published_at: publishedAt,
         }),
       });
 

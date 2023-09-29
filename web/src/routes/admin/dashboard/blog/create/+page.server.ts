@@ -16,6 +16,8 @@ export const actions: Actions = {
   default: async ({ request, fetch }) => {
     const data = await request.formData();
 
+    const publishedAt = new Date(data.get('published_at') as string);
+
     const response = await fetch('/api/v1/posts', {
       method: 'POST',
       headers: {
@@ -33,6 +35,7 @@ export const actions: Actions = {
         meta_keywords: data.get('meta_keywords'),
         meta_image_url: data.get('meta_image_url'),
         published: data.get('published'),
+        published_at: publishedAt,
       }),
     });
 
