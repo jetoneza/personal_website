@@ -86,7 +86,7 @@ func (h *Handler) LoginUser(ctx *fiber.Ctx) error {
 		Value:    token,
 		Path:     "/",
 		Expires:  expiry,
-		Secure:   true,
+		Secure:   false,
 		HTTPOnly: true,
 	})
 

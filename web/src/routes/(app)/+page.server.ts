@@ -3,7 +3,7 @@ import type { Actions, PageServerLoad } from './$types';
 
 const TIME_YEAR = 60 * 60 * 24 * 365;
 
-export const load: PageServerLoad = async ({ fetch, url }) => {
+export const load: PageServerLoad = async ({ fetch }) => {
   const qs = new URLSearchParams();
   qs.set('page', '1');
   qs.set('limit', '3');
@@ -30,7 +30,9 @@ export const actions: Actions = {
     if (theme) {
       cookies.set('theme', theme, {
         path: '/',
+        httpOnly: true,
         maxAge: TIME_YEAR,
+        secure: false, // TODO: Set to true if ssl is setup
       });
     }
   },
