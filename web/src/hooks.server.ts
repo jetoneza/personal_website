@@ -61,7 +61,7 @@ const checkSession = (event: RequestEvent) => {
 };
 
 const checkTheme = (event: RequestEvent): string | null => {
-  let theme: string | null = null;
+  let theme = 'dark';
 
   const newTheme = event.url.searchParams.get('theme');
   const cookieTheme = event.cookies.get('theme');
