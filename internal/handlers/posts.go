@@ -106,6 +106,11 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "fail", "error": err.Message})
 	}
 
+	published, err := strconv.ParseBool(body.Published)
+	if err != nil {
+		published = false
+	}
+
 	post := models.Post{
 		Title:           body.Title,
 		Slug:            body.Slug,
@@ -116,7 +121,7 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 		MetaDescription: body.MetaDescription,
 		MetaKeywords:    body.MetaKeywords,
 		MetaImageUrl:    body.MetaImageUrl,
-		Published:       body.Published,
+		Published:       published,
 	}
 
 	result := h.App.DB.Create(&post)
@@ -151,12 +156,17 @@ func (h *Handler) UpdatePost(ctx *fiber.Ctx) error {
 		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "fail", "error": err.Message})
 	}
 
+	published, err := strconv.ParseBool(body.Published)
+	if err != nil {
+		published = false
+	}
+
 	post.Title = body.Title
 	post.Slug = body.Slug
 	post.Description = body.Description
 	post.Content = body.Content
 	post.Category = body.Category
-	post.Published = body.Published
+	post.Published = published
 	post.MetaTitle = body.MetaTitle
 	post.MetaDescription = body.MetaDescription
 	post.MetaKeywords = body.MetaKeywords

@@ -10,5 +10,5 @@ type CreatePostSchema struct {
 	MetaDescription string `json:"meta_description"`
 	MetaKeywords    string `json:"meta_keywords"`
 	MetaImageUrl    string `json:"meta_image_url"`
-	Published       bool   `json:"published"`
+	Published       string `json:"published"`
 }
