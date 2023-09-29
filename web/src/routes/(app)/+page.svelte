@@ -4,6 +4,10 @@
   export let data: PageData;
 </script>
 
+<svelte:head>
+  <title>Home</title>
+</svelte:head>
+
 <div class="header space-y-8">
   <h1 class="name font-bold text-4xl font-sans-pro">
     Hello, I'm Jet<span class="text-cyan-600">.</span>

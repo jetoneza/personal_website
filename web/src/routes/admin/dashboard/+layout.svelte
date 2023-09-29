@@ -2,6 +2,10 @@
   import SideNav from '$lib/components/admin/SideNav.svelte';
 </script>
 
+<svelte:head>
+  <title>Dashboard</title>
+</svelte:head>
+
 <div class="dashboard relative">
   <SideNav />
 

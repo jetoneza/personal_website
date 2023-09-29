@@ -4,6 +4,10 @@
   export let data: PageData;
 </script>
 
+<svelte:head>
+  <title>Blog</title>
+</svelte:head>
+
 <div class="flex flex-col gap-16 md:gap-8">
   <div class="flex flex-col gap-2">
     <h1 class="font-bold text-4xl font-sans-pro">Blog</h1>

@@ -1,3 +1,7 @@
+<svelte:head>
+  <title>About</title>
+</svelte:head>
+
 <h1 class="font-bold text-4xl font-sans-pro">About Me</h1>
 <div class="dark:text-slate-200">Hello! I'm Jet Ordaneza.</div>
 <div class="space-y-10 mt-10">

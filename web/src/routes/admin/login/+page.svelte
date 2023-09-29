@@ -7,6 +7,10 @@
   export let form: ActionData;
 </script>
 
+<svelte:head>
+  <title>Login</title>
+</svelte:head>
+
 <div class="container login mx-auto p-6 flex flex-col justify-center items-center h-screen">
   <div class="title font-bold text-3xl font-sans-pro">Login to Dashboard</div>
   <div

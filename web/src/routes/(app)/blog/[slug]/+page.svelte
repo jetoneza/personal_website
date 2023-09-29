@@ -4,6 +4,10 @@
   export let data: PageData;
 </script>
 
+<svelte:head>
+  <title>{data.post.title}</title>
+</svelte:head>
+
 <div class="title-wrapper flex flex-col space-y-4">
   <h1 class="font-extrabold text-4xl">
     {data.post.title}
