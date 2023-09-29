@@ -3,6 +3,7 @@ package handlers
 import (
 	"fmt"
 	"strconv"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/jetoneza/personal_website/internal/models"
@@ -111,6 +112,11 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 		published = false
 	}
 
+	publishDate, err := time.Parse(time.RFC3339, body.PublishedAt)
+	if err != nil {
+		publishDate = time.Now()
+	}
+
 	post := models.Post{
 		Title:           body.Title,
 		Slug:            body.Slug,
@@ -122,6 +128,7 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 		MetaKeywords:    body.MetaKeywords,
 		MetaImageUrl:    body.MetaImageUrl,
 		Published:       published,
+		PublishedAt:     publishDate,
 	}
 
 	result := h.App.DB.Create(&post)
@@ -161,16 +168,22 @@ func (h *Handler) UpdatePost(ctx *fiber.Ctx) error {
 		published = false
 	}
 
+	publishDate, err := time.Parse(time.RFC3339, body.PublishedAt)
+	if err != nil {
+		publishDate = post.CreatedAt
+	}
+
 	post.Title = body.Title
 	post.Slug = body.Slug
 	post.Description = body.Description
 	post.Content = body.Content
 	post.Category = body.Category
-	post.Published = published
 	post.MetaTitle = body.MetaTitle
 	post.MetaDescription = body.MetaDescription
 	post.MetaKeywords = body.MetaKeywords
 	post.MetaImageUrl = body.MetaImageUrl
+	post.Published = published
+	post.PublishedAt = publishDate
 
 	saveResult := h.App.DB.Save(&post)
 

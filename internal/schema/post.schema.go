@@ -11,4 +11,5 @@ type CreatePostSchema struct {
 	MetaKeywords    string `json:"meta_keywords"`
 	MetaImageUrl    string `json:"meta_image_url"`
 	Published       string `json:"published"`
+	PublishedAt     string `json:"published_at"`
 }
