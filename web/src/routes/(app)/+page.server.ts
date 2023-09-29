@@ -28,7 +28,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
     keywords: 'software engineer,reactjs,react,nodejs,node,rust,go,golang,tailwindcss',
     url: 'https://www.jetordaneza.com',
     imageUrl: '',
-  }
+  };
 
   return { posts, meta };
 };

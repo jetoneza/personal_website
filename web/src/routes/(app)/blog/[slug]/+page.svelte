@@ -10,15 +10,15 @@
   <meta name="keywords" content={data.post.meta_keywords} />
 
   <!-- Social media -->
-  <meta name="twitter:card" content="summary"/>
+  <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content={data.post.meta_title} />
   <meta name="twitter:description" content={data.post.meta_description} />
-  <meta name="twitter:image" content={data.post.meta_image_url } />
+  <meta name="twitter:image" content={data.post.meta_image_url} />
   <meta name="twitter:url" content="https://www.jetordaneza.com/blog/{data.post.slug}" />
 
   <meta property="og:title" content={data.post.meta_title} />
   <meta property="og:description" content={data.post.description} />
-  <meta property="og:image" content={data.post.meta_image_url } />
+  <meta property="og:image" content={data.post.meta_image_url} />
   <meta property="og:url" content="https://www.jetordaneza.com/blog/{data.post.slug}" />
   <meta property="og:type" content="blog" />
 </svelte:head>

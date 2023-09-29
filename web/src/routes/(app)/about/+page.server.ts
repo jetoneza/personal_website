@@ -10,7 +10,7 @@ export const load: PageServerLoad = async () => {
     keywords: 'software engineer,reactjs,react,nodejs,node,rust,go,golang,tailwindcss',
     url: 'https://www.jetordaneza.com/about',
     imageUrl: '',
-  }
+  };
 
   return { meta };
 };
