@@ -13,6 +13,8 @@ export const GET: RequestHandler = async ({ fetch, cookies }) => {
   cookies.set('session_token', apiCookie.session_token, {
     path: apiCookie.path,
     expires: new Date(apiCookie.expires),
+    secure: false,
+    httpOnly: true,
   });
 
   // TODO: Handle errors

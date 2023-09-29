@@ -42,6 +42,8 @@ export const actions = {
     cookies.set('session_token', apiCookie.session_token, {
       path: apiCookie.path,
       expires: new Date(apiCookie.expires),
+      secure: false,
+      httpOnly: true,
     });
 
     throw redirect(HTTP_CODE_SEE_OTHER, '/admin/dashboard');
