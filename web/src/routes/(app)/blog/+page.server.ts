@@ -17,7 +17,7 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
   const posts = jsonResponse.data.map((post: Post) => {
     return {
       ...post,
-      formattedCreatedAt: formatDate(post.createdAt as string),
+      formattedPublishedAt: formatDate((post.publishedAt || post.createdAt) as string),
     };
   });
   //

@@ -15,7 +15,7 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
     throw error(HTTP_CODE_NOT_FOUND, { message: 'Page not found.' });
   }
 
-  post.formattedCreatedAt = formatDate(post.createdAt as string);
+  post.formattedPublishedAt = formatDate((post.publishedAt || post.createdAt) as string);
 
   return {
     post,

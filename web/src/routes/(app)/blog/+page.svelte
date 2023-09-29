@@ -35,7 +35,7 @@
         <article>
           <div class="space-y-2">
             <div class="text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-              <time datetime={post.createdAt}>{post.formattedCreatedAt}</time>
+              <time datetime={post.publishedAt || post.createdAt}>{post.formattedPublishedAt}</time>
             </div>
             <div class="space-y-3">
               <div class="space-y-4">

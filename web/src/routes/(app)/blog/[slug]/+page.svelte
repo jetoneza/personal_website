@@ -27,8 +27,8 @@
   <h1 class="font-extrabold text-4xl">
     {data.post.title}
   </h1>
-  <time class="text-sm font-bold text-cyan-500" datetime={data.post.createdAt}>
-    {data.post.formattedCreatedAt}
+  <time class="text-sm font-bold text-cyan-500" datetime={data.post.publishedAt || data.post.createdAt}>
+    {data.post.formattedPublishedAt}
   </time>
 </div>
 
