@@ -8,6 +8,6 @@ type CreatePostSchema struct {
 	Category        string `json:"category"`
 	MetaTitle       string `json:"meta_title"`
 	MetaDescription string `json:"meta_description"`
-	MetaKeyword     string `json:"meta_keyword"`
+	MetaKeywords    string `json:"meta_keywords"`
 	Published       bool   `json:"published"`
 }

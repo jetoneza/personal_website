@@ -91,7 +91,7 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 		Category:        body.Category,
 		MetaTitle:       body.MetaTitle,
 		MetaDescription: body.MetaDescription,
-		MetaKeyword:     body.MetaKeyword,
+		MetaKeywords:    body.MetaKeywords,
 		Published:       body.Published,
 	}
 
@@ -135,7 +135,7 @@ func (h *Handler) UpdatePost(ctx *fiber.Ctx) error {
 	post.Published = body.Published
 	post.MetaTitle = body.MetaTitle
 	post.MetaDescription = body.MetaDescription
-	post.MetaKeyword = body.MetaKeyword
+	post.MetaKeywords = body.MetaKeywords
 
 	saveResult := h.App.DB.Save(&post)
 

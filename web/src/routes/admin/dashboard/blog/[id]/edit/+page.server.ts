@@ -42,7 +42,7 @@ export const actions: Actions = {
           description: data.get('description'),
           meta_title: data.get('meta_title'),
           meta_description: data.get('meta_description'),
-          meta_keyword: data.get('meta_keyword'),
+          meta_keywords: data.get('meta_keywords'),
         }),
       });
 

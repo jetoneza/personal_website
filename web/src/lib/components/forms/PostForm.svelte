@@ -8,7 +8,7 @@
   export let category = '';
   export let meta_title = '';
   export let meta_description = '';
-  export let meta_keyword = '';
+  export let meta_keywords = '';
   export let content = '';
 </script>
 
@@ -22,7 +22,7 @@
   <div class="flex flex-col gap-2">
     <Input type="text" name="meta_title" value={meta_title} label="Meta Title" />
     <Input type="text" name="meta_description" value={meta_description} label="Meta Description" />
-    <Input type="text" name="meta_keyword" value={meta_keyword} label="Meta Keyword" />
+    <Input type="text" name="meta_keywords" value={meta_keywords} label="Meta Keywords" />
   </div>
 </div>
 <div class="textarea-wrapper mt-2">

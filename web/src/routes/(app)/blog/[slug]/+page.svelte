@@ -7,7 +7,7 @@
 <svelte:head>
   <title>{data.post.meta_title}</title>
   <meta name="description" content={data.post.meta_description} />
-  <meta name="keywords" content={data.post.meta_keyword} />
+  <meta name="keywords" content={data.post.meta_keywords} />
 
   <!-- Social media -->
   <meta name="twitter:card" content="summary"/>

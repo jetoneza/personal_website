@@ -15,7 +15,7 @@
     content,
     meta_title,
     meta_description,
-    meta_keyword,
+    meta_keywords,
   } = data.post;
 </script>
 
@@ -42,7 +42,7 @@
         {category}
         {meta_title}
         {meta_description}
-        {meta_keyword}
+        {meta_keywords}
         {content}
       />
     </form>
