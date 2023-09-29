@@ -32,19 +32,8 @@ export const actions: Actions = {
         method: 'PUT',
         headers: {
           cookie: request.headers.get('cookie') as string,
-          'Content-Type': 'application/json',
         },
-        body: JSON.stringify({
-          title: data.get('title'),
-          content: data.get('content'),
-          slug: data.get('slug'),
-          category: data.get('category'),
-          description: data.get('description'),
-          meta_title: data.get('meta_title'),
-          meta_description: data.get('meta_description'),
-          meta_keywords: data.get('meta_keywords'),
-          meta_image_url: data.get('meta_image_url'),
-        }),
+        body: data,
       });
 
       const result = JSON.parse(await response.text());
