@@ -5,10 +5,19 @@
   export let required = false;
   export let placeholder = '';
   export let value = '';
+  export let subLabel = ''
 </script>
 
 <div class="input-wrapper">
-  <label for={name} class="block mb-2 text-md font-bold dark:text-white">{label}</label>
+  <label for={name} class="block mb-2 text-md font-bold dark:text-white">
+    {label}
+    {#if required}
+      <span>*</span>
+    {/if}
+    {#if subLabel}
+      <span class="sub-label font-normal italic text-xs">({subLabel})</span>
+    {/if}
+  </label>
   <input
     id={name}
     {type}
