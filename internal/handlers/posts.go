@@ -92,6 +92,7 @@ func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 		MetaTitle:       body.MetaTitle,
 		MetaDescription: body.MetaDescription,
 		MetaKeywords:    body.MetaKeywords,
+		MetaImageUrl:    body.MetaImageUrl,
 		Published:       body.Published,
 	}
 
@@ -136,6 +137,7 @@ func (h *Handler) UpdatePost(ctx *fiber.Ctx) error {
 	post.MetaTitle = body.MetaTitle
 	post.MetaDescription = body.MetaDescription
 	post.MetaKeywords = body.MetaKeywords
+	post.MetaImageUrl = body.MetaImageUrl
 
 	saveResult := h.App.DB.Save(&post)
 

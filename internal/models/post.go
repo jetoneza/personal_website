@@ -18,6 +18,7 @@ type Post struct {
 	MetaTitle       string    `gorm:"type:varchar(255)" json:"meta_title,omitempty"`
 	MetaDescription string    `gorm:"type:text" json:"meta_description,omitempty"`
 	MetaKeywords    string    `gorm:"type:varchar(255)" json:"meta_keywords,omitempty"`
+	MetaImageUrl    string    `gorm:"type:varchar(255)" json:"meta_image_url,omitempty"`
 	Published       bool      `gorm:"default:false;not null" json:"published"`
 	CreatedAt       time.Time `gorm:"not null;default:'1970-01-01 00:00:01'" json:"createdAt,omitempty"`
 	UpdatedAt       time.Time `gorm:"not null;default:'1970-01-01 00:00:01';ON UPDATE CURRENT_TIMESTAMP" json:"updatedAt,omitempty"`
