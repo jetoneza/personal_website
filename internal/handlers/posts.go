@@ -84,7 +84,7 @@ func (h *Handler) GetAllPublishedPosts(ctx *fiber.Ctx) error {
 
 	var posts []models.Post
 
-	results := h.App.DB.Order("created_at desc").Limit(limit).Offset(offset).Find(&posts, "published = true")
+	results := h.App.DB.Order("published_at desc").Limit(limit).Offset(offset).Find(&posts, "published = true")
 
 	if results.Error != nil {
 		return ctx.Status(fiber.StatusBadGateway).JSON(fiber.Map{
