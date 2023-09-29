@@ -1,9 +1,0 @@
-{
-  "apps": [{
-    "name" : "frontend",
-    "script" : "./web/build",
-    "env_production" : {
-      "PORT" : 3003
-    }
-  }]
-}
