@@ -31,6 +31,7 @@ export const actions: Actions = {
         meta_title: data.get('meta_title'),
         meta_description: data.get('meta_description'),
         meta_keywords: data.get('meta_keywords'),
+        meta_image_url: data.get('meta_image_url'),
       }),
     });
 

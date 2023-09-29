@@ -16,6 +16,7 @@
     meta_title,
     meta_description,
     meta_keywords,
+    meta_image_url,
   } = data.post;
 </script>
 
@@ -43,6 +44,7 @@
         {meta_title}
         {meta_description}
         {meta_keywords}
+        {meta_image_url}
         {content}
       />
     </form>

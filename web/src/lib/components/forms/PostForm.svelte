@@ -9,6 +9,7 @@
   export let meta_title = '';
   export let meta_description = '';
   export let meta_keywords = '';
+  export let meta_image_url = '';
   export let content = '';
 </script>
 
@@ -23,6 +24,7 @@
     <Input type="text" name="meta_title" value={meta_title} label="Meta Title" />
     <Input type="text" name="meta_description" value={meta_description} label="Meta Description" />
     <Input type="text" name="meta_keywords" value={meta_keywords} label="Meta Keywords" />
+    <Input type="text" name="meta_image_url" value={meta_image_url} label="Meta Image URL" />
   </div>
 </div>
 <div class="textarea-wrapper mt-2">
