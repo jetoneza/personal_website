@@ -18,7 +18,7 @@
     meta_keywords,
     meta_image_url,
     published,
-    published_at,
+    publishedAt,
   } = data.post;
 </script>
 
@@ -49,7 +49,7 @@
         {meta_image_url}
         {content}
         {published}
-        {published_at}
+        {publishedAt}
       />
     </form>
   </div>
