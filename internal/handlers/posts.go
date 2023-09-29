@@ -76,6 +76,29 @@ func (h *Handler) GetAllPosts(ctx *fiber.Ctx) error {
 	})
 }
 
+func (h *Handler) GetAllPublishedPosts(ctx *fiber.Ctx) error {
+	page, _ := strconv.Atoi(ctx.Query("page", "1"))
+	limit, _ := strconv.Atoi(ctx.Query("limit", "10"))
+	offset := (page - 1) * limit
+
+	var posts []models.Post
+
+	results := h.App.DB.Order("created_at desc").Limit(limit).Offset(offset).Find(&posts, "published = true")
+
+	if results.Error != nil {
+		return ctx.Status(fiber.StatusBadGateway).JSON(fiber.Map{
+			"status":  "error",
+			"message": results.Error,
+		})
+	}
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status":  "success",
+		"results": len(posts),
+		"data":    posts,
+	})
+}
+
 func (h *Handler) CreatePost(ctx *fiber.Ctx) error {
 	body := new(schema.CreatePostSchema)
 
