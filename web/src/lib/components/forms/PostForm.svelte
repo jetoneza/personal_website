@@ -20,7 +20,7 @@
   <div class="flex flex-col gap-2">
     <Input type="text" name="title" value={title} label="Title" required={true} />
     <Input type="text" name="slug" value={slug} label="Slug" required={true} />
-    <Input type="text" name="description" value={description} label="Description" subLabel="150 Characters" />
+    <Input type="text" name="description" value={description} label="Description" subLabel="105 Characters" />
     <Input type="text" name="category" value={category} label="Category" />
     <div class="input-wrapper">
       <label for="published" class="block mb-2 text-md font-bold dark:text-white">
@@ -41,7 +41,7 @@
   </div>
   <div class="flex flex-col gap-2">
     <Input type="text" name="meta_title" value={meta_title} label="Meta Title" required={true} subLabel="50 - 60 Characters" />
-    <Input type="text" name="meta_description" value={meta_description} label="Meta Description" required={true} subLabel="150 Characters" />
+    <Input type="text" name="meta_description" value={meta_description} label="Meta Description" required={true} subLabel="105 Characters" />
     <Input type="text" name="meta_keywords" value={meta_keywords} label="Meta Keywords" />
     <Input type="text" name="meta_image_url" value={meta_image_url} label="Meta Image URL" required={true} />
     <Input type="date" name="published_at" value={formatInputDate(new Date(publishedAt))} label="Publication Date" />
