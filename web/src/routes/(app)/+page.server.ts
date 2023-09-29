@@ -9,7 +9,7 @@ export const load: PageServerLoad = async ({ fetch }) => {
   qs.set('limit', '3');
 
   // TODO: Add error handling
-  const res = await fetch(`/api/v1/posts?${qs.toString()}`);
+  const res = await fetch(`/api/v1/posts/published?${qs.toString()}`);
   const jsonResponse = await res.json();
 
   // TODO: Improve formatting of dates
