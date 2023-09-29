@@ -21,7 +21,9 @@
     <Input type="text" name="description" value={description} label="Description" />
     <Input type="text" name="category" value={category} label="Category" />
     <div class="input-wrapper">
-      <label for="published" class="block mb-2 text-md font-bold dark:text-white">Publish Post</label>
+      <label for="published" class="block mb-2 text-md font-bold dark:text-white">
+        Publish Post
+      </label>
       <select
         value={published}
         id="published"
