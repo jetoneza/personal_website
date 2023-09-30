@@ -24,8 +24,12 @@ build_prod:
 
 deploy:
 	git pull
-	go run ./cmd/build build:prod
+	make build_backup
+	make build_prod
 	pm2 delete -s go_app || :
 	pm2 start ./bin/api --name go_app
 	pm2 delete -s svelte_app || :
 	PORT=${SVELTE_PORT} pm2 start ./web/build/index.js --name svelte_app
+
+build_backup:
+	go build -o bin/db_backup -v ./cmd/backup

@@ -8,12 +8,15 @@ import (
 )
 
 var (
-	APP_NAME     = getEnv("APP_NAME", "Jet Ordaneza Personal Website")
-	DB           = getEnv("DB", "jetdb.sqlite")
-	PORT         = getEnv("PORT", "3000")
-	SVELTE_PORT  = getEnv("SVELTE_PORT", "3003")
-	TOKEN_KEY    = getEnv("TOKEN_KEY", "")
-	TOKEN_EXPIRY = getEnv("TOKEN_EXPIRY", "10h")
+	APP_NAME      = getEnv("APP_NAME", "Jet Ordaneza Personal Website")
+	DB            = getEnv("DB", "jetdb.sqlite")
+	PORT          = getEnv("PORT", "3000")
+	SVELTE_PORT   = getEnv("SVELTE_PORT", "3003")
+	TOKEN_KEY     = getEnv("TOKEN_KEY", "")
+	TOKEN_EXPIRY  = getEnv("TOKEN_EXPIRY", "10h")
+	S3_BUCKET     = getEnv("S3_BUCKET", "")
+	S3_OBJECT_KEY = getEnv("S3_OBJECT_KEY", "")
+	AWS_REGION    = getEnv("AWS_REGION", "")
 )
 
 func getEnv(name string, fallback string) string {
