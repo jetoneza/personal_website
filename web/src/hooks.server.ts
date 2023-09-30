@@ -41,7 +41,7 @@ export const handleFetch: HandleFetch = async ({ event, request, fetch }) => {
 
 const checkSession = (event: RequestEvent) => {
   const sessionToken = event.cookies.get('session_token');
-  const hasSessionEnded = sessionToken === 'session-ended';
+  const hasSessionEnded = sessionToken === 'session-ended' || sessionToken === 'expired';
 
   let action: HttpError | Redirect | null = null;
 
