@@ -86,7 +86,7 @@
               </div>
               <img
                 alt="Site Design"
-                src="/images/go-svelte-design.png"
+                src="https://res.cloudinary.com/dj0l6hcwu/image/upload/c_scale,w_700/v1696086546/personal_website/go_sveltekit_design_hivwz3.png"
                 class="rounded-lg mt-10 bg-white drop-shadow-2xl"
               />
             </div>
