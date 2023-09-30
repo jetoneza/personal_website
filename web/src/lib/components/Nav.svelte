@@ -56,12 +56,15 @@
       </li>
       <li
         class="px-4 py-2 sm:p-0 sm:font-semibold"
+        aria-current={$page.url.pathname === '/projects' ? 'page' : undefined}
+      >
+        <a href="/projects">Projects</a>
+      </li>
+      <li
+        class="px-4 py-2 sm:p-0 sm:font-semibold"
         aria-current={$page.url.pathname === '/contact' ? 'page' : undefined}
       >
         <a href="/contact">Contact</a>
-      </li>
-      <li class="px-4 py-2 sm:p-0 sm:font-semibold">
-        <a href="https://github.com/jetoneza" target="_blank">Github</a>
       </li>
       <li class="hidden sm:block hover:bg-zinc-100 hover:dark:bg-zinc-700 sm:p-2 rounded-lg">
         <ThemeSwitch />
