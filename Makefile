@@ -1,3 +1,6 @@
+#!make
+include .env
+
 run:
 	go run ./cmd/build run
 
@@ -18,3 +21,10 @@ build_web:
 
 build_prod:
 	go run ./cmd/build build:prod
+
+deploy:
+	go run ./cmd/build build:prod
+	pm2 delete -s go_app || :
+	pm2 start ./webapp --name go_app
+	pm2 delete -s svelte_app || :
+	PORT=${SVELTE_PORT} pm2 start ./web/build/index.js --name svelte_app
