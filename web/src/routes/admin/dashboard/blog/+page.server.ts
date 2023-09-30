@@ -20,11 +20,11 @@ export const load: PageServerLoad = async ({ request, fetch, url }) => {
     const jsonResponse = await res.json();
 
     if (jsonResponse.status === API_STATUS.FAIL) {
-      throw jsonResponse
+      throw jsonResponse;
     }
 
     return { posts: jsonResponse.data, message: message && JSON.parse(message) };
   } catch (_) {
-    return { posts: [], message: { type: API_STATUS.FAIL, value: MESSAGE_POST_FETCH_ERROR } }
+    return { posts: [], message: { type: API_STATUS.FAIL, value: MESSAGE_POST_FETCH_ERROR } };
   }
 };

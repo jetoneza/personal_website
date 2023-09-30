@@ -5,7 +5,7 @@
   export let required = false;
   export let placeholder = '';
   export let value = '';
-  export let subLabel = ''
+  export let subLabel = '';
 </script>
 
 <div class="input-wrapper">

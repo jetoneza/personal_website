@@ -14,10 +14,12 @@
 
   <div class="relative overflow-x-auto mt-6">
     {#if data.message}
-      <p class="p-4 
-      {data.message.type === API_STATUS.SUCCESS 
-        ? 'bg-green-100 border-green-700 text-green-700'
-        : 'bg-red-100 border-red-700 text-red-700'} rounded-lg  border my-6 text-sm">
+      <p
+        class="p-4
+      {data.message.type === API_STATUS.SUCCESS
+          ? 'bg-green-100 border-green-700 text-green-700'
+          : 'bg-red-100 border-red-700 text-red-700'} rounded-lg border my-6 text-sm"
+      >
         {data.message.value}
       </p>
     {/if}
