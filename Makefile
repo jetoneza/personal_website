@@ -23,6 +23,7 @@ build_prod:
 	go run ./cmd/build build:prod
 
 deploy:
+	git pull
 	go run ./cmd/build build:prod
 	pm2 delete -s go_app || :
 	pm2 start ./webapp --name go_app
