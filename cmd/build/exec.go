@@ -17,12 +17,12 @@ func buildProduction() {
 }
 
 func runBackendProd() {
-	log.Println("Running the go server...")
-	utils.ExecuteCommand("./webapp")
+	log.Println("GOLANG: running production server")
+	utils.ExecuteCommand("./bin/api")
 }
 
 func runFrontendProd() {
-	log.Println("Running the svelte server...")
+	log.Println("SVELTE: running production server")
 
 	env := fmt.Sprintf("PORT=%v", config.SVELTE_PORT)
 	path := fmt.Sprintf("%v/build", templatePath)
@@ -31,17 +31,17 @@ func runFrontendProd() {
 }
 
 func buildServer() {
-	log.Println("Building the go project...")
-	utils.ExecuteCommand("go", "build", "-o", "webapp", "-v")
+	log.Println("GOLANG: building production server")
+	utils.ExecuteCommand("go", "build", "-o", "bin/api", "-v")
 }
 
 func runServer() {
-	log.Println("Running the go project...")
+	log.Println("GOLANG: running development server")
 	utils.ExecuteCommand("go", "run", "main.go")
 }
 
 func buildWeb() {
-	log.Println("Building sveltekit...")
+	log.Println("SVELTE: building production project")
 	installWebDependencies()
 
 	if utils.HasCommand("pnpm") {
@@ -53,7 +53,7 @@ func buildWeb() {
 }
 
 func runWeb() {
-	log.Println("Running sveltekit...")
+	log.Println("SVELTE: running development project")
 	installWebDependencies()
 
 	if utils.HasCommand("pnpm") {
