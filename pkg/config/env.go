@@ -9,7 +9,7 @@ import (
 
 var (
 	APP_NAME      = getEnv("APP_NAME", "Jet Ordaneza Personal Website")
-	DB            = getEnv("DB", "jetdb.sqlite")
+	DB            = getEnv("DB", "db.sqlite3")
 	PORT          = getEnv("PORT", "3000")
 	SVELTE_PORT   = getEnv("SVELTE_PORT", "3003")
 	TOKEN_KEY     = getEnv("TOKEN_KEY", "")
