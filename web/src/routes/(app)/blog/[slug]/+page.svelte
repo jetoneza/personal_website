@@ -21,7 +21,7 @@
   <meta property="og:image" content={data.post.meta_image_url} />
   <meta property="og:url" content="https://www.jetordaneza.com/blog/{data.post.slug}" />
   <meta property="og:type" content="blog" />
-  <link rel="stylesheet" href="/styles/macchiato-chroma-style.css">
+  <link rel="stylesheet" href="/styles/macchiato-chroma-style.css" />
 </svelte:head>
 
 <div class="title-wrapper flex flex-col space-y-4">

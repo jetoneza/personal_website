@@ -13,7 +13,16 @@ body {
 }
 
 .chroma {
-  @apply dark:bg-zinc-900
+  @apply dark:bg-zinc-900;
+}
+
+p > code,
+li > code,
+dd > code,
+td > code {
+  @apply bg-gray-100 dark:bg-zinc-900;
+  @apply font-normal text-sm px-1 py-1 rounded;
+  @apply text-slate-700 dark:text-gray-300;
 }
 
 .btn {
