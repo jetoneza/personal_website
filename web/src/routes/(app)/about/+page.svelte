@@ -141,7 +141,7 @@
       </a>
 
       <a
-        href="https://www.youtube.com/@jetrooper9822"
+        href="https://www.youtube.com/@jetrooper_gaming"
         target="_blank"
         class="flex gap-2 items-center p-3 rounded-lg border border-slate-800 dark:border-zinc-700 justify-center w-36 font-bold hover:bg-[#FF0000] hover:border-[#FF0000] hover:text-white"
       >
