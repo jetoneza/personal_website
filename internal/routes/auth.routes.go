@@ -9,7 +9,7 @@ import (
 func AuthRoutes(router fiber.Router, handlers *handlers.Handler) {
 	r := router.Group("/auth")
 
-	r.Post("/register", handlers.RegisterUser)
+	r.Post("/register", middlewares.BasicAuth(), handlers.RegisterUser)
 	r.Post("/login", handlers.LoginUser)
 	r.Post("/logout", handlers.LogoutUser)
 	r.Get("/session", middlewares.AuthMiddleware(), handlers.GetSessionInfo)

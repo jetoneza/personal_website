@@ -17,6 +17,8 @@ var (
 	S3_BUCKET     = getEnv("S3_BUCKET", "")
 	S3_OBJECT_KEY = getEnv("S3_OBJECT_KEY", "")
 	AWS_REGION    = getEnv("AWS_REGION", "")
+	AUTH_USER     = getEnv("AUTH_USER", "")
+	AUTH_PASSWORD = getEnv("AUTH_PASSWORD", "")
 )
 
 func getEnv(name string, fallback string) string {

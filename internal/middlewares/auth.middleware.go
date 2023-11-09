@@ -5,6 +5,7 @@ import (
 
 	jwtware "github.com/gofiber/contrib/jwt"
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/basicauth"
 	"github.com/jetoneza/personal_website/pkg/config"
 )
 
@@ -27,5 +28,15 @@ func handleError(ctx *fiber.Ctx, err error) error {
 	return ctx.Status(fiber.StatusUnauthorized).JSON(fiber.Map{
 		"status":  "fail",
 		"message": "JWT invalid/expired",
+	})
+}
+
+func BasicAuth() fiber.Handler {
+	authCredentials := make(map[string]string)
+
+	authCredentials[config.AUTH_USER] = config.AUTH_PASSWORD
+
+	return basicauth.New(basicauth.Config{
+		Users: authCredentials,
 	})
 }
