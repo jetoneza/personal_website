@@ -1,6 +1,7 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"os"
@@ -9,7 +10,10 @@ import (
 	"github.com/jetoneza/personal_website/pkg/config"
 )
 
-const templatePath = "./web"
+const (
+	templatePath = "./web"
+	dbPath       = "db"
+)
 
 func buildProduction() {
 	buildWeb()
@@ -32,11 +36,17 @@ func runFrontendProd() {
 
 func buildServer() {
 	log.Println("GOLANG: building production server")
+
+	createDBDir()
+
 	utils.ExecuteCommand("go", "build", "-o", "bin/api", "-v")
 }
 
 func runServer() {
 	log.Println("GOLANG: running development server")
+
+  createDBDir()
+
 	utils.ExecuteCommand("go", "run", "main.go")
 }
 
@@ -62,6 +72,15 @@ func runWeb() {
 	}
 
 	utils.ExecuteCommand("npm", "run", "dev", "--prefix ", templatePath)
+}
+
+func createDBDir() {
+	if _, err := os.Stat(dbPath); errors.Is(err, os.ErrNotExist) {
+		err := os.Mkdir(dbPath, os.ModePerm)
+		if err != nil {
+			log.Println(err)
+		}
+	}
 }
 
 func installWebDependencies() {
