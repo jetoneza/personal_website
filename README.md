@@ -1,9 +1,10 @@
 # My Personal Website
 
 ## Prerequisites
+
 1. Install [Go](https://go.dev/doc/install).
 2. Install [Node.js](https://nodejs.org/en/).
-2. Create a `.env` file in the project root and add the environment variables.
+3. Create a `.env` file in the project root and add the environment variables.
 
 ```
 PORT=3000
@@ -33,12 +34,11 @@ go run ./cmd/build run:web
 
 ## Adding content
 
-1. In order to add a content, a user admin is needed to login. Use the endpoint `POST /api/v1/auth/register` to register a user. This uses basic auth. Use the values that is provided
-for the environment variables AUTH_USER and AUTH_PASSWORD.
+1. To add content, an admin user must log in. Use the `POST /api/v1/auth/register` endpoint to register a user. This uses basic authentication. Ensure you use the values provided in the environment variables `AUTH_USER` and `AUTH_PASSWORD`.
 
 ```
 curl -X POST http://localhost:3000/api/v1/auth/register
-   -H "Content-Type: application/x-www-form-urlencoded" 
+   -H "Content-Type: application/x-www-form-urlencoded"
    -d "name=Admin&email=test@email.com&password=testpassword"
    --user "<auth_user>:<auth_password>"
 ```
