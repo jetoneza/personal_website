@@ -35,33 +35,6 @@
 
   const events = [
     {
-      id: 1,
-      start: new Date('11-20-2023'),
-      end: new Date('11-20-2023'),
-      allDay: true,
-      notes: 'First day at Bookipi.',
-      type: 'work',
-      createdAt: new Date(),
-    },
-    {
-      id: 2,
-      start: new Date('11-21-2023'),
-      end: new Date('11-21-2023'),
-      allDay: true,
-      notes: 'Chill day at work.',
-      type: 'work',
-      createdAt: new Date(),
-    },
-    {
-      id: 4,
-      start: new Date('11-21-2023'),
-      end: new Date('11-24-2023'),
-      allDay: true,
-      notes: 'Project B - Implementation',
-      type: 'task',
-      createdAt: new Date(),
-    },
-    {
       id: 3,
       start: new Date('12-25-2023'),
       end: new Date('12-25-2023'),
