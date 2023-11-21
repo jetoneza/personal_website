@@ -19,6 +19,7 @@ declare global {
     startViewTransition(updateCallback: () => Promise<void>): ViewTransition;
   }
 
+  // TODO: declare correct specific fields
   type Post = {
     [key: string]: string | number | undefined;
   };

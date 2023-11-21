@@ -1,11 +1,28 @@
 <script lang="ts">
   // Libraries
+
+  // TODO: Find workaround on sveltekit not reading declared modules in app.d.ts within .svelte files
+  // @ts-expect-error: No declaration file for module
   import Calendar from '@event-calendar/core';
+  // @ts-expect-error: No declaration file for module
   import TimeGrid from '@event-calendar/time-grid';
+  // @ts-expect-error: No declaration file for module
   import DayGrid from '@event-calendar/day-grid';
 
   // Styles
   import './styles.css';
+
+  // TODO: declare correct specific fields
+  type Event = {
+    [key: string]: string | number | undefined;
+  };
+
+  // TODO: declare correct specific fields
+  type EventColors = {
+    [key: string]: {
+      [key: string]: string;
+    };
+  };
 
   const events = [
     {
@@ -42,9 +59,7 @@
       return {};
     }
 
-    const colors: {
-      [key: string]: any;
-    } = {
+    const colors: EventColors = {
       work: {
         backgroundColor: '#0891b2',
       },
@@ -53,8 +68,10 @@
     return colors[type];
   };
 
-  const handleEventClick = (info: any) => {
-    console.log(info);
+  const handleEventClick = (info: { event: Event }) => {
+    // TODO: Open event modal
+    // TODO: Display event
+    console.log(info.event.id);
   };
 
   const plugins = [TimeGrid, DayGrid];
