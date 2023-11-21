@@ -1,0 +1,20 @@
+.ec-header, .ec-all-day, .ec-body, .ec-days, .ec-day {
+  @apply dark:border-zinc-700;
+}
+
+.ec-day.ec-today {
+  @apply bg-transparent;
+
+  .ec-day-head {
+    @apply font-semibold text-cyan-500; 
+  }
+}
+
+.ec-day-grid .ec-day-head {
+  @apply text-center text-sm pt-2;
+}
+
+.ec-event-title {
+  @apply pl-1 font-sans-pro;
+}
+

@@ -4,6 +4,9 @@
   import TimeGrid from '@event-calendar/time-grid';
   import DayGrid from '@event-calendar/day-grid';
 
+  // Styles
+  import './styles.css'
+
   const events = [
     {
       id: 1,
