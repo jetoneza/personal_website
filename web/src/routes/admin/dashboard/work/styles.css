@@ -1,4 +1,13 @@
-.ec-header, .ec-all-day, .ec-body, .ec-days, .ec-day {
+.ec {
+  @apply font-sans-pro;
+}
+
+.ec-header,
+.ec-all-day,
+.ec-body,
+.ec-days,
+.ec-button,
+.ec-day {
   @apply dark:border-zinc-700;
 }
 
@@ -6,15 +15,48 @@
   @apply bg-transparent;
 
   .ec-day-head {
-    @apply font-semibold text-cyan-500; 
+    @apply font-semibold text-cyan-500;
   }
 }
 
 .ec-day-grid .ec-day-head {
-  @apply text-center text-sm pt-2;
+  @apply text-center text-sm p-2;
 }
 
 .ec-event-title {
-  @apply pl-1 font-sans-pro;
+  @apply pl-1;
 }
 
+.ec-prev,
+.ec-next {
+  @apply border-none;
+}
+
+.ec-button {
+  @apply hover:bg-gray-200 dark:hover:bg-zinc-700 dark:hover:border-zinc-700;
+
+  &.ec-dayGridMonth,
+  &.ec-timeGridWeek,
+  &.ec-timeGridDay,
+  &.ec-today {
+    @apply text-sm px-4 py-2;
+  }
+
+  &.ec-active {
+    @apply bg-gray-200 dark:bg-zinc-700;
+  }
+}
+
+.ec-title {
+  @apply text-2xl align-middle flex;
+}
+
+.ec-header {
+  .ec-day {
+    @apply p-1 uppercase text-xs font-semibold text-zinc-600 dark:text-gray-300;
+  }
+}
+
+.ec-event {
+  @apply cursor-pointer;
+}
