@@ -9,7 +9,7 @@ require (
 	github.com/gofiber/contrib/jwt v1.0.7
 	github.com/gofiber/fiber/v2 v2.51.0
 	github.com/golang-jwt/jwt/v5 v5.0.0
-	github.com/gomarkdown/markdown v0.0.0-20230916125811-7478c230c7cd
+	github.com/gomarkdown/markdown v0.0.0-20231115200524-a660076da3fd
 	github.com/google/uuid v1.4.0
 	github.com/joho/godotenv v1.5.1
 	github.com/microcosm-cc/bluemonday v1.0.25
