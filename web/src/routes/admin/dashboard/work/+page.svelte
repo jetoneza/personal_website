@@ -18,10 +18,19 @@
   };
 
   // TODO: declare correct specific fields
-  type EventColors = {
+  type EventTypes = {
     [key: string]: {
       [key: string]: string;
     };
+  };
+
+  const types: EventTypes = {
+    work: {
+      backgroundColor: '#0891b2',
+    },
+    task: {
+      backgroundColor: '#14b8a6',
+    },
   };
 
   const events = [
@@ -44,6 +53,15 @@
       createdAt: new Date(),
     },
     {
+      id: 4,
+      start: new Date('11-21-2023'),
+      end: new Date('11-24-2023'),
+      allDay: true,
+      notes: 'Project B - Implementation',
+      type: 'task',
+      createdAt: new Date(),
+    },
+    {
       id: 3,
       start: new Date('12-25-2023'),
       end: new Date('12-25-2023'),
@@ -59,13 +77,7 @@
       return {};
     }
 
-    const colors: EventColors = {
-      work: {
-        backgroundColor: '#0891b2',
-      },
-    };
-
-    return colors[type];
+    return types[type];
   };
 
   const handleEventClick = (info: { event: Event }) => {
