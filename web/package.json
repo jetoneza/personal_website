@@ -13,6 +13,9 @@
     "format": "prettier --plugin-search-dir . --write ."
   },
   "devDependencies": {
+    "@event-calendar/core": "^2.4.1",
+    "@event-calendar/day-grid": "^2.4.1",
+    "@event-calendar/time-grid": "^2.4.1",
     "@fontsource-variable/open-sans": "^5.0.13",
     "@fontsource/source-sans-pro": "^5.0.8",
     "@sveltejs/adapter-auto": "^2.1.0",

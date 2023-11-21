@@ -10,6 +10,15 @@ dependencies:
     version: 0.5.0
 
 devDependencies:
+  '@event-calendar/core':
+    specifier: ^2.4.1
+    version: 2.4.1
+  '@event-calendar/day-grid':
+    specifier: ^2.4.1
+    version: 2.4.1
+  '@event-calendar/time-grid':
+    specifier: ^2.4.1
+    version: 2.4.1
   '@fontsource-variable/open-sans':
     specifier: ^5.0.13
     version: 5.0.13
@@ -336,6 +345,26 @@ packages:
   /@eslint/js@8.48.0:
     resolution: {integrity: sha512-ZSjtmelB7IJfWD2Fvb7+Z+ChTIKWq6kjda95fLcQKNS5aheVHn4IkfgRQE3sIIzTcSLwLcLZUD9UBt+V7+h+Pw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
+
+  /@event-calendar/core@2.4.1:
+    resolution: {integrity: sha512-Klk7iwwnAjgR1DzhhR6cyL/X58g8FEECg0LXvMIL+GBEGPHb4EEA1ysx1laq4ilFli7DM6wJhbtS/+7I3XsE6g==}
+    dependencies:
+      svelte: 4.2.0
+    dev: true
+
+  /@event-calendar/day-grid@2.4.1:
+    resolution: {integrity: sha512-lB5Bw4QrQAvsRr9XeqT3zjNwl03xZztD8Bo0hLHg8F2KiVnbdvYbOCHJumNCOPRRLHzDmCogLyKbR1TaE5MuPQ==}
+    dependencies:
+      '@event-calendar/core': 2.4.1
+      svelte: 4.2.0
+    dev: true
+
+  /@event-calendar/time-grid@2.4.1:
+    resolution: {integrity: sha512-MUQqiXh3Ydp+8QHGnOePrJent6ggYfr3sdF9dAbIo2OQR5PUvsJ6/7K9iRQmo8qXPiGesuENw6HHPY3kABKgDw==}
+    dependencies:
+      '@event-calendar/core': 2.4.1
+      svelte: 4.2.0
     dev: true
 
   /@fontsource-variable/open-sans@5.0.13:
