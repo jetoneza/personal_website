@@ -5,7 +5,7 @@
   import DayGrid from '@event-calendar/day-grid';
 
   // Styles
-  import './styles.css'
+  import './styles.css';
 
   const events = [
     {
