@@ -121,7 +121,7 @@
 </script>
 
 <div class="work h-screen">
-  <h1 class="text-2xl font-bold">Work Logs</h1>
+  <h1 class="text-2xl font-bold">Calendar</h1>
   <div class="calendar-wrapper mt-10 h-full">
     <Calendar {plugins} {options} />
   </div>
