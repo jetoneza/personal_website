@@ -29,6 +29,10 @@
   type DateInfo = {
     date: Date;
     dateStr: string;
+    start: Date;
+    startStr: string;
+    end: Date;
+    endStr: string;
   };
 
   type CalendarElement = {
@@ -100,6 +104,15 @@
     });
   };
 
+  const handleSelect = (info: DateInfo) => {
+    calendarElement.addEvent({
+      id: 'new-temporary',
+      start: info.start,
+      end: info.end,
+      title: '(No title)',
+    });
+  };
+
   const plugins = [TimeGrid, DayGrid, Interaction];
   const options = {
     view: 'dayGridMonth',
@@ -124,6 +137,7 @@
     height: '75%',
     eventClick: handleEventClick,
     dateClick: handleDateClick,
+    select: handleSelect,
     display: 'background',
     events: events.map(({ id, start, end, allDay, notes, type }) => ({
       id,
