@@ -1,5 +1,6 @@
 <script lang="ts">
   // Libraries
+  import { Modal } from 'flowbite-svelte';
 
   // TODO: Find workaround on sveltekit not reading declared modules in app.d.ts within .svelte files
   // @ts-expect-error: No declaration file for module
@@ -14,18 +15,7 @@
   // Styles
   import './styles.css';
 
-  // TODO: declare correct specific fields
-  type Event = {
-    [key: string]: string | number | Date | boolean | undefined;
-  };
-
-  // TODO: declare correct specific fields
-  type EventTypes = {
-    [key: string]: {
-      [key: string]: string;
-    };
-  };
-
+  // Types 
   type DateInfo = {
     date: Date;
     dateStr: string;
@@ -39,6 +29,18 @@
     addEvent: (event: Event) => void;
   };
 
+  // TODO: declare correct specific fields
+  type Event = {
+    [key: string]: string | number | Date | boolean | undefined;
+  };
+
+  // TODO: declare correct specific fields
+  type EventTypes = {
+    [key: string]: {
+      [key: string]: string;
+    };
+  };
+
   const types: EventTypes = {
     work: {
       backgroundColor: '#0891b2',
@@ -48,8 +50,11 @@
     },
   };
 
+  // State
+  let openModal = false;
   let calendarElement: CalendarElement;
 
+  // TODO: Remove static data and use real data
   const events = [
     {
       id: 2,
@@ -74,7 +79,7 @@
       start: new Date('12-25-2023'),
       end: new Date('12-25-2023'),
       allDay: true,
-      notes: 'Christmas 🌲🎁🎉',
+      notes: 'Christmas Day 🌲🎁🎉',
       type: 'holiday',
       createdAt: new Date(),
     },
@@ -88,30 +93,26 @@
     return types[type];
   };
 
+  const addNewEvent = (start: Date, end: Date) => {
+    openModal = true;
+
+    calendarElement.addEvent({
+      start,
+      end,
+      id: 'new-temporary',
+      allDay: true,
+      title: '(No title)',
+    });
+  };
+
   const handleEventClick = (info: { event: Event }) => {
     // TODO: Open event modal
     // TODO: Display event
     console.log(info.event.id);
   };
 
-  const handleDateClick = (info: DateInfo) => {
-    calendarElement.addEvent({
-      id: 'new-temporary',
-      start: info.date,
-      end: info.date,
-      allDay: true,
-      title: '(No title)',
-    });
-  };
-
-  const handleSelect = (info: DateInfo) => {
-    calendarElement.addEvent({
-      id: 'new-temporary',
-      start: info.start,
-      end: info.end,
-      title: '(No title)',
-    });
-  };
+  const handleDateClick = (info: DateInfo) => addNewEvent(info.date, info.date);
+  const handleSelect = (info: DateInfo) => addNewEvent(info.start, info.end);
 
   const plugins = [TimeGrid, DayGrid, Interaction];
   const options = {
@@ -153,9 +154,29 @@
 <div class="work h-screen">
   <div class="actions w-full flex justify-between items-center">
     <h1 class="font-bold text-2xl font-sans-pro">Calendar</h1>
-    <a class="btn text-sm" href="/admin/dashboard/blog/create">Create Event</a>
+    <button
+      class="btn text-sm"
+      on:click={() => {
+        openModal = true;
+      }}
+    >
+      Create Event
+    </button>
   </div>
   <div class="calendar-wrapper mt-10 h-full">
     <Calendar bind:this={calendarElement} {plugins} {options} />
   </div>
+  <Modal title="Create Event" bind:open={openModal} autoclose>
+    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+      With less than a month to go before the European Union enacts new consumer privacy laws for
+      its citizens, companies around the world are updating their terms of service agreements to
+      comply.
+    </p>
+    <p class="text-base leading-relaxed text-gray-500 dark:text-gray-400">
+      The European Union’s General Data Protection Regulation (G.D.P.R.) goes into effect on May 25
+      and is meant to ensure a common set of data rights in the European Union. It requires
+      organizations to notify users as soon as possible of high-risk data breaches that could
+      personally affect them.
+    </p>
+  </Modal>
 </div>
