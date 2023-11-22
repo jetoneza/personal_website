@@ -8,13 +8,15 @@
   import TimeGrid from '@event-calendar/time-grid';
   // @ts-expect-error: No declaration file for module
   import DayGrid from '@event-calendar/day-grid';
+  // @ts-expect-error: No declaration file for module
+  import Interaction from '@event-calendar/interaction';
 
   // Styles
   import './styles.css';
 
   // TODO: declare correct specific fields
   type Event = {
-    [key: string]: string | number | undefined;
+    [key: string]: string | number | Date | boolean | undefined;
   };
 
   // TODO: declare correct specific fields
@@ -22,6 +24,15 @@
     [key: string]: {
       [key: string]: string;
     };
+  };
+
+  type DateInfo = {
+    date: Date;
+    dateStr: string;
+  };
+
+  type CalendarElement = {
+    addEvent: (event: Event) => void;
   };
 
   const types: EventTypes = {
@@ -33,7 +44,27 @@
     },
   };
 
+  let calendarElement: CalendarElement;
+
   const events = [
+    {
+      id: 2,
+      start: new Date('11-21-2023'),
+      end: new Date('11-21-2023'),
+      allDay: true,
+      notes: 'Chill day at work.',
+      type: 'work',
+      createdAt: new Date(),
+    },
+    {
+      id: 4,
+      start: new Date('11-21-2023'),
+      end: new Date('11-24-2023'),
+      allDay: true,
+      notes: 'Project B - Implementation',
+      type: 'task',
+      createdAt: new Date(),
+    },
     {
       id: 3,
       start: new Date('12-25-2023'),
@@ -59,7 +90,17 @@
     console.log(info.event.id);
   };
 
-  const plugins = [TimeGrid, DayGrid];
+  const handleDateClick = (info: DateInfo) => {
+    calendarElement.addEvent({
+      id: 'new-temporary',
+      start: info.date,
+      end: info.date,
+      allDay: true,
+      title: '(No title)',
+    });
+  };
+
+  const plugins = [TimeGrid, DayGrid, Interaction];
   const options = {
     view: 'dayGridMonth',
     headerToolbar: {
@@ -82,6 +123,8 @@
     selectable: true,
     height: '75%',
     eventClick: handleEventClick,
+    dateClick: handleDateClick,
+    display: 'background',
     events: events.map(({ id, start, end, allDay, notes, type }) => ({
       id,
       start,
@@ -94,8 +137,11 @@
 </script>
 
 <div class="work h-screen">
-  <h1 class="text-2xl font-bold">Calendar</h1>
+  <div class="actions w-full flex justify-between items-center">
+    <h1 class="font-bold text-2xl font-sans-pro">Calendar</h1>
+    <a class="btn text-sm" href="/admin/dashboard/blog/create">Create Event</a>
+  </div>
   <div class="calendar-wrapper mt-10 h-full">
-    <Calendar {plugins} {options} />
+    <Calendar bind:this={calendarElement} {plugins} {options} />
   </div>
 </div>

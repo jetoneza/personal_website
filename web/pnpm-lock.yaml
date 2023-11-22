@@ -16,6 +16,9 @@ devDependencies:
   '@event-calendar/day-grid':
     specifier: ^2.4.1
     version: 2.4.1
+  '@event-calendar/interaction':
+    specifier: ^2.4.1
+    version: 2.4.1
   '@event-calendar/time-grid':
     specifier: ^2.4.1
     version: 2.4.1
@@ -355,6 +358,13 @@ packages:
 
   /@event-calendar/day-grid@2.4.1:
     resolution: {integrity: sha512-lB5Bw4QrQAvsRr9XeqT3zjNwl03xZztD8Bo0hLHg8F2KiVnbdvYbOCHJumNCOPRRLHzDmCogLyKbR1TaE5MuPQ==}
+    dependencies:
+      '@event-calendar/core': 2.4.1
+      svelte: 4.2.7
+    dev: true
+
+  /@event-calendar/interaction@2.4.1:
+    resolution: {integrity: sha512-fbeuwB8HvkwHmnc6phqD4ZOIz5VEYLPuS2DZWvxT4RdImR2U+3XFSnejJW9jfnXOEgwLhuixiqCEIaz59SkhkQ==}
     dependencies:
       '@event-calendar/core': 2.4.1
       svelte: 4.2.7
