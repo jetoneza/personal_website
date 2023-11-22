@@ -12,10 +12,13 @@
   // @ts-expect-error: No declaration file for module
   import Interaction from '@event-calendar/interaction';
 
+  // Utils
+  import { calendarOptions, getEventColor } from '$lib/utils/calendar';
+
   // Styles
   import './styles.css';
 
-  // Types 
+  // Types
   type DateInfo = {
     date: Date;
     dateStr: string;
@@ -32,22 +35,6 @@
   // TODO: declare correct specific fields
   type Event = {
     [key: string]: string | number | Date | boolean | undefined;
-  };
-
-  // TODO: declare correct specific fields
-  type EventTypes = {
-    [key: string]: {
-      [key: string]: string;
-    };
-  };
-
-  const types: EventTypes = {
-    work: {
-      backgroundColor: '#0891b2',
-    },
-    task: {
-      backgroundColor: '#14b8a6',
-    },
   };
 
   // State
@@ -85,14 +72,6 @@
     },
   ];
 
-  const getEventColor = (type?: string) => {
-    if (!type) {
-      return {};
-    }
-
-    return types[type];
-  };
-
   const addNewEvent = (start: Date, end: Date) => {
     openModal = true;
 
@@ -116,30 +95,10 @@
 
   const plugins = [TimeGrid, DayGrid, Interaction];
   const options = {
-    view: 'dayGridMonth',
-    headerToolbar: {
-      start: 'prev,next today',
-      center: 'title',
-      end: 'dayGridMonth,timeGridWeek,timeGridDay',
-    },
-    buttonText: {
-      today: 'Today',
-      dayGridMonth: 'Month',
-      timeGridDay: 'Day',
-      timeGridWeek: 'Week',
-    },
-    scrollTime: '09:00:00',
-    views: {
-      timeGridWeek: { pointer: true },
-      resourceTimeGridWeek: { pointer: true },
-    },
-    nowIndicator: true,
-    selectable: true,
-    height: '75%',
+    ...calendarOptions,
     eventClick: handleEventClick,
     dateClick: handleDateClick,
     select: handleSelect,
-    display: 'background',
     events: events.map(({ id, start, end, allDay, notes, type }) => ({
       id,
       start,
