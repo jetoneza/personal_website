@@ -20,6 +20,9 @@
   // Common Components
   import Input from '$lib/components/Input.svelte';
 
+  // Types
+  import type { PageData } from './$types';
+
   // Styles
   import './styles.css';
 
@@ -38,7 +41,6 @@
     removeEventById: (id: string | number) => void;
   };
 
-  // TODO: declare correct specific fields
   type Event = {
     id: string | number;
     title: string;
@@ -50,6 +52,9 @@
   // Constants
   const EVENT_TEMP_ID = 'new-event-temp';
 
+  // Page data
+  export let data: PageData;
+
   // State
   let calendarElement: CalendarElement;
   let openModal = false;
@@ -59,37 +64,6 @@
     start: new Date(),
     end: new Date(),
   };
-
-  // TODO: Remove static data and use real data
-  const events = [
-    {
-      id: 2,
-      start: new Date('11-21-2023'),
-      end: new Date('11-21-2023'),
-      allDay: true,
-      notes: 'Chill day at work.',
-      type: 'work',
-      createdAt: new Date(),
-    },
-    {
-      id: 4,
-      start: new Date('11-21-2023'),
-      end: new Date('11-24-2023'),
-      allDay: true,
-      notes: 'Project B - Implementation',
-      type: 'task',
-      createdAt: new Date(),
-    },
-    {
-      id: 3,
-      start: new Date('12-25-2023'),
-      end: new Date('12-25-2023'),
-      allDay: true,
-      notes: 'Christmas Day 🌲🎁🎉',
-      type: 'holiday',
-      createdAt: new Date(),
-    },
-  ];
 
   const addNewEvent = (start: Date, end: Date, allDay = false) => {
     openModal = true;
@@ -123,7 +97,7 @@
     eventClick: handleEventClick,
     dateClick: handleDateClick,
     select: handleSelect,
-    events: events.map(({ id, start, end, allDay, notes, type }) => ({
+    events: data.events.map(({ id, start, end, allDay, notes, type }) => ({
       id,
       start,
       end,
