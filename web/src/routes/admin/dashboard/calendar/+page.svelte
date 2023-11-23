@@ -13,7 +13,7 @@
   import Interaction from '@event-calendar/interaction';
 
   // Utils
-  import { enhance } from '$app/forms';
+  import { applyAction, enhance } from '$app/forms';
   import { calendarOptions, getEventColor } from '$lib/utils/calendar';
   import { formatInputDate } from '$lib/utils/date';
 
@@ -21,10 +21,12 @@
   import Input from '$lib/components/Input.svelte';
 
   // Types
-  import type { PageData } from './$types';
+  import type { ActionData, PageData } from './$types';
 
   // Styles
   import './styles.css';
+  import { API_STATUS } from '$lib/constants';
+  import { invalidateAll } from '$app/navigation';
 
   // Types
   type DateInfo = {
@@ -52,8 +54,9 @@
   // Constants
   const EVENT_TEMP_ID = 'new-event-temp';
 
-  // Page data
+  // Props
   export let data: PageData;
+  export let form: ActionData;
 
   // State
   let calendarElement: CalendarElement;
@@ -63,6 +66,7 @@
     title: '(No title)',
     start: new Date(),
     end: new Date(),
+    allDay: true,
   };
 
   const addNewEvent = (start: Date, end: Date, allDay = false) => {
@@ -89,6 +93,7 @@
 
   const handleCloseModal = () => {
     calendarElement.removeEventById(EVENT_TEMP_ID);
+    openModal = false;
   };
 
   const plugins = [TimeGrid, DayGrid, Interaction];
@@ -123,20 +128,42 @@
   <div class="calendar-wrapper mt-10 h-full">
     <Calendar bind:this={calendarElement} {plugins} {options} />
   </div>
-  <Modal title="Create Event" bind:open={openModal} on:close={handleCloseModal} autoclose>
-    <form method="POST" use:enhance>
+  <Modal title="Create Event" bind:open={openModal} on:close={handleCloseModal}>
+    <!-- TODO: Use floating notification UI -->
+    <!-- TODO: Reset form after closing the modal -->
+    {#if form?.status === API_STATUS.FAIL}
+      <p class="p-4 bg-pink-100 border border-red-500 rounded-lg text-red-500 my-6 text-sm">
+        {form?.message}
+      </p>
+    {/if}
+
+    <form
+      method="POST"
+      use:enhance={() =>
+        async ({ result }) => {
+          if (result.type === API_STATUS.SUCCESS) {
+            await invalidateAll();
+            handleCloseModal();
+          }
+
+          applyAction(result);
+        }}
+    >
       <div class="flex flex-col gap-4">
+        <!-- TODO: Support time selection -->
         <Input type="text" name="title" label="Title" placeholder={newEvent.title} required />
-        <Input type="date" name="start" value={formatInputDate(newEvent.start)} label="Start" />
-        <Input type="date" name="end" value={formatInputDate(newEvent.end)} label="End" />
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <Input type="date" name="start" value={formatInputDate(newEvent.start)} label="Start" />
+          <Input type="date" name="end" value={formatInputDate(newEvent.end)} label="End" />
+        </div>
         <div class="input-wrapper">
-          <label for="published" class="block mb-2 text-md font-bold dark:text-white">
+          <label for="all_day" class="block mb-2 text-md font-bold dark:text-white">
             All Day?
           </label>
           <select
             value={newEvent.allDay}
-            id="published"
-            name="published"
+            id="all_day"
+            name="all_day"
             class="
               h-10 w-full rounded-md border border-input bg-background px-3
               py-2 text-sm outline-none focus:outline-zinc-500 dark:bg-zinc-800 dark:border-zinc-700
