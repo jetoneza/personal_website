@@ -6,6 +6,7 @@ export default defineConfig({
   test: {
     include: ['src/**/*.{test,spec}.{js,ts}'],
   },
+  clearScreen: false,
   server: {
     proxy: {
       // TODO: Use env. This proxy is only for development.
