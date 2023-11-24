@@ -48,6 +48,7 @@
     title: string;
     start: Date;
     end: Date;
+    type?: string;
     allDay?: boolean;
   };
 
@@ -97,17 +98,17 @@
   };
 
   const plugins = [TimeGrid, DayGrid, Interaction];
-  const options = {
+  $: options = {
     ...calendarOptions,
     eventClick: handleEventClick,
     dateClick: handleDateClick,
     select: handleSelect,
-    events: data.events.map(({ id, start, end, allDay, notes, type }) => ({
+    events: data.events.map(({ id, start, end, allDay, title, type }) => ({
       id,
       start,
       end,
       allDay,
-      title: notes,
+      title,
       ...getEventColor(type),
     })),
   };
@@ -152,6 +153,13 @@
       <div class="flex flex-col gap-4">
         <!-- TODO: Support time selection -->
         <Input type="text" name="title" label="Title" placeholder={newEvent.title} required />
+        <Input
+          type="text"
+          name="type"
+          label="Type"
+          placeholder="Enter type e.g. work, task"
+          required
+        />
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
           <Input type="date" name="start" value={formatInputDate(newEvent.start)} label="Start" />
           <Input type="date" name="end" value={formatInputDate(newEvent.end)} label="End" />

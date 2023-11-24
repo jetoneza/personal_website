@@ -1,4 +1,4 @@
-import { fail, redirect } from '@sveltejs/kit';
+import { fail } from '@sveltejs/kit';
 
 // Types
 import type { PageServerLoad } from './$types';
@@ -7,47 +7,36 @@ import type { Actions } from './$types';
 // Constants
 import { API_STATUS, HTTP_CODE_BAD_REQUEST, MESSAGE_EVENT_CREATION_ERROR } from '$lib/constants';
 
-export const load: PageServerLoad = async () => {
-  // TODO: Remove static data and use real data
-  const events = [
-    {
-      id: 2,
-      start: new Date('11-21-2023'),
-      end: new Date('11-21-2023'),
-      allDay: true,
-      notes: 'Chill day at work.',
-      type: 'work',
-      createdAt: new Date(),
-    },
-    {
-      id: 4,
-      start: new Date('11-21-2023'),
-      end: new Date('11-24-2023'),
-      allDay: true,
-      notes: 'Project B - Implementation',
-      type: 'task',
-      createdAt: new Date(),
-    },
-    {
-      id: 3,
-      start: new Date('12-25-2023'),
-      end: new Date('12-25-2023'),
-      allDay: true,
-      notes: 'Christmas Day 🌲🎁🎉',
-      type: 'holiday',
-      createdAt: new Date(),
-    },
-  ];
+export const load: PageServerLoad = async ({ request, fetch, url }) => {
+  const page = Number(url.searchParams.get('page') ?? '1');
+  const limit = Number(url.searchParams.get('limit') ?? '10');
+  const message = url.searchParams.get('message');
+
+  const qs = new URLSearchParams();
+  qs.set('page', page.toString());
+  qs.set('limit', limit.toString());
 
   try {
-    return { events };
+    const res = await fetch(`/api/v1/events?${qs.toString()}`, {
+      headers: {
+        cookie: request.headers.get('cookie') as string,
+      },
+    });
+
+    const jsonResponse = await res.json();
+
+    if (jsonResponse.status === API_STATUS.FAIL) {
+      throw jsonResponse;
+    }
+
+    return { events: jsonResponse.data, message: message && JSON.parse(message) };
   } catch (_) {
-    return { events: [] };
+    return { events: [], message: { type: API_STATUS.FAIL, value: MESSAGE_EVENT_CREATION_ERROR } };
   }
 };
 
 export const actions: Actions = {
-  default: async ({ request }) => {
+  default: async ({ request, fetch }) => {
     const data = await request.formData();
 
     const start = new Date(data.get('start') as string);
@@ -65,6 +54,7 @@ export const actions: Actions = {
           start,
           end,
           all_day: data.get('all_day'),
+          type: data.get('type'),
         }),
       });
 
