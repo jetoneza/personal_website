@@ -10,6 +10,7 @@ import (
 type Event struct {
 	ID        string    `gorm:"type:char(36);primary_key" json:"id,omitempty"`
 	Title     string    `gorm:"type:varchar(255);" json:"title,omitempty"`
+	Type      string    `gorm:"type:varchar(255);" json:"type,omitempty"`
 	AllDay    bool      `gorm:"default:false;not null" json:"all_day"`
 	Start     time.Time `json:"start,omitempty"`
 	End       time.Time `json:"end,omitempty"`
