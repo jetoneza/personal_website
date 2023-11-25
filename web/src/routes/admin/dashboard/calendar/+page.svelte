@@ -14,8 +14,12 @@
 
   // Utils
   import { applyAction, enhance } from '$app/forms';
+  import { invalidateAll } from '$app/navigation';
   import { calendarOptions, getEventColor } from '$lib/utils/calendar';
   import { formatInputDate } from '$lib/utils/date';
+
+  // Constants
+  import { API_STATUS } from '$lib/constants';
 
   // Common Components
   import Input from '$lib/components/Input.svelte';
@@ -25,8 +29,6 @@
 
   // Styles
   import './styles.css';
-  import { API_STATUS } from '$lib/constants';
-  import { invalidateAll } from '$app/navigation';
 
   // Types
   type DateInfo = {
@@ -51,6 +53,8 @@
     type?: string;
     allDay?: boolean;
   };
+
+  type EventResponse = Omit<Event, 'allDay'> & { all_day: boolean };
 
   // Constants
   const EVENT_TEMP_ID = 'new-event-temp';
@@ -103,11 +107,11 @@
     eventClick: handleEventClick,
     dateClick: handleDateClick,
     select: handleSelect,
-    events: data.events.map(({ id, start, end, allDay, title, type }: Event) => ({
+    events: data.events.map(({ id, start, end, all_day, title, type }: EventResponse) => ({
       id,
       start,
       end,
-      allDay,
+      allDay: all_day,
       title,
       ...getEventColor(type),
     })),
