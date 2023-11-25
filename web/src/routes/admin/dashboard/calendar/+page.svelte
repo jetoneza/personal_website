@@ -103,7 +103,7 @@
     eventClick: handleEventClick,
     dateClick: handleDateClick,
     select: handleSelect,
-    events: data.events.map(({ id, start, end, allDay, title, type }) => ({
+    events: data.events.map(({ id, start, end, allDay, title, type }: Event) => ({
       id,
       start,
       end,
