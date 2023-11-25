@@ -9,6 +9,7 @@ import (
 	"github.com/jetoneza/personal_website/internal/models"
 	"github.com/jetoneza/personal_website/internal/schema"
 	"github.com/jetoneza/personal_website/pkg/utils"
+	"gorm.io/gorm"
 )
 
 func (h *Handler) GetEvent(ctx *fiber.Ctx) error {
@@ -32,13 +33,25 @@ func (h *Handler) GetEvent(ctx *fiber.Ctx) error {
 }
 
 func (h *Handler) GetAllEvents(ctx *fiber.Ctx) error {
-	page, _ := strconv.Atoi(ctx.Query("page", "1"))
-	limit, _ := strconv.Atoi(ctx.Query("limit", "10"))
-	offset := (page - 1) * limit
+	filter := ctx.Query("filter", "")
 
 	var events []models.Event
+	var results *gorm.DB
 
-	results := h.App.DB.Order("created_at desc").Limit(limit).Offset(offset).Find(&events)
+	// TODO: Create a cleaner implementation on separating the queries
+	if filter == "year" {
+		now := time.Now()
+		start := time.Date(now.Year(), time.January, 1, 0, 0, 0, 0, time.UTC)
+		end := time.Date(now.Year(), time.December, 31, 0, 0, 0, 0, time.UTC)
+
+		results = h.App.DB.Where("start BETWEEN ? AND ?", start.Format(time.RFC3339), end.Format(time.RFC3339)).Order("start desc").Find(&events)
+	} else {
+		page, _ := strconv.Atoi(ctx.Query("page", "1"))
+		limit, _ := strconv.Atoi(ctx.Query("limit", "10"))
+		offset := (page - 1) * limit
+
+		results = h.App.DB.Order("created_at desc").Limit(limit).Offset(offset).Find(&events)
+	}
 
 	if results.Error != nil {
 		return ctx.Status(fiber.StatusBadGateway).JSON(fiber.Map{
