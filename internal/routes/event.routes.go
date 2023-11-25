@@ -12,4 +12,5 @@ func EventRoutes(router fiber.Router, handlers *handlers.Handler) {
 	r.Get("/", middlewares.AuthMiddleware(), handlers.GetAllEvents)
 	r.Post("/", middlewares.AuthMiddleware(), handlers.CreateEvent)
 	r.Get("/:id", middlewares.AuthMiddleware(), handlers.GetEvent)
+	r.Delete("/:id", middlewares.AuthMiddleware(), handlers.DeleteEvent)
 }

@@ -110,3 +110,20 @@ func (h *Handler) CreateEvent(ctx *fiber.Ctx) error {
 		"data":   event,
 	})
 }
+
+func (h *Handler) DeleteEvent(ctx *fiber.Ctx) error {
+	id := ctx.Params("id")
+
+	result := h.App.DB.Delete(&models.Event{}, "id = ?", id)
+
+	if result.Error != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{
+			"status":  "error",
+			"message": result.Error,
+		})
+	}
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status": "success",
+	})
+}
