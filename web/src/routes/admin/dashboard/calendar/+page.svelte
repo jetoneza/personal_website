@@ -55,6 +55,7 @@
   };
 
   type EventResponse = Omit<Event, 'allDay'> & { all_day: boolean };
+  type ModalAction = 'new' | 'view';
 
   // Constants
   const EVENT_TEMP_ID = 'new-event-temp';
@@ -66,6 +67,8 @@
   // State
   let calendarElement: CalendarElement;
   let openModal = false;
+  let modalAction: ModalAction = 'new';
+  let activeEvent: Event | null;
   let newEvent: Event = {
     id: EVENT_TEMP_ID,
     title: '(No title)',
@@ -76,6 +79,7 @@
 
   const addNewEvent = (start: Date, end: Date, allDay = false) => {
     openModal = true;
+    modalAction = 'new';
 
     newEvent = {
       ...newEvent,
@@ -88,9 +92,10 @@
   };
 
   const handleEventClick = (info: { event: Event }) => {
-    // TODO: Open event modal
-    // TODO: Display event
-    console.log(info.event.id);
+    activeEvent = data.events.find((event: Event) => event.id === info.event.id);
+
+    openModal = true;
+    modalAction = 'view';
   };
 
   const handleDateClick = (info: DateInfo) => addNewEvent(info.date, info.date, true);
@@ -125,6 +130,7 @@
       class="btn text-sm"
       on:click={() => {
         openModal = true;
+        modalAction = 'new';
       }}
     >
       Create Event
@@ -133,61 +139,69 @@
   <div class="calendar-wrapper mt-10 h-full">
     <Calendar bind:this={calendarElement} {plugins} {options} />
   </div>
-  <Modal title="Create Event" bind:open={openModal} on:close={handleCloseModal}>
-    <!-- TODO: Use floating notification UI -->
-    <!-- TODO: Reset form after closing the modal -->
-    {#if form?.status === API_STATUS.FAIL}
-      <p class="p-4 bg-pink-100 border border-red-500 rounded-lg text-red-500 my-6 text-sm">
-        {form?.message}
-      </p>
-    {/if}
+  <Modal
+    title={modalAction === 'new' ? 'Create Event' : activeEvent?.title}
+    bind:open={openModal}
+    on:close={handleCloseModal}
+  >
+    {#if modalAction === 'new'}
+      <!-- TODO: Use floating notification UI -->
+      <!-- TODO: Reset form after closing the modal -->
+      {#if form?.status === API_STATUS.FAIL}
+        <p class="p-4 bg-pink-100 border border-red-500 rounded-lg text-red-500 my-6 text-sm">
+          {form?.message}
+        </p>
+      {/if}
 
-    <form
-      method="POST"
-      use:enhance={() =>
-        async ({ result }) => {
-          if (result.type === API_STATUS.SUCCESS) {
-            await invalidateAll();
-            handleCloseModal();
-          }
+      <form
+        method="POST"
+        use:enhance={() =>
+          async ({ result }) => {
+            if (result.type === API_STATUS.SUCCESS) {
+              await invalidateAll();
+              handleCloseModal();
+            }
 
-          applyAction(result);
-        }}
-    >
-      <div class="flex flex-col gap-4">
-        <!-- TODO: Support time selection -->
-        <Input type="text" name="title" label="Title" placeholder={newEvent.title} required />
-        <Input
-          type="text"
-          name="type"
-          label="Type"
-          placeholder="Enter type e.g. work, task"
-          required
-        />
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-          <Input type="date" name="start" value={formatInputDate(newEvent.start)} label="Start" />
-          <Input type="date" name="end" value={formatInputDate(newEvent.end)} label="End" />
-        </div>
-        <div class="input-wrapper">
-          <label for="all_day" class="block mb-2 text-md font-bold dark:text-white">
-            All Day?
-          </label>
-          <select
-            value={newEvent.allDay}
-            id="all_day"
-            name="all_day"
-            class="
+            applyAction(result);
+          }}
+      >
+        <div class="flex flex-col gap-4">
+          <!-- TODO: Support time selection -->
+          <Input type="text" name="title" label="Title" placeholder={newEvent.title} required />
+          <Input
+            type="text"
+            name="type"
+            label="Type"
+            placeholder="Enter type e.g. work, task"
+            required
+          />
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <Input type="date" name="start" value={formatInputDate(newEvent.start)} label="Start" />
+            <Input type="date" name="end" value={formatInputDate(newEvent.end)} label="End" />
+          </div>
+          <div class="input-wrapper">
+            <label for="all_day" class="block mb-2 text-md font-bold dark:text-white">
+              All Day?
+            </label>
+            <select
+              value={newEvent.allDay}
+              id="all_day"
+              name="all_day"
+              class="
               h-10 w-full rounded-md border border-input bg-background px-3
               py-2 text-sm outline-none focus:outline-zinc-500 dark:bg-zinc-800 dark:border-zinc-700
               dark:focus:outline-zinc-600
             "
-          >
-            <option selected value={false}>No</option>
-            <option value={true}>Yes</option>
-          </select>
+            >
+              <option selected value={false}>No</option>
+              <option value={true}>Yes</option>
+            </select>
+          </div>
+          <button class="btn mt-2">Create</button>
         </div>
-        <button class="btn mt-2">Create</button>
-      </div>
-    </form>
+      </form>
+    {:else if modalAction === 'view' && activeEvent}
+      <p class="font-semibold text-lg">View Event</p>
+    {/if}
   </Modal>
 </div>
