@@ -12,6 +12,12 @@ const types: EventTypes = {
   task: {
     backgroundColor: '#14b8a6',
   },
+  'regular-holiday': {
+    backgroundColor: '#22c55e',
+  },
+  'special-holiday': {
+    backgroundColor: '#fbbf24',
+  },
 };
 
 export const calendarOptions = {
