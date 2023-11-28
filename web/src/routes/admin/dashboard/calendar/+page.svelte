@@ -16,16 +16,18 @@
   import { applyAction, enhance } from '$app/forms';
   import { invalidateAll } from '$app/navigation';
   import { calendarOptions, getEventColor } from '$lib/utils/calendar';
-  import { formatDate, formatInputDate } from '$lib/utils/date';
+  import { formatInputDate } from '$lib/utils/date';
 
   // Constants
   import { API_STATUS } from '$lib/constants';
 
   // Common Components
+  import EventView from '$lib/components/admin/EventView.svelte';
   import Input from '$lib/components/Input.svelte';
 
   // Types
   import type { ActionData, PageData } from './$types';
+  import type { Event } from '$lib/types';
 
   // Styles
   import './styles.css';
@@ -51,16 +53,6 @@
     start: Date;
     end: Date;
     allDay?: boolean;
-  };
-
-  type Event = {
-    id: string | number;
-    title: string;
-    start: string;
-    end: string;
-    type?: string;
-    allDay?: boolean;
-    notes?: string;
   };
 
   type EventResponse = Omit<Event, 'allDay'> & { all_day: boolean };
@@ -161,7 +153,6 @@
   >
     {#if modalAction === 'new'}
       <!-- TODO: Use floating notification UI -->
-      <!-- TODO: Reset form after closing the modal -->
       {#if form?.status === API_STATUS.FAIL}
         <p class="p-4 bg-pink-100 border border-red-500 rounded-lg text-red-500 my-6 text-sm">
           {form?.message}
@@ -228,22 +219,7 @@
         </div>
       </form>
     {:else if modalAction === 'view' && activeEvent}
-      <div class="flex flex-col gap-2">
-        <div class="title flex flex-col gap-1">
-          <span class="text-gray-700 font-bold text-2xl dark:text-white">{activeEvent.title}</span>
-          <span class="event-date text-sm text-gray-700 dark:text-white">
-            {formatDate(activeEvent.start)}
-          </span>
-        </div>
-
-        <div class="notes text-sm text-gray-600 dark:text-white pt-4">
-          {#if activeEvent.notes}
-            {activeEvent.notes} 
-          {:else}
-            <p class="italic">No notes provided.</p>
-          {/if}
-        </div>
-      </div>
+      <EventView {activeEvent} />
     {/if}
   </Modal>
 </div>
