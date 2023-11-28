@@ -26,8 +26,8 @@
   import Input from '$lib/components/Input.svelte';
 
   // Types
-  import type { ActionData, PageData } from './$types';
   import type { Event } from '$lib/types';
+  import type { ActionData, PageData } from './$types';
 
   // Styles
   import './styles.css';
@@ -146,6 +146,7 @@
   <div class="calendar-wrapper mt-10 h-full">
     <Calendar bind:this={calendarElement} {plugins} {options} />
   </div>
+  <!-- TODO Fix modal dark color -->
   <Modal
     title={modalAction === 'new' ? 'Create Event' : ''}
     bind:open={openModal}
@@ -161,6 +162,7 @@
 
       <form
         method="POST"
+        class="text-slate-800 dark:text-white"
         use:enhance={() =>
           async ({ result }) => {
             if (result.type === API_STATUS.SUCCESS) {

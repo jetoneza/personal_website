@@ -1,19 +1,22 @@
 <script lang="ts">
-  import type { Event } from '$lib/types';
+  // Utils
   import { formatDate } from '$lib/utils/date';
+
+  // Types
+  import type { Event } from '$lib/types';
 
   export let activeEvent: Event;
 </script>
 
-<div class="flex flex-col gap-2">
+<div class="flex flex-col gap-2 text-slate-800 dark:text-white">
   <div class="title flex flex-col gap-1">
-    <span class="text-gray-700 font-bold text-2xl dark:text-white">{activeEvent.title}</span>
-    <span class="event-date text-sm text-gray-700 dark:text-white">
+    <span class="font-bold text-2xl">{activeEvent.title}</span>
+    <span class="event-date text-sm">
       {formatDate(activeEvent.start)}
     </span>
   </div>
 
-  <div class="notes text-sm text-gray-600 dark:text-white pt-4">
+  <div class="notes text-sm pt-4">
     {#if activeEvent.notes}
       {activeEvent.notes}
     {:else}
