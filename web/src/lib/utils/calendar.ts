@@ -8,15 +8,19 @@ type EventTypes = {
 const types: EventTypes = {
   work: {
     backgroundColor: '#0891b2',
+    badgeClass: 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300',
   },
   task: {
     backgroundColor: '#14b8a6',
+    badgeClass: 'bg-teal-100 text-teal-800 dark:bg-teal-900 dark:text-teal-300',
   },
   'regular-holiday': {
     backgroundColor: '#22c55e',
+    badgeClass: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300',
   },
   'special-holiday': {
     backgroundColor: '#fbbf24',
+    badgeClass: 'bg-amber-100 text-amber-800 dark:bg-amber-900 dark:text-amber-300',
   },
 };
 
@@ -45,9 +49,14 @@ export const calendarOptions = {
 };
 
 export const getEventColor = (type?: string) => {
+  const defaultColor = {
+    backgroundColor: '#3b82f6',
+    badgeClass: 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300',
+  };
+
   if (!type) {
-    return {};
+    return defaultColor;
   }
 
-  return types[type];
+  return types[type] ?? defaultColor;
 };
