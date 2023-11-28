@@ -112,6 +112,65 @@ func (h *Handler) CreateEvent(ctx *fiber.Ctx) error {
 	})
 }
 
+func (h *Handler) UpdateEvent(ctx *fiber.Ctx) error {
+	id := ctx.Params("id")
+
+	var event models.Event
+
+	result := h.App.DB.First(&event, "id = ?", id)
+
+	if result.Error != nil {
+		return ctx.Status(fiber.StatusNotFound).JSON(fiber.Map{
+			"status":  "error",
+			"message": fmt.Sprintf("%v", result.Error),
+		})
+	}
+
+	body := new(schema.UpdateEventSchema)
+
+	if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
+		return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "fail", "error": err.Message})
+	}
+
+	if body.Notes != "" {
+		event.Notes = body.Notes
+	}
+
+	if body.Title != "" {
+		event.Title = body.Title
+	}
+
+	if body.Type != "" {
+		event.Type = body.Type
+	}
+
+	allDay, err := strconv.ParseBool(body.AllDay)
+	if err == nil {
+		event.AllDay = allDay
+	}
+
+	start, err := time.Parse(time.RFC3339, body.Start)
+	if err == nil {
+		event.Start = start
+	}
+
+	end, err := time.Parse(time.RFC3339, body.End)
+	if err == nil {
+		event.End = end
+	}
+
+	saveResult := h.App.DB.Save(&event)
+
+	if saveResult.Error != nil {
+		return ctx.Status(fiber.StatusConflict).JSON(fiber.Map{"status": "fail", "error": saveResult.Error.Error()})
+	}
+
+	return ctx.Status(fiber.StatusOK).JSON(fiber.Map{
+		"status": "success",
+		"data":   event,
+	})
+}
+
 func (h *Handler) DeleteEvent(ctx *fiber.Ctx) error {
 	id := ctx.Params("id")
 
