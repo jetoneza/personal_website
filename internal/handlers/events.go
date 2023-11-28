@@ -94,6 +94,7 @@ func (h *Handler) CreateEvent(ctx *fiber.Ctx) error {
 	event := models.Event{
 		Title:  body.Title,
 		Type:   body.Type,
+		Notes:  body.Notes,
 		AllDay: allDay,
 		Start:  start,
 		End:    end,

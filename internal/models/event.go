@@ -12,6 +12,7 @@ type Event struct {
 	Title     string    `gorm:"type:varchar(255);" json:"title,omitempty"`
 	Type      string    `gorm:"type:varchar(255);" json:"type,omitempty"`
 	AllDay    bool      `gorm:"default:false;not null" json:"all_day"`
+	Notes     string    `gorm:"type:text" json:"notes,omitempty"`
 	Start     time.Time `json:"start,omitempty"`
 	End       time.Time `json:"end,omitempty"`
 	CreatedAt time.Time `gorm:"not null;default:'1970-01-01 00:00:01'" json:"createdAt,omitempty"`
