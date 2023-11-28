@@ -16,7 +16,7 @@
   import { applyAction, enhance } from '$app/forms';
   import { invalidateAll } from '$app/navigation';
   import { calendarOptions, getEventColor } from '$lib/utils/calendar';
-  import { formatInputDate } from '$lib/utils/date';
+  import { formatDate, formatInputDate } from '$lib/utils/date';
 
   // Constants
   import { API_STATUS } from '$lib/constants';
@@ -41,17 +41,26 @@
   };
 
   type CalendarElement = {
-    addEvent: (event: Event) => void;
+    addEvent: (event: CalendarEvent) => void;
     removeEventById: (id: string | number) => void;
+  };
+
+  type CalendarEvent = {
+    id: string | number;
+    title: string;
+    start: Date;
+    end: Date;
+    allDay?: boolean;
   };
 
   type Event = {
     id: string | number;
     title: string;
-    start: Date;
-    end: Date;
+    start: string;
+    end: string;
     type?: string;
     allDay?: boolean;
+    notes?: string;
   };
 
   type EventResponse = Omit<Event, 'allDay'> & { all_day: boolean };
@@ -72,8 +81,8 @@
   let newEvent: Event = {
     id: EVENT_TEMP_ID,
     title: '(No title)',
-    start: new Date(),
-    end: new Date(),
+    start: '',
+    end: '',
     allDay: true,
   };
 
@@ -83,12 +92,18 @@
 
     newEvent = {
       ...newEvent,
-      start,
-      end,
+      start: formatInputDate(start),
+      end: formatInputDate(end),
       allDay,
     };
 
-    calendarElement.addEvent(newEvent);
+    calendarElement.addEvent({
+      id: newEvent.id,
+      title: newEvent.title,
+      start,
+      end,
+      allDay,
+    });
   };
 
   const handleEventClick = (info: { event: Event }) => {
@@ -140,7 +155,7 @@
     <Calendar bind:this={calendarElement} {plugins} {options} />
   </div>
   <Modal
-    title={modalAction === 'new' ? 'Create Event' : activeEvent?.title}
+    title={modalAction === 'new' ? 'Create Event' : ''}
     bind:open={openModal}
     on:close={handleCloseModal}
   >
@@ -176,8 +191,8 @@
             required
           />
           <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <Input type="date" name="start" value={formatInputDate(newEvent.start)} label="Start" />
-            <Input type="date" name="end" value={formatInputDate(newEvent.end)} label="End" />
+            <Input type="date" name="start" value={newEvent.start} label="Start" />
+            <Input type="date" name="end" value={newEvent.end} label="End" />
           </div>
           <div class="input-wrapper">
             <label for="all_day" class="block mb-2 text-md font-bold dark:text-white">
@@ -197,11 +212,38 @@
               <option value={true}>Yes</option>
             </select>
           </div>
+          <div class="textarea-wrapper mt-2">
+            <label for="content" class="block mb-2 text-md font-bold dark:text-white">Content</label
+            >
+            <textarea
+              id="notes"
+              name="notes"
+              rows="10"
+              class="w-full rounded-md border border-input bg-background px-3 py-2
+    text-sm outline-none focus:outline-zinc-500 font-mono text-black dark:bg-zinc-800
+    dark:border-zinc-700 dark:text-white"
+            />
+          </div>
           <button class="btn mt-2">Create</button>
         </div>
       </form>
     {:else if modalAction === 'view' && activeEvent}
-      <p class="font-semibold text-lg">View Event</p>
+      <div class="flex flex-col gap-2">
+        <div class="title flex flex-col gap-1">
+          <span class="text-gray-700 font-bold text-2xl dark:text-white">{activeEvent.title}</span>
+          <span class="event-date text-sm text-gray-700 dark:text-white">
+            {formatDate(activeEvent.start)}
+          </span>
+        </div>
+
+        <div class="notes text-sm text-gray-600 dark:text-white pt-4">
+          {#if activeEvent.notes}
+            {activeEvent.notes} 
+          {:else}
+            <p class="italic">No notes provided.</p>
+          {/if}
+        </div>
+      </div>
     {/if}
   </Modal>
 </div>

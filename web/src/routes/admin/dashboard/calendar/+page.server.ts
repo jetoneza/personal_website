@@ -47,6 +47,7 @@ export const actions: Actions = {
           end,
           all_day: data.get('all_day'),
           type: data.get('type'),
+          notes: data.get('notes'),
         }),
       });
 
