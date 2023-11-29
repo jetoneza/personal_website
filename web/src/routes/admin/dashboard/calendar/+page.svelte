@@ -114,15 +114,15 @@
   };
 
   const handleDeleteEvent = async (id: string | number) => {
-    const response = await fetch(`/api/v1/events/${id}`, {
+    const response = await fetch(`/events/${id}`, {
       method: 'DELETE',
     });
 
-    const responseData = await response.json()
+    const responseData = await response.json();
 
     if (responseData.status === API_STATUS.SUCCESS) {
-      calendarElement.removeEventById(id)
-      openModal = false
+      calendarElement.removeEventById(id);
+      openModal = false;
     }
 
     // TODO: Handle error
