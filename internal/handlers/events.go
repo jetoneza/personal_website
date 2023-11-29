@@ -39,10 +39,21 @@ func (h *Handler) GetAllEvents(ctx *fiber.Ctx) error {
 	var results *gorm.DB
 
 	// TODO: Create a cleaner implementation on separating the queries
-	if filter == "year" {
+	if filter != "" {
+		var start time.Time
+		var end time.Time
+
 		now := time.Now()
-		start := time.Date(now.Year(), time.January, 1, 0, 0, 0, 0, time.UTC)
-		end := time.Date(now.Year(), time.December, 31, 0, 0, 0, 0, time.UTC)
+
+		if filter == "month" {
+			start = time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, now.Location())
+			end = start.AddDate(0, 1, -1)
+		}
+
+		if filter == "year" {
+			start = time.Date(now.Year(), time.January, 1, 0, 0, 0, 0, now.Location())
+			end = time.Date(now.Year(), time.December, 31, 0, 0, 0, 0, now.Location())
+		}
 
 		results = h.App.DB.Where("start BETWEEN ? AND ?", start.Format(time.RFC3339), end.Format(time.RFC3339)).Order("start desc").Find(&events)
 	} else {
