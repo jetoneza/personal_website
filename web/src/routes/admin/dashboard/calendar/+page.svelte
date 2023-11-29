@@ -113,6 +113,22 @@
     openModal = false;
   };
 
+  const handleDeleteEvent = async (id: string | number) => {
+    const response = await fetch(`/api/v1/events/${id}`, {
+      method: 'DELETE',
+    });
+
+    const responseData = await response.json()
+
+    if (responseData.status === API_STATUS.SUCCESS) {
+      calendarElement.removeEventById(id)
+      openModal = false
+    }
+
+    // TODO: Handle error
+    // TODO: Add success feedback e.g. alert
+  };
+
   const plugins = [TimeGrid, DayGrid, Interaction];
   $: options = {
     ...calendarOptions,
@@ -148,7 +164,9 @@
   </div>
   <!-- TODO Fix modal dark color -->
   <Modal
+    class="dark:bg-zinc-800"
     title={modalAction === 'new' ? 'Create Event' : ''}
+    size={modalAction === 'new' ? 'md' : 'sm'}
     bind:open={openModal}
     on:close={handleCloseModal}
   >
@@ -221,7 +239,7 @@
         </div>
       </form>
     {:else if modalAction === 'view' && activeEvent}
-      <EventView {activeEvent} />
+      <EventView {activeEvent} onDeleteClick={handleDeleteEvent} />
     {/if}
   </Modal>
 </div>
