@@ -1,6 +1,10 @@
 <script lang="ts">
   // Components
-  import { PenSolid, TrashBinSolid } from 'flowbite-svelte-icons';
+  // TODO: Find workaround on sveltekit not reading declared modules in app.d.ts within .svelte files
+  // @ts-expect-error: Cannot find module
+  import TrashBinSolid from 'flowbite-svelte-icons/TrashBinSolid.svelte';
+  // @ts-expect-error: Cannot find module
+  import PenSolid from 'flowbite-svelte-icons/PenSolid.svelte';
 
   // Utils
   import { formatDate } from '$lib/utils/date';

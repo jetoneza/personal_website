@@ -1,6 +1,13 @@
 <script lang="ts">
   import { page } from '$app/stores';
-  import { CalendarMonthSolid, HomeSolid, PenNibSolid } from 'flowbite-svelte-icons';
+
+  // TODO: Find workaround on sveltekit not reading declared modules in app.d.ts within .svelte files
+  // @ts-expect-error: Cannot find module
+  import CalendarMonthSolid from 'flowbite-svelte-icons/CalendarMonthSolid.svelte';
+  // @ts-expect-error: Cannot find module
+  import HomeSolid from 'flowbite-svelte-icons/HomeSolid.svelte';
+  // @ts-expect-error: Cannot find module
+  import PenNibSolid from 'flowbite-svelte-icons/PenNibSolid.svelte';
 
   import ThemeSwitch from '../ThemeSwitch.svelte';
 </script>
