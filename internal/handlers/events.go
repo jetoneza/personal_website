@@ -46,7 +46,7 @@ func (h *Handler) GetAllEvents(ctx *fiber.Ctx) error {
 		now := time.Now()
 
 		if filter == "month" {
-			start = time.Date(now.Year(), now.Month(), 1, 0, 0, 0, 0, now.Location())
+			start = time.Date(now.Year(), now.Month(), 0, 0, 0, 0, 0, now.Location())
 			end = start.AddDate(0, 1, -1)
 		}
 
