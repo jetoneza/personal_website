@@ -1,4 +1,7 @@
 <script lang="ts">
+  // Libraries
+  import { marked } from 'marked';
+
   // Components
   // TODO: Find workaround on sveltekit not reading declared modules in app.d.ts within .svelte files
   // @ts-expect-error: Cannot find module
@@ -39,9 +42,9 @@
     </span>
   </div>
 
-  <div class="notes text-sm pt-4">
+  <div class="notes text-sm pt-4 prose dark:prose-invert">
     {#if activeEvent.notes}
-      {activeEvent.notes}
+      {@html marked(activeEvent.notes)}
     {:else}
       <p class="italic">No notes provided.</p>
     {/if}
