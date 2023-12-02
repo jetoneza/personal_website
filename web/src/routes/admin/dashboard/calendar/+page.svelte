@@ -191,7 +191,7 @@
             applyAction(result);
           }}
       >
-        <EventForm start={newEvent.start} end={newEvent.end} allDay={newEvent.allDay} />
+        <EventForm start={newEvent.start} end={newEvent.end} all_day={newEvent.allDay} />
       </form>
     {:else if modalAction === 'view' && activeEvent}
       <EventView {activeEvent} onDeleteClick={handleDeleteEvent} />
