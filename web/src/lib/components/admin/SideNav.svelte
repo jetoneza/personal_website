@@ -46,7 +46,9 @@
         <a
           href="/admin/dashboard/calendar"
           class="flex items-center px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-600 group gap-3"
-          aria-current={$page.url.pathname === '/admin/dashboard/calendar' ? 'page' : undefined}
+          aria-current={$page.url.pathname.includes('/admin/dashboard/calendar')
+            ? 'page'
+            : undefined}
         >
           <CalendarMonthSolid size="md" />
           <span>Calendar</span>
