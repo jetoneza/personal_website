@@ -23,7 +23,6 @@
 
   // Common Components
   import EventView from '$lib/components/admin/EventView.svelte';
-  import Input from '$lib/components/Input.svelte';
 
   // Types
   import type { Event } from '$lib/types';
