@@ -19,5 +19,5 @@ export const GET: RequestHandler = async ({ fetch, cookies }) => {
 
   // TODO: Handle errors
 
-  throw redirect(HTTP_CODE_SEE_OTHER, '/');
+  redirect(HTTP_CODE_SEE_OTHER, '/');
 };

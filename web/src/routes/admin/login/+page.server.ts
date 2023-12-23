@@ -46,6 +46,6 @@ export const actions = {
       httpOnly: true,
     });
 
-    throw redirect(HTTP_CODE_SEE_OTHER, '/admin/dashboard');
+    redirect(HTTP_CODE_SEE_OTHER, '/admin/dashboard');
   },
 } satisfies Actions;

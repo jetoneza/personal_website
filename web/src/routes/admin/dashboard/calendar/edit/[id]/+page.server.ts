@@ -59,7 +59,7 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(
+    redirect(
       HTTP_CODE_SEE_OTHER,
       `/admin/dashboard/calendar?message={"type":"success","value":"${MESSAGE_EVENT_UPDATE_SUCCESS}"}`
     );

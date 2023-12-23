@@ -63,7 +63,7 @@ export const actions: Actions = {
       });
     }
 
-    throw redirect(
+    redirect(
       HTTP_CODE_SEE_OTHER,
       `/admin/dashboard/blog?message={"type":"success","value":"${MESSAGE_POST_UPDATE_SUCCESS}"}`
     );
