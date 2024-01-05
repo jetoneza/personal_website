@@ -38,6 +38,7 @@ func main() {
 	routes.AuthRoutes(v1, handlers)
 	routes.PostRoutes(v1, handlers)
 	routes.EventRoutes(v1, handlers)
+	routes.IntegrationRoutes(v1, handlers)
 
 	// Serve static files
 	fiberApp.All("/*", filesystem.New(filesystem.Config{
