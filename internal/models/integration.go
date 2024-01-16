@@ -28,3 +28,8 @@ func (integration *Integration) BeforeCreate(tx *gorm.DB) error {
 
 	return nil
 }
+
+func (integration *Integration) IsExpired() bool {
+	currentTime := time.Now().Unix()
+	return int64(integration.ExpiresAt) < currentTime
+}
