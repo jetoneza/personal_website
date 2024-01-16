@@ -19,6 +19,6 @@ func (h *Handler) HealthCheck(ctx *fiber.Ctx) error {
 	// TODO: Add status codes to constants
 	return ctx.Status(200).JSON(fiber.Map{
 		"status":  "success",
-		"message": "jetrooper.me API",
+		"message": "api.jetrooper.com API",
 	})
 }
