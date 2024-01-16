@@ -6,6 +6,7 @@ import (
 
 	"github.com/gofiber/fiber/v2"
 	"github.com/jetoneza/personal_website/internal/models"
+	"github.com/jetoneza/personal_website/internal/schema/strava"
 	"github.com/jetoneza/personal_website/pkg/config"
 	"gorm.io/gorm"
 )
@@ -83,4 +84,11 @@ func (h *Handler) ProcessStravaExchangeToken(ctx *fiber.Ctx) error {
 		"status": "success",
 		"data":   integration,
 	})
+}
+
+func (f *Handler) CreateStravaActivity(ctx *fiber.Ctx) error {
+  // TODO: Do something
+  return ctx.Status(fiber.StatusCreated).JSON(fiber.Map{
+    "status": "success",
+  })
 }
