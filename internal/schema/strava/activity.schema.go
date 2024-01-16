@@ -1,11 +1,11 @@
 package strava
 
-type Activity struct {
+type CreateActivity struct {
 	Name           string `json:"name" validate:"required"`
-	Type           string `json:"type"`
-	SportType      string `json:"sport_type"`
-	Trainer        string `json:"trainer"`
-	Distance       int16  `json:"distance"`
-	ElapsedTime    int16  `json:"elapsed_time"`
-	StartDateLocal string `json:"start_date_local"`
+	Type           string `json:"type" validate:"required"`
+	SportType      string `json:"sport_type" validate:"required"`
+	Trainer        string `json:"trainer" validate:"required"`
+	Distance       string `json:"distance" validate:"required"`
+	ElapsedTime    string `json:"elapsed_time" validate:"required"`
+	StartDateLocal string `json:"start_date_local" validate:"required"`
 }
