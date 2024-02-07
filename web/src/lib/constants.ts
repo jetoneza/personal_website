@@ -16,3 +16,8 @@ export const MESSAGE_POST_FETCH_ERROR = 'Unable to fetch posts.';
 export const MESSAGE_EVENT_CREATION_ERROR = 'Error upon saving event.';
 export const MESSAGE_EVENT_UPDATE_SUCCESS = 'Event updated successfully!';
 export const MESSAGE_EVENT_UPDATE_ERROR = 'Event created successfully!';
+
+export const QUICK_LOG_NOTES = `
+### Activities:
+  - Normal work day.
+`;

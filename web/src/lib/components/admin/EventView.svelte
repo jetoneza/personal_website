@@ -11,27 +11,34 @@
   // Types
   import type { Event } from '$lib/types';
 
+  type DeleteFn = (id: string | number) => void;
+
+  export let hasActions = true;
   export let activeEvent: Event;
-  export let onDeleteClick: (id: string | number) => void;
+  export let onDeleteClick: DeleteFn = () => {
+    return;
+  };
 </script>
 
 <div class="flex flex-col gap-2 text-slate-800 dark:text-white pt-6">
-  <div class="actions absolute top-3 right-14 flex">
-    <a
-      href="/admin/dashboard/calendar/edit/{activeEvent.id}"
-      class="inline-block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-700"
-    >
-      <PenSolid size="md" />
-    </a>
-    <button
-      class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-700"
-      on:click={() => {
-        onDeleteClick(activeEvent.id);
-      }}
-    >
-      <TrashBinSolid size="md" />
-    </button>
-  </div>
+  {#if hasActions}
+    <div class="actions absolute top-3 right-14 flex">
+      <a
+        href="/admin/dashboard/calendar/edit/{activeEvent.id}"
+        class="inline-block p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-700"
+      >
+        <PenSolid size="md" />
+      </a>
+      <button
+        class="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-zinc-700"
+        on:click={() => {
+          onDeleteClick(activeEvent.id);
+        }}
+      >
+        <TrashBinSolid size="md" />
+      </button>
+    </div>
+  {/if}
   <div class="title flex flex-col gap-1">
     <div class="header">
       <span class="font-bold text-2xl">{activeEvent.title}</span>

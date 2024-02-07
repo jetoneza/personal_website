@@ -1,4 +1,7 @@
 <script lang="ts">
+  // Components
+  import QuickWorkLog from '$lib/components/QuickWorkLog.svelte';
+
   // Types
   import type { Event } from '$lib/types';
   import { formatDate } from '$lib/utils/date';
@@ -14,7 +17,9 @@
 </script>
 
 <main class="blog-dashboard">
-  <div class="date absolute top-6 right-6 font-semibold">Today is {formatDate(new Date().toString())}</div>
+  <div class="date absolute top-6 right-6 font-semibold">
+    Today is {formatDate(new Date().toString())}
+  </div>
   <div class="actions w-full flex justify-between items-center">
     <h1 class="font-bold text-2xl font-sans-pro">Welcome, Jet</h1>
   </div>
@@ -25,6 +30,8 @@
     <div class="font-semibold">Days worked this month</div>
     <div class="text-6xl font-bold font-sans-pro">{daysWorked}</div>
   </div>
+
+  <QuickWorkLog events={data.events} />
 
   <div
     class="max-w-sm mt-10 space-y-3 p-6 bg-white border border-zinc-200 rounded-lg shadow dark:bg-zinc-900 dark:border-zinc-800"
