@@ -1,19 +1,16 @@
 <script lang="ts">
   // Components
   import QuickWorkLog from '$lib/components/QuickWorkLog.svelte';
+  import RateCalculator from '$lib/components/RateCalculator.svelte';
+
+  // Utils
+  import { formatDate } from '$lib/utils/date';
 
   // Types
-  import type { Event } from '$lib/types';
-  import { formatDate } from '$lib/utils/date';
   import type { PageData } from './$types';
 
   // Props
   export let data: PageData;
-
-  $: daysWorked = data.events.reduce(
-    (acc: number, curr: Event) => (curr.type === 'work' ? acc + 1 : acc),
-    0
-  );
 </script>
 
 <main class="blog-dashboard">
@@ -24,12 +21,7 @@
     <h1 class="font-bold text-2xl font-sans-pro">Welcome, Jet</h1>
   </div>
 
-  <div
-    class="max-w-sm mt-10 space-y-5 p-6 bg-white border border-zinc-200 rounded-lg shadow dark:bg-zinc-900 dark:border-zinc-800"
-  >
-    <div class="font-semibold">Days worked this month</div>
-    <div class="text-6xl font-bold font-sans-pro">{daysWorked}</div>
-  </div>
+  <RateCalculator events={data.events} />
 
   <QuickWorkLog events={data.events} />
 

@@ -31,7 +31,30 @@ export function formatDateObject(date: Date, format?: string) {
     )}`;
   }
 
+  if (format === 'MM, YYYY') {
+    return `${monthNames[date.getMonth()]}, ${date.getFullYear()}`;
+  }
+
   return date.toLocaleDateString();
+}
+
+export function getWorkDaysInCurrentMonth(): number {
+  const currentDate = new Date();
+  const currentMonth = currentDate.getMonth();
+  const currentYear = currentDate.getFullYear();
+
+  const firstDay = new Date(currentYear, currentMonth, 1);
+  const lastDay = new Date(currentYear, currentMonth + 1, 0);
+
+  let workDays = 0;
+
+  for (let day = firstDay; day <= lastDay; day.setDate(day.getDate() + 1)) {
+    if (day.getDay() !== 0 && day.getDay() !== 6) {
+      workDays++;
+    }
+  }
+
+  return workDays;
 }
 
 export function isSameDay(dateString1: string, dateString2: string): boolean {

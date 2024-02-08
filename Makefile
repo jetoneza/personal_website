@@ -24,6 +24,7 @@ build_prod:
 
 deploy:
 	git pull
+	cp .env ./web/.env
 	make build_backup
 	make build_prod
 	pm2 delete -s go_app || :
