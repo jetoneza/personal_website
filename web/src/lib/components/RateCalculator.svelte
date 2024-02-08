@@ -40,6 +40,8 @@
     .filter(Boolean);
 
   $: {
+    holidayWork = 0;
+
     specialHolidays.forEach((event: Event | undefined) => {
       const worked = events.find(
         (e: Event) => event && e.type == 'work' && isSameDay(e.start, event.start)
