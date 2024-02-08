@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { env } from '$env/dynamic/public';
+  import { PUBLIC_MONTHLY_RATE } from '$env/static/public';
 
   // Components
   import {
@@ -19,7 +19,7 @@
   import { formatToCurrency } from '$lib/utils/currency';
 
   const HOLIDAY_RATE = 1.3;
-  const MONTHLY_RATE = parseFloat(env.PUBLIC_MONTHLY_RATE as string) || 0;
+  const MONTHLY_RATE = parseFloat(PUBLIC_MONTHLY_RATE as string) || 0;
 
   export let events: Event[] = [];
 
