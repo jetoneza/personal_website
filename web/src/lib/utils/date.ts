@@ -27,7 +27,7 @@ export function formatInputDate(date: Date): string {
 export function formatDateObject(date: Date, format?: string) {
   if (format === 'YYYYMMDD') {
     return `${date.getFullYear()}${padTo2Digits(date.getMonth() + 1)}${padTo2Digits(
-      date.getDay() + 1
+      date.getDate()
     )}`;
   }
 
