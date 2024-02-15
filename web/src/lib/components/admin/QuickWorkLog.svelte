@@ -1,4 +1,7 @@
 <script lang="ts">
+  // Components
+  import { Confetti } from 'svelte-confetti';
+
   // Types
   import type { Event } from '$lib/types';
 
@@ -12,6 +15,7 @@
 
   export let events: Event[] = [];
 
+  let toggleConfetti = false;
   const today = new Date();
   const id = formatDateObject(today, 'YYYYMMDD');
   $: createdEvent = events.find((event: Event) =>
@@ -41,6 +45,7 @@
         type: 'success',
         message: `Work event #${id} created!`,
       });
+      toggleConfetti = true;
     }
 
     // TODO: Handle error
@@ -50,10 +55,17 @@
 
 {#if Boolean(createdEvent)}
   <div
-    class="max-w-sm mt-10 space-y-3 p-6 bg-white border border-zinc-200 rounded-lg shadow dark:bg-zinc-900 dark:border-zinc-800"
+    class="max-w-sm mt-10 space-y-3 p-6 bg-white border border-zinc-200 rounded-lg shadow dark:bg-zinc-900 dark:border-zinc-800 relative"
   >
     <h5 class="text-2xl font-bold font-sans-pro">{createdEvent?.title}</h5>
     <p class="font-normal">You have already logged your work for today! 🎉🎉🎉</p>
+    {#if toggleConfetti}
+      <div class="absolute inset-0 flex items-center justify-center">
+        <Confetti fallDistance="30px" x={[-0.5, 0.5]} delay={[0, 250]} />
+        <Confetti amount={10} x={[-0.75, -0.3]} y={[0.15, 0.75]} delay={[0, 1000]} />
+        <Confetti amount={10} x={[0.3, 0.75]} y={[0.15, 0.75]} delay={[0, 1000]} />
+      </div>
+    {/if}
   </div>
 {:else}
   <div
