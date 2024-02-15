@@ -27,6 +27,9 @@ deploy:
 	cp .env ./web/.env
 	make build_backup
 	make build_prod
+	make run_apps
+
+run_apps:
 	pm2 delete -s go_app || :
 	pm2 start ./bin/api --name go_app
 	pm2 delete -s svelte_app || :
