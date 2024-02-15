@@ -114,7 +114,9 @@
           Daily rate for {workDays} workdays this month. <br />
         </TableBodyCell>
         <TableBodyCell class="text-left">
-          Worked {regularWork} out of {regularWorkDays} regular workdays.
+          Worked {regularWork} out of {regularWorkDays} regular workdays{regularWorkDays > 1
+            ? 's'
+            : ''}.
         </TableBodyCell>
         <TableBodyCell>{formatToCurrency(dailyRate)}</TableBodyCell>
         <TableBodyCell>{regularWork}</TableBodyCell>
@@ -126,7 +128,9 @@
           130% rate for special holidays. <br />
         </TableBodyCell>
         <TableBodyCell class="text-left">
-          Worked {holidayWork} out of {specialHolidays.length} holidays.
+          Worked {holidayWork} out of {specialHolidays.length} holiday{specialHolidays.length > 1
+            ? 's'
+            : ''}.
         </TableBodyCell>
         <TableBodyCell>{formatToCurrency(dailyRate * HOLIDAY_RATE)}</TableBodyCell>
         <TableBodyCell>{holidayWork}</TableBodyCell>
