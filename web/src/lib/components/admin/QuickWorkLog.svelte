@@ -1,7 +1,7 @@
 <script lang="ts">
   // Libraries
   import { Modal } from 'flowbite-svelte';
-  import EventView from './admin/EventView.svelte';
+  import EventView from './EventView.svelte';
 
   // Types
   import type { Event } from '$lib/types';

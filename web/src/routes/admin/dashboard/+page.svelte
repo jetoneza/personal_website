@@ -1,7 +1,7 @@
 <script lang="ts">
   // Components
-  import QuickWorkLog from '$lib/components/QuickWorkLog.svelte';
-  import RateCalculator from '$lib/components/RateCalculator.svelte';
+  import QuickWorkLog from '$lib/components/admin/QuickWorkLog.svelte';
+  import RateCalculator from '$lib/components/admin/RateCalculator.svelte';
 
   // Utils
   import { formatDate } from '$lib/utils/date';
