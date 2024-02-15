@@ -1,4 +1,5 @@
 <script lang="ts">
+  import Alerts from '$lib/components/admin/Alerts.svelte';
   import SideNav from '$lib/components/admin/SideNav.svelte';
 </script>
 
@@ -13,3 +14,5 @@
     <slot />
   </div>
 </div>
+
+<Alerts />
