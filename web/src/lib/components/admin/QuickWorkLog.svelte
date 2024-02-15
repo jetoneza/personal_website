@@ -1,8 +1,4 @@
 <script lang="ts">
-  // Libraries
-  import { Modal } from 'flowbite-svelte';
-  import EventView from './EventView.svelte';
-
   // Types
   import type { Event } from '$lib/types';
 
@@ -12,6 +8,7 @@
 
   // Constants
   import { API_STATUS, QUICK_LOG_NOTES } from '$lib/constants';
+  import { addAlert } from '$lib/stores/alerts';
 
   export let events: Event[] = [];
 
@@ -30,12 +27,6 @@
     notes: QUICK_LOG_NOTES,
   };
 
-  let openModal = false;
-
-  function handleCloseModal() {
-    openModal = false;
-  }
-
   async function handleCreateEvent() {
     const response = await fetch(`/events`, {
       method: 'POST',
@@ -46,7 +37,10 @@
 
     if (responseData.status === API_STATUS.SUCCESS) {
       await invalidateAll();
-      openModal = false;
+      addAlert({
+        type: 'success',
+        message: `Work event #${id} created!`,
+      });
     }
 
     // TODO: Handle error
@@ -68,20 +62,7 @@
     <h5 class="text-2xl font-bold font-sans-pro">Have you worked today?</h5>
     <p class="font-normal">Create a quick work log for today.</p>
     <div class="action">
-      <button class="inline-block btn" on:click={() => (openModal = true)}>Quick Log</button>
+      <button class="inline-block btn" on:click={handleCreateEvent}>Quick Log</button>
     </div>
   </div>
 {/if}
-
-<Modal
-  class="dark:bg-zinc-800"
-  title=""
-  size="sm"
-  bind:open={openModal}
-  on:close={handleCloseModal}
->
-  <EventView activeEvent={event} hasActions={false} />
-  <div class="actions">
-    <button class="btn w-full" on:click={handleCreateEvent}>Create</button>
-  </div>
-</Modal>
