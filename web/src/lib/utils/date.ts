@@ -68,6 +68,12 @@ export function isSameDay(dateString1: string, dateString2: string): boolean {
   );
 }
 
+export function isInCurrentMonth(dateString: string) {
+  const inputDate = new Date(dateString);
+  const now = new Date();
+  return inputDate.getMonth() === now.getMonth() && inputDate.getFullYear() === now.getFullYear();
+}
+
 function padTo2Digits(num: number): string {
   return num.toString().padStart(2, '0');
 }

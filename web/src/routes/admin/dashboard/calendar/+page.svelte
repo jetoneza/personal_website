@@ -16,7 +16,7 @@
   import { applyAction, enhance } from '$app/forms';
   import { invalidateAll } from '$app/navigation';
   import { calendarOptions, getEventColor } from '$lib/utils/calendar';
-  import { formatInputDate } from '$lib/utils/date';
+  import { formatInputDate, isInCurrentMonth } from '$lib/utils/date';
 
   // Constants
   import { API_STATUS } from '$lib/constants';
@@ -141,6 +141,7 @@
       end,
       allDay: all_day,
       title,
+      display: isInCurrentMonth(start) ? 'auto' : 'ghost',
       ...getEventColor(type),
     })),
   };
