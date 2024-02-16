@@ -78,10 +78,10 @@
 
   <Table>
     <TableHead class="dark:bg-neutral-700 dark:border-neutral-700">
-      <TableHeadCell class="text-gray-100">Work days</TableHeadCell>
-      <TableHeadCell class="text-gray-100">Regular</TableHeadCell>
-      <TableHeadCell class="text-gray-100">Special</TableHeadCell>
-      <TableHeadCell class="text-gray-100">Days worked</TableHeadCell>
+      <TableHeadCell class="dark:text-gray-100">Work days</TableHeadCell>
+      <TableHeadCell class="dark:text-gray-100">Regular</TableHeadCell>
+      <TableHeadCell class="dark:text-gray-100">Special</TableHeadCell>
+      <TableHeadCell class="dark:text-gray-100">Days worked</TableHeadCell>
     </TableHead>
     <TableBody>
       <TableBodyRow class="dark:bg-neutral-800 dark:border-neutral-700">
@@ -100,9 +100,9 @@
 
   <Table class="text-right">
     <TableHead class="dark:bg-neutral-700 dark:border-neutral-700">
-      <TableHeadCell class="text-left text-gray-100">Type</TableHeadCell>
-      <TableHeadCell class="text-left text-gray-100">Description</TableHeadCell>
-      <TableHeadCell class="text-left text-gray-100">Notes</TableHeadCell>
+      <TableHeadCell class="text-left dark:text-gray-100">Type</TableHeadCell>
+      <TableHeadCell class="text-left dark:text-gray-100">Description</TableHeadCell>
+      <TableHeadCell class="text-left dark:text-gray-100">Notes</TableHeadCell>
       <TableHeadCell>Rate</TableHeadCell>
       <TableHeadCell># days worked</TableHeadCell>
       <TableHeadCell>Total</TableHeadCell>
