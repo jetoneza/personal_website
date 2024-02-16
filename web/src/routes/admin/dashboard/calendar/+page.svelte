@@ -166,7 +166,7 @@
   <!-- TODO Fix modal dark color -->
   <Modal
     class="dark:bg-zinc-800"
-    title={modalAction === 'new' ? 'Create Event' : ''}
+    backdropClass="fixed inset-0 z-40 bg-zinc-900 bg-opacity-50 dark:bg-opacity-70"
     size={modalAction === 'new' ? 'md' : 'sm'}
     bind:open={openModal}
     on:close={handleCloseModal}

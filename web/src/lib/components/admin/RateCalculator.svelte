@@ -77,14 +77,14 @@
   </div>
 
   <Table>
-    <TableHead>
-      <TableHeadCell>Work days</TableHeadCell>
-      <TableHeadCell>Regular</TableHeadCell>
-      <TableHeadCell>Special</TableHeadCell>
-      <TableHeadCell>Days worked</TableHeadCell>
+    <TableHead class="dark:bg-neutral-700 dark:border-neutral-700">
+      <TableHeadCell class="text-gray-100">Work days</TableHeadCell>
+      <TableHeadCell class="text-gray-100">Regular</TableHeadCell>
+      <TableHeadCell class="text-gray-100">Special</TableHeadCell>
+      <TableHeadCell class="text-gray-100">Days worked</TableHeadCell>
     </TableHead>
     <TableBody>
-      <TableBodyRow>
+      <TableBodyRow class="dark:bg-neutral-800 dark:border-neutral-700">
         <TableBodyCell>{workDays}</TableBodyCell>
         <TableBodyCell>{regularWorkDays}</TableBodyCell>
         <TableBodyCell>{specialHolidays.length}</TableBodyCell>
@@ -99,16 +99,16 @@
   </div>
 
   <Table class="text-right">
-    <TableHead>
-      <TableHeadCell class="text-left">Type</TableHeadCell>
-      <TableHeadCell class="text-left">Description</TableHeadCell>
-      <TableHeadCell class="text-left">Notes</TableHeadCell>
+    <TableHead class="dark:bg-neutral-700 dark:border-neutral-700">
+      <TableHeadCell class="text-left text-gray-100">Type</TableHeadCell>
+      <TableHeadCell class="text-left text-gray-100">Description</TableHeadCell>
+      <TableHeadCell class="text-left text-gray-100">Notes</TableHeadCell>
       <TableHeadCell>Rate</TableHeadCell>
       <TableHeadCell># days worked</TableHeadCell>
       <TableHeadCell>Total</TableHeadCell>
     </TableHead>
     <TableBody>
-      <TableBodyRow>
+      <TableBodyRow class="dark:bg-neutral-800 dark:border-neutral-700">
         <TableBodyCell class="text-left">Regular</TableBodyCell>
         <TableBodyCell class="text-left">
           Daily rate for {workDays} workdays this month. <br />
@@ -122,7 +122,7 @@
         <TableBodyCell>{regularWork}</TableBodyCell>
         <TableBodyCell>{formatToCurrency(regularTotal)}</TableBodyCell>
       </TableBodyRow>
-      <TableBodyRow>
+      <TableBodyRow class="dark:bg-neutral-800 dark:border-neutral-700">
         <TableBodyCell class="text-left">Special holiday</TableBodyCell>
         <TableBodyCell class="text-left">
           130% rate for special holidays. <br />
@@ -136,7 +136,7 @@
         <TableBodyCell>{holidayWork}</TableBodyCell>
         <TableBodyCell>{formatToCurrency(holidayTotal)}</TableBodyCell>
       </TableBodyRow>
-      <TableBodyRow>
+      <TableBodyRow class="dark:bg-neutral-800 dark:border-neutral-700">
         <TableBodyCell />
         <TableBodyCell />
         <TableBodyCell />

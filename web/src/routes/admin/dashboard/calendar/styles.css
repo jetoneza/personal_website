@@ -39,11 +39,11 @@
   &.ec-timeGridWeek,
   &.ec-timeGridDay,
   &.ec-today {
-    @apply text-sm px-4 py-2;
+    @apply text-sm px-4 py-2 hover:cursor-pointer;
   }
 
   &.ec-active {
-    @apply bg-gray-200 dark:bg-zinc-700;
+    @apply bg-gray-200 dark:bg-zinc-700 dark:hover:bg-zinc-700;
   }
 }
 
@@ -59,4 +59,10 @@
 
 .ec-event {
   @apply cursor-pointer;
+}
+
+.ec-button-group {
+  .ec-button {
+    @apply hover:bg-gray-200 dark:border-zinc-700 dark:hover:border-zinc-600 dark:hover:bg-zinc-700;
+  }
 }
