@@ -114,7 +114,7 @@
           Daily rate for {workDays} workdays this month. <br />
         </TableBodyCell>
         <TableBodyCell class="text-left">
-          Worked {regularWork} out of {regularWorkDays} regular workdays{regularWorkDays > 1
+          Worked {regularWork} out of {regularWorkDays} regular workday{regularWorkDays > 1
             ? 's'
             : ''}.
         </TableBodyCell>
