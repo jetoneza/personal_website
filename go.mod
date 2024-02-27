@@ -1,6 +1,6 @@
 module github.com/jetoneza/personal_website
 
-go 1.21.0
+go 1.22.0
 
 require (
 	github.com/alecthomas/chroma v0.10.0
