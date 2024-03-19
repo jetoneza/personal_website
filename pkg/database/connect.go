@@ -24,7 +24,7 @@ func Connect(name string) (*gorm.DB, error) {
 	}
 
 	log.Println("Running migrations.")
-	db.AutoMigrate(&models.Post{}, &models.User{}, &models.Event{}, &models.Integration{})
+	db.AutoMigrate(&models.Post{}, &models.User{}, &models.Event{}, &models.Integration{}, &models.UserSetting{})
 
 	log.Println("Database successfully connected.")
 
