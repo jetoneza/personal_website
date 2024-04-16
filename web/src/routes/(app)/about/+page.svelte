@@ -2,6 +2,36 @@
   import type { PageData } from './$types';
 
   export let data: PageData;
+
+  const experiences = [
+    {
+      time: '2023 - Present',
+      title: 'Software Engineer',
+      company: 'Bookipi',
+      link: 'https://bookipi.com',
+    },
+    {
+      time: '2018 - 2023',
+      title: 'Senior Software Engineer',
+      company: 'Poplar Homes',
+      link: 'https://poplarhomes.com',
+    },
+    {
+      time: '2016 - 2018',
+      title: 'Software Engineer',
+      company: 'Satoshi Citadel Industries',
+    },
+    {
+      time: '2015 - 2016',
+      title: 'Web Developer',
+      company: 'Twidl Inc.',
+    },
+    {
+      time: '2014 - 2015',
+      title: 'Web Developer',
+      company: 'Freelance',
+    },
+  ];
 </script>
 
 <svelte:head>
@@ -50,36 +80,15 @@
   </div>
 
   <ul class="flex flex-col gap-4">
-    <li class="flex flex-col-reverse min-[425px]:flex-row min-[425px]:gap-10">
-      <div class="time text-sm min-[425px]:text-base font-bold">2018 - 2023</div>
-      <div>
-        <a href="https://poplarhomes.com" target="_blank">
-          <div class="title font-bold text-cyan-500">Senior Software Engineer</div>
-          <div class="company text-sm">Poplar Homes</div>
+    {#each experiences as experience}
+      <li class="flex flex-col-reverse min-[425px]:flex-row min-[425px]:gap-10">
+        <div class="time text-sm w-[115px] min-[425px]:text-base font-bold">{experience.time}</div>
+          <a href="{experience.link}" target="_blank">
+            <div class="title font-bold text-cyan-500">{experience.title}</div>
+          <div class="company text-sm">{experience.company}</div>
         </a>
-      </div>
-    </li>
-    <li class="flex flex-col-reverse min-[425px]:flex-row min-[425px]:gap-10">
-      <div class="time text-sm min-[425px]:text-base font-bold">2016 - 2018</div>
-      <div>
-        <div class="title font-bold text-cyan-500">Software Engineer</div>
-        <div class="company text-sm">Satoshi Citadel Industries</div>
-      </div>
-    </li>
-    <li class="flex flex-col-reverse min-[425px]:flex-row min-[425px]:gap-10">
-      <div class="time text-sm min-[425px]:text-base font-bold">2015 - 2016</div>
-      <div>
-        <div class="title font-bold text-cyan-500">Web Developer</div>
-        <div class="company text-sm">Twidl Inc.</div>
-      </div>
-    </li>
-    <li class="flex flex-col-reverse min-[425px]:flex-row min-[425px]:gap-10">
-      <div class="time text-sm min-[425px]:text-base font-bold">2014 - 2015</div>
-      <div>
-        <div class="title font-bold text-cyan-500">Web Developer</div>
-        <div class="company text-sm">Freelance</div>
-      </div>
-    </li>
+      </li>
+    {/each}
   </ul>
 
   <div class="links space-y-4 mt-8 dark:text-slate-200">
