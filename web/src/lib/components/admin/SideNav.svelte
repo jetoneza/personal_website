@@ -9,7 +9,7 @@
 </script>
 
 <aside
-  class="side-nav fixed bg-zinc-100 top-0 left-0 z-40 w-64 h-screen border-r dark:border-r-zinc-800 dark:bg-zinc-900 flex flex-col"
+  class="side-nav hidden md:fixed bg-zinc-100 top-0 left-0 z-40 w-64 h-screen border-r dark:border-r-zinc-800 dark:bg-zinc-900 md:flex flex-col"
 >
   <div class="header w-full text-center py-6 px-4">
     <a href="/admin/dashboard" class="text-2xl"

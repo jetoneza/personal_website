@@ -64,7 +64,7 @@
 </script>
 
 <div
-  class="mt-10 space-y-5 p-6 bg-white border border-zinc-200 rounded-lg shadow dark:bg-zinc-900 dark:border-zinc-800"
+  class="mt-10 md:space-y-5 p-6 bg-white border border-zinc-200 rounded-lg shadow dark:bg-zinc-900 dark:border-zinc-800"
 >
   <div class="font-semibold">
     Days worked this month,
@@ -76,7 +76,7 @@
     <div class="text-6xl font-bold font-sans-pro">{daysWorked}/{workDays}</div>
   </div>
 
-  <Table>
+  <Table class="hidden md:block">
     <TableHead class="dark:bg-neutral-700 dark:border-neutral-700">
       <TableHeadCell class="dark:text-gray-100">Work days</TableHeadCell>
       <TableHeadCell class="dark:text-gray-100">Regular</TableHeadCell>
@@ -93,12 +93,12 @@
     </TableBody>
   </Table>
 
-  <div class="font-semibold">
+  <div class="hidden md:block font-semibold">
     Breakdown of the monthly rate of <span class="font-bold">{formatToCurrency(MONTHLY_RATE)}</span
     >:
   </div>
 
-  <Table class="text-right">
+  <Table class="hidden md:block text-right">
     <TableHead class="dark:bg-neutral-700 dark:border-neutral-700">
       <TableHeadCell class="text-left dark:text-gray-100">Type</TableHeadCell>
       <TableHeadCell class="text-left dark:text-gray-100">Description</TableHeadCell>
