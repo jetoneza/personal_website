@@ -1,15 +1,20 @@
 package handlers
 
 import (
+	"fmt"
+
 	"github.com/gofiber/fiber/v2"
 	"github.com/golang-jwt/jwt/v5"
+	"github.com/jetoneza/personal_website/internal/models"
+	// "github.com/jetoneza/personal_website/internal/schema"
+	// "github.com/jetoneza/personal_website/pkg/utils"
 )
 
-func (h *Handlers) GetUserSettings(ctx *fiber.Ctx) error {
+func (h *Handler) GetUserSettings(ctx *fiber.Ctx) error {
 	jwtData := ctx.Locals("user").(*jwt.Token)
 	claims := jwtData.Claims.(jwt.MapClaims)
 
-	var settings UserSettings
+	var settings models.UserSetting
 
 	result := h.App.DB.First(&settings, "user_id = ?", claims["id"])
 
@@ -26,13 +31,17 @@ func (h *Handlers) GetUserSettings(ctx *fiber.Ctx) error {
 	})
 }
 
-funct (h *Handlers) UpsertUserSettings(ctx *fiber.Ctx) error {
-  jwtData := ctx.Locals("user").(*jwt.Token)
-  claims := jwtData.Claims.(jwt.MapClaims)
+func (h *Handler) UpsertUserSettings(ctx *fiber.Ctx) error {
+	// jwtData := ctx.Locals("user").(*jwt.Token)
+	// claims := jwtData.Claims.(jwt.MapClaims)
+	//
+	// body := new(schema.CreateUserSettingSchema)
+	//
+	// if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
+	// 	return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "fail", "error": err.Message})
+	// }
 
-  body := new (schema.UserSettings)
+	// TODO: Implement upsert logic here
 
-  if err := utils.ParseBodyAndValidate(ctx, body); err != nil {
-    return ctx.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "fail", "error": err.Message})
-  }
-})
+	return nil
+}
