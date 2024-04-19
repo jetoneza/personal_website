@@ -1,4 +1,6 @@
 <script lang="ts">
+  import { enhance } from '$app/forms'
+  import Input from '$lib/components/Input.svelte';
   import type { PageData } from './$types';
 
   export let data: PageData;
@@ -27,11 +29,25 @@
 <div class="contact">
   <h1 class="font-bold text-2xl">Contact Me</h1>
   <p class="mt-10">
-    If you'd like to get in touch, you can email me at <a
-      class="font-bold text-cyan-500 underline"
-      href="mailto:jet.oneza@gmail.com"
-    >
-      jet.oneza@gmail.com
-    </a>
+    If you'd like to get in touch, you can contact me here!
   </p>
+
+  <form class="contact-form mt-10 space-y-4" method="POST" use:enhance>
+    <Input name="name" label="Name" type="text" placeholder="" />
+    <Input name="email" label="Email" type="email" placeholder="" />
+    <div class="textarea-wrapper mt-2">
+      <label for="message" class="block mb-2 text-md font-bold dark:text-white">Message</label>
+      <textarea
+        value=""
+        name="message"
+        rows="10"
+        class="
+          w-full rounded-md border border-input bg-background px-3 py-2
+          text-sm outline-none focus:outline-zinc-500 font-mono text-black dark:bg-zinc-800
+          dark:border-zinc-700 dark:text-white
+        "
+    />
+    </div>
+    <button type="submit" class="btn">Submit</button>
+  </form>
 </div>
