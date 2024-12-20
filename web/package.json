@@ -21,7 +21,7 @@
     "@fontsource/source-sans-pro": "^5.0.8",
     "@sveltejs/adapter-auto": "^3.0.0",
     "@sveltejs/adapter-node": "^2.1.2",
-    "@sveltejs/kit": "^2.4.3",
+    "@sveltejs/kit": "^2.8.3",
     "@sveltejs/vite-plugin-svelte": "^3.0.0",
     "@tailwindcss/typography": "^0.5.10",
     "@types/cookie": "^0.5.4",
@@ -50,6 +50,6 @@
   },
   "type": "module",
   "dependencies": {
-    "cookie": "^0.5.0"
+    "cookie": "^0.7.0"
   }
 }
